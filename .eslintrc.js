@@ -1,16 +1,23 @@
 // http://eslint.org/docs/user-guide/configuring
 
 module.exports = {
-  root: true,
-  parser: 'babel-eslint',
-  parserOptions: {
-    sourceType: 'module'
+  'root': true,
+  'parser': 'babel-eslint',
+  'parserOptions': {
+    'sourceType': 'module',
   },
-  extends: 'google',
+  'plugins': [
+    'react',
+  ],
+  'env': {
+    'browser': true,
+  },
+  'extends': [
+    'google',
+    'eslint:recommended',
+    'plugin:react/recommended'
+  ],
   /*
-  env: {
-    browser: true,
-  },
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
   // required to lint *.vue files
   plugins: [
@@ -27,6 +34,10 @@ module.exports = {
 
     'require-jsdoc': 0,
 
-    "indent": ["error", 2],
+    'indent': ["error", 2],
+
+    'no-unused-vars': 1,
+
+    'react/jsx-uses-vars': 1,
   }
 }

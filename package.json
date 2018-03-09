@@ -17,7 +17,9 @@
         "eslint-config-google": "^0.9.1",
         "eslint-friendly-formatter": "^3.0.0",
         "eslint-loader": "^2.0.0",
+        "eslint-plugin-react": "^7.7.0",
         "laravel-mix": "^2.0",
+        "prop-types": "^15.6.1",
         "react": "^16.2.0",
         "react-dom": "^16.2.0"
     }
