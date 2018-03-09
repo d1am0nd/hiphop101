@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 
+import Header from 'components/containers/Header';
+
 export default class App extends Component {
   render() {
     return (
-      <div>
-        Hip Hop 101
+      <div className={`wrapper`}>
+        <Header/>
       </div>
     );
   }

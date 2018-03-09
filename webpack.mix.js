@@ -26,6 +26,11 @@ mix
         }
       ]
     },
+    resolve: {
+      alias: {
+        components: path.join(__dirname, 'resources', 'assets', 'js', 'components'),
+      },
+    },
   })
   .sass('resources/assets/sass/app.scss', 'public/css')
   .react('resources/assets/js/app.js', 'public/js');
