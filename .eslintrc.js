@@ -26,5 +26,7 @@ module.exports = {
     'no-unused-vars': 0,
 
     'require-jsdoc': 0,
+
+    "indent": ["error", 2],
   }
 }
