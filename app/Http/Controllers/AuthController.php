@@ -33,15 +33,22 @@ class AuthController extends Controller
         ]));
 
         return response()->json(array_merge([
-            'user' => $user
+            'user' => $user,
         ], [
-            'token' => $this->tokenArray($token)
+            'token' => $this->tokenArray($token),
         ]));
     }
 
     public function login(LoginRequest $request)
     {
-
+        if (! $token = $this->auth->attempt($request->only('email', 'password'))) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+        return response()->json(array_merge([
+            'user' => $this->auth->user(),
+        ], [
+            'token' => $this->tokenArray($token),
+        ]));
     }
 
 
