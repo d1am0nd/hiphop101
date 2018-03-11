@@ -29,6 +29,8 @@ mix
     resolve: {
       alias: {
         components: path.join(__dirname, 'resources', 'assets', 'js', 'components'),
+        store: path.join(__dirname, 'resources', 'assets', 'js', 'store'),
+        api: path.join(__dirname, 'resources', 'assets', 'js', 'api'),
       },
     },
   })

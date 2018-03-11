@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 const Profile = ({children}) => (
   <div className="profile">
-    {!children ? 'Login | Register' : children}
+    <a href="javascript:;">Login</a>
+    &nbsp;|&nbsp;
+    <a href="javascript:;">Register</a>
   </div>
 );
 
