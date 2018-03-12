@@ -4,40 +4,40 @@ import PropTypes from 'prop-types';
 
 import Modal from 'components/simple/Modal';
 
-import {toggleLoginModal} from 'store/actions/modal';
-import {isLoginOpen} from 'store/selectors/modal';
+import {toggleRegisterModal} from 'store/actions/modal';
+import {isRegisterOpen} from 'store/selectors/modal';
 
-class Login extends Component {
+class Register extends Component {
   render() {
     return (
       <Modal
         open={this.props.open}
-        title="Login"
+        title="Register"
         onClose={e => this.props.closeModal()}>
-        Login form
+        Register form
       </Modal>
     );
   }
 }
 
-Login.propTypes = {
+Register.propTypes = {
   open: PropTypes.bool,
   closeModal: PropTypes.func,
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    closeModal: () => dispatch(toggleLoginModal(false)),
+    closeModal: () => dispatch(toggleRegisterModal(false)),
   };
 };
 
 const mapStateToProps = state => {
   return {
-    open: isLoginOpen(state),
+    open: isRegisterOpen(state),
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Login);
+)(Register);

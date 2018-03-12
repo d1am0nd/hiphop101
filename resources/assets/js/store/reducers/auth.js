@@ -17,7 +17,7 @@ export const authReducer = (state = initialState, action) => {
   case SET_TOKEN: {
     state = {
       ...state,
-      token: action.token,
+      token: action.payload,
     };
     break;
   }

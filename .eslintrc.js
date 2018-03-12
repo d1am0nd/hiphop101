@@ -39,5 +39,7 @@ module.exports = {
     'no-unused-vars': 1,
 
     'react/jsx-uses-vars': 1,
+
+    'no-console': process.env.NODE_ENV === 'production' ? 2 : 0,
   }
 }

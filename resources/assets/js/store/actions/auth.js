@@ -2,7 +2,7 @@ import {register, login} from 'api/auth';
 
 import {SET_USER, SET_TOKEN} from 'store/const/auth';
 
-export const register(userInfo) {
+const register = userInfo => {
   return (dispatch, state) => {
     return new Promise((resolve, reject) => {
       register(userInfo)
@@ -18,7 +18,7 @@ export const register(userInfo) {
   }
 };
 
-export const login(credentials) {
+const login = credentials => {
   return (dispatch, state) => {
     return new Promise((resolve, reject) => {
       login(credentials)
@@ -32,4 +32,9 @@ export const login(credentials) {
         });
     })
   }
-}
+};
+
+export {
+  register,
+  login,
+};

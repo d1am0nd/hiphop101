@@ -6,12 +6,18 @@ import {
 import thunk from 'redux-thunk';
 
 import {authReducer} from 'store/reducers/auth';
+import {modalReducer} from 'store/reducers/modal';
 
-export function createStore() {
+const createStore = () => {
   return reduxCreateStore(
     combineReducers({
-      authReducer,
+      auth: authReducer,
+      modal: modalReducer,
     }),
     applyMiddleware(thunk)
   );
 }
+
+export {
+  createStore,
+};

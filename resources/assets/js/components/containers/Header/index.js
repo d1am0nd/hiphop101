@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import Title from './Title';
-import Profile from './Profile';
+import Auth from './Auth';
 
 class Header extends Component {
   render() {
@@ -10,9 +10,7 @@ class Header extends Component {
         <Title>
           Hip Hop 101
         </Title>
-        <Profile>
-
-        </Profile>
+        <Auth/>
       </header>
     );
   }

@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 
 const Profile = ({children}) => (
   <div className="profile">
-    <a href="javascript:;">Login</a>
-    &nbsp;|&nbsp;
-    <a href="javascript:;">Register</a>
+    {children}
   </div>
 );
 
 Profile.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.string.isRequired,
 };
 
 export default Profile;
