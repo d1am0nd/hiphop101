@@ -28,7 +28,7 @@ const mapDispatchToProps = dispatch => {
   return {
     openLogin: () => dispatch(toggleLoginModal(true)),
     openRegister: () => dispatch(toggleRegisterModal(true)),
-  }
-}
+  };
+};
 
 export default connect(null, mapDispatchToProps)(Auth);

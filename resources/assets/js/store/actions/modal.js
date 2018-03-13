@@ -1,26 +1,14 @@
-import {TOGGLE_LOGIN, TOGGLE_REGISTER} from 'store/const/modal';
+import {CLOSE_MODAL} from 'store/const/modal';
 
-// Bool open (true = open it, false = close it, empty = toggle)
-const toggleLoginModal = open => {
+const closeModal = () => {
   return (dispatch, store) => {
     dispatch({
-      type: TOGGLE_LOGIN,
-      payload: open === undefined ? !store().modal.login.open : open,
+      type: CLOSE_MODAL,
+      payload: false,
     });
   }
 };
 
-// Bool open (true = open it, false = close it, empty = toggle)
-const toggleRegisterModal = open => {
-  return (dispatch, store) => {
-    dispatch({
-      type: TOGGLE_REGISTER,
-      payload:  open === undefined ? !store().modal.register.open : open,
-    });
-  }
-}
-
 export {
-  toggleLoginModal,
-  toggleRegisterModal,
+  closeModal,
 };

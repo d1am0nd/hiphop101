@@ -1,30 +1,28 @@
 import {createSelector} from 'reselect';
 
-// Login
-const loginModalSelector = store => store.modal.login;
+const modalSelector = store => store.modal;
 
-const getLoginOpen = login => {
-  return login.open;
+// Is modal open: bool
+const getModalOpen = modal => {
+  return modal.open;
 };
 
-const isLoginOpen = createSelector(
-  loginModalSelector,
-  getLoginOpen
+const isModalOpen = createSelector(
+  modalSelector,
+  getModalOpen
 );
 
-// Register
-const registerModalSelector = store => store.modal.register;
-
-const getRegisterOpen = register => {
-  return register.open;
+// Modal title: string
+const getModalTitle = modal => {
+  return modal.title;
 };
 
-const isRegisterOpen = createSelector(
-  registerModalSelector,
-  getRegisterOpen
+const modalTitle = createSelector(
+  modalSelector,
+  getModalTitle
 );
 
 export {
-  isLoginOpen,
-  isRegisterOpen,
+  isModalOpen,
+  modalTitle,
 };

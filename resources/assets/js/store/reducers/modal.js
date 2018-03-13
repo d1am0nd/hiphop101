@@ -1,14 +1,27 @@
-import {TOGGLE_LOGIN, TOGGLE_REGISTER} from 'store/const/modal';
+import {CLOSE_MODAL} from 'store/const/modal';
 
 const initialState = {
-  login: {
-    open: false,
-  },
-  register: {
-    open: false,
-  },
+  open: true,
+  title: 'test',
+  component: {},
 };
 
+export const modalReducer = (state = initialState, action) => {
+  switch (action.type) {
+  case CLOSE_MODAL: {
+    state = {
+      ...state,
+      open: false,
+      title: '',
+      component: {},
+    };
+    break;
+  }
+  }
+  return state;
+};
+
+/*
 export const modalReducer = (state = initialState, action) => {
   switch (action.type) {
   case TOGGLE_LOGIN: {
@@ -34,3 +47,4 @@ export const modalReducer = (state = initialState, action) => {
   }
   return state;
 };
+*/

@@ -4,9 +4,7 @@ import Header from 'components/containers/Header';
 import Navigation from 'components/containers/Navigation';
 import Content from 'components/containers/Content';
 import Footer from 'components/containers/Footer';
-
-import Login from 'components/scenes/Login';
-import Register from 'components/scenes/Register';
+import Modal from 'components/containers/Modal';
 
 class App extends Component {
   render() {
@@ -19,8 +17,7 @@ class App extends Component {
         </Content>
         <Footer/>
 
-        <Register/>
-        <Login/>
+        <Modal/>
       </div>
     );
   }
