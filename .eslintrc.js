@@ -11,11 +11,12 @@ module.exports = {
   ],
   'env': {
     'browser': true,
+    'es6': true,
   },
   'extends': [
+    // 'eslint:recommended',
+    'plugin:react/recommended',
     'google',
-    'eslint:recommended',
-    'plugin:react/recommended'
   ],
   /*
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style

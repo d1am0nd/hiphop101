@@ -16,7 +16,7 @@ const createStore = () => {
     }),
     applyMiddleware(thunk)
   );
-}
+};
 
 export {
   createStore,
