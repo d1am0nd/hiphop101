@@ -2,7 +2,7 @@ import {createSelector} from 'reselect';
 
 const authSelector = (store) => store.auth;
 const userSelector = (store) => authSelector(store).user;
-// const tokenSelector = (auth) => auth.token;
+const tokenSelector = (store) => authSelector(store).token;
 
 // Is user authenticated: bool
 const isUserFilled = (user) => {
@@ -15,8 +15,20 @@ const isAuth = createSelector(
   isUserFilled
 );
 
-// Get user object: object
+// Get username: string
+const getUsername = createSelector(
+  userSelector,
+  (user) => user.name
+);
+
+// Get full bearer token: string
+const getBearerToken = createStore(
+  tokenSelector,
+  (token) => `bearer ${token.access_token}`
+);
 
 export {
   isAuth,
+  getUsername,
+  getBearerToken,
 };
