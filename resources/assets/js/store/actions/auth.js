@@ -27,6 +27,9 @@ const login = (credentials) => {
         .then((res) => {
           dispatch({type: SET_USER, payload: res.data.user});
           dispatch({type: SET_TOKEN, payload: res.data.token});
+          setTimeout(() => {
+            console.log(state());
+          }, 100);
           resolve(res);
         })
         .catch((err) => {

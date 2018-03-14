@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {login} from 'store/actions/auth';
+import {closeModal} from 'store/actions/modal';
 
 class Login extends Component {
   constructor() {
@@ -22,7 +23,15 @@ class Login extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.postLogin(this.state);
+    this
+      .props
+      .postLogin(this.state)
+      .then((res) => {
+        this.props.closeModal();
+      })
+      .catch((err) => {
+        alert(err.response.data.error);
+      });
   }
 
   render() {
@@ -48,11 +57,13 @@ class Login extends Component {
 
 Login.propTypes = {
   postLogin: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     postLogin: (creds) => dispatch(login(creds)),
+    closeModal: () => dispatch(closeModal()),
   };
 };
 
