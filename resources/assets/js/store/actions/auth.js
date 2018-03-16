@@ -1,8 +1,9 @@
 import {
   register as registerApi,
   login as loginApi,
-} from 'api/auth';
-import {SET_USER, SET_TOKEN} from 'store/const/auth';
+} from '@/api/auth';
+import {SET_USER, SET_TOKEN} from '@/store/const/auth';
+import {storeAuth} from '@/auth/store';
 
 const register = (userInfo) => {
   return (dispatch, state) => {
@@ -25,8 +26,12 @@ const login = (credentials) => {
     return new Promise((resolve, reject) => {
       loginApi(credentials)
         .then((res) => {
-          dispatch({type: SET_USER, payload: res.data.user});
-          dispatch({type: SET_TOKEN, payload: res.data.token});
+          const {user, token} = res.data;
+          console.log(user, token);
+          storeAuth(user, token);
+
+          dispatch({type: SET_USER, payload: user});
+          dispatch({type: SET_TOKEN, payload: token});
           resolve(res);
         })
         .catch((err) => {

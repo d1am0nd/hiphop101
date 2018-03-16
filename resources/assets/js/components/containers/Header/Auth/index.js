@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {
   openLogin,
   openRegister,
-} from 'store/actions/modal';
+} from '@/store/actions/modal';
 
 const Auth = ({openLogin, openRegister}) => (
   <div className="profile">

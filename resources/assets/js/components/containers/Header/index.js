@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {
   isAuth,
   getUsername,
-} from 'store/selectors/auth';
+} from '@/store/selectors/auth';
 
 import Title from './Title';
 import Auth from './Auth';

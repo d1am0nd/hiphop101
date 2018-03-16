@@ -1,4 +1,5 @@
 import {createSelector} from 'reselect';
+import {getToken} from '@/auth/parsers';
 
 const authSelector = (store) => store.auth;
 const userSelector = (store) => authSelector(store).user;
@@ -22,9 +23,9 @@ const getUsername = createSelector(
 );
 
 // Get full bearer token: string
-const getBearerToken = createStore(
+const getBearerToken = createSelector(
   tokenSelector,
-  (token) => `bearer ${token.access_token}`
+  (token) => `bearer ${getToken(token)}`
 );
 
 export {

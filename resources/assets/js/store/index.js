@@ -5,8 +5,8 @@ import {
 } from 'redux';
 import thunk from 'redux-thunk';
 
-import {authReducer} from 'store/reducers/auth';
-import {modalReducer} from 'store/reducers/modal';
+import {authReducer} from '@/store/reducers/auth';
+import {modalReducer} from '@/store/reducers/modal';
 
 const createStore = () => {
   return reduxCreateStore(

@@ -2,15 +2,15 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
-import Login from 'components/scenes/Login';
+import Login from '@/components/scenes/Login';
 import {
   isModalOpen,
   modalTitle,
   modalType,
-} from 'store/selectors/modal';
+} from '@/store/selectors/modal';
 import {
   closeModal,
-} from 'store/actions/modal';
+} from '@/store/actions/modal';
 
 class Modal extends Component {
   renderContent() {

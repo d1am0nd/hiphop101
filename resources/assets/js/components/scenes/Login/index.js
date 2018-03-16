@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {login} from 'store/actions/auth';
-import {closeModal} from 'store/actions/modal';
+import {login} from '@/store/actions/auth';
+import {closeModal} from '@/store/actions/modal';
 
 class Login extends Component {
   constructor() {
@@ -15,7 +15,7 @@ class Login extends Component {
   }
 
   handleChange(e) {
-    const target = e.target;
+    const {target} = e;
     this.setState({
       [target.name]: target.value,
     });
@@ -30,7 +30,8 @@ class Login extends Component {
         this.props.closeModal();
       })
       .catch((err) => {
-        alert(err.response.data.error);
+        console.log('err triggered', err);
+        // alert(err.response.data.error);
       });
   }
 

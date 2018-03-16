@@ -1,4 +1,4 @@
-import {SET_USER, SET_TOKEN} from 'store/const/auth';
+import {SET_USER, SET_TOKEN} from '@/store/const/auth';
 
 const initialState = {
   user: {},

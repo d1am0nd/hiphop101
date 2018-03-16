@@ -1,7 +1,7 @@
 import {
   OPEN_MODAL,
   CLOSE_MODAL,
-} from 'store/const/modal';
+} from '@/store/const/modal';
 
 const initialState = {
   open: false,
