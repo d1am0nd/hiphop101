@@ -2,17 +2,22 @@ const TOKEN_STORAGE = 'TOKEN_STORAGE';
 const USER_STORAGE = 'USER_STORAGE';
 
 const storeAuth = (userObj, tokenObj) => {
-  // Save token
-  localStorage.setItem(
-    TOKEN_STORAGE,
-    JSON.stringify(tokenObj)
-  );
-
   // Save user
   localStorage.setItem(
     USER_STORAGE,
     JSON.stringify(userObj)
   );
+
+  // Save token
+  localStorage.setItem(
+    TOKEN_STORAGE,
+    JSON.stringify(tokenObj)
+  );
+};
+
+const clearAuth = () => {
+  localStorage.removeItem(USER_STORAGE);
+  localStorage.removeItem(TOKEN_STORAGE);
 };
 
 const getAuth = () => {
@@ -25,7 +30,13 @@ const getAuth = () => {
   } : null;
 };
 
+const isAuthenticated = () => {
+  return getAuth() !== null;
+};
+
 export {
   storeAuth,
   getAuth,
+  clearAuth,
+  isAuthenticated,
 };

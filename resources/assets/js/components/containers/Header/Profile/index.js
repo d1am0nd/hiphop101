@@ -1,14 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
-const Profile = ({children}) => (
+import {logout} from '@/store/actions/auth';
+import {getUsername} from '@/store/selectors/auth';
+
+const Profile = ({username, logout}) => (
   <div className="profile">
-    {children}
+    {username}
+    &nbsp;|&nbsp;
+    <a
+      onClick={(e) => logout()}
+      href="javascript:;">Logout</a>
   </div>
 );
 
 Profile.propTypes = {
-  children: PropTypes.string.isRequired,
+  username: PropTypes.string,
+  logout: PropTypes.func.isRequired,
 };
 
-export default Profile;
+const mapStateToProps = (state) => {
+  return {
+    username: getUsername(state),
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logout: () => dispatch(logout()),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Profile);
