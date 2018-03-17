@@ -5,6 +5,10 @@ import {connect} from 'react-redux';
 import {login} from '@/store/actions/auth';
 import {closeModal} from '@/store/actions/modal';
 
+import Form from '@/components/simple/form/Form';
+import Input from '@/components/simple/form/Input';
+import Submit from '@/components/simple/form/Submit';
+
 class Login extends Component {
   constructor() {
     super();
@@ -37,21 +41,21 @@ class Login extends Component {
 
   render() {
     return (
-      <form onSubmit={(e) => this.handleSubmit(e)}>
-        <input
-          onChange={(e) => this.handleChange(e)}
+      <Form handleSubmit={(e) => this.handleSubmit(e)}>
+        <Input
+          handleChange={(e) => this.handleChange(e)}
           type="email"
           name="email"
-          placeholder="Email"/>
-        <input
-          onChange={(e) => this.handleChange(e)}
+          placeholder="Email"
+          label="Email"/>
+        <Input
+          handleChange={(e) => this.handleChange(e)}
           type="password"
           name="password"
-          placeholder="Password"/>
-        <input
-          type="submit"
-          value="Submit"/>
-      </form>
+          placeholder="Password"
+          label="Password"/>
+        <Submit text="Submit"/>
+      </Form>
     );
   }
 }

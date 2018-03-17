@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Login from '@/components/scenes/Login';
+import Register from '@/components/scenes/Register';
 import {
   isModalOpen,
   modalTitle,
@@ -19,7 +20,7 @@ class Modal extends Component {
       return <Login/>;
     }
     case 'register': {
-      break;
+      return <Register/>;
     }
       return null;
     }

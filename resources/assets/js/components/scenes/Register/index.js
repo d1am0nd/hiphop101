@@ -1,43 +1,88 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
-import Modal from 'components/simple/Modal';
+import {register} from '@/store/actions/auth';
+import {closeModal} from '@/store/actions/modal';
 
-import {toggleRegisterModal} from 'store/actions/modal';
-import {isRegisterOpen} from 'store/selectors/modal';
+import Form from '@/components/simple/form/Form';
+import Input from '@/components/simple/form/Input';
+import Submit from '@/components/simple/form/Submit';
 
 class Register extends Component {
+  constructor() {
+    super();
+    this.state = {
+      email: '',
+      name: '',
+      password: '',
+      password_confirmation: '',
+    };
+  }
+
+  handleChange(e) {
+    const {target} = e;
+    this.setState({
+      [target.name]: target.value,
+    });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this
+      .props
+      .postRegister(this.state)
+      .then((res) => {
+        this.props.closeModal();
+      })
+      .catch((err) => {
+        console.log('err triggered', err);
+        // alert(err.response.data.error);
+      });
+  }
+
   render() {
     return (
-      <Modal
-        open={this.props.open}
-        title="Register"
-        onClose={e => this.props.closeModal()}>
-        Register form
-      </Modal>
+      <Form handleSubmit={(e) => this.handleSubmit(e)}>
+        <Input
+          handleChange={(e) => this.handleChange(e)}
+          type="email"
+          name="email"
+          placeholder="Email"
+          label="Email"/>
+        <Input
+          handleChange={(e) => this.handleChange(e)}
+          name="name"
+          placeholder="Username"
+          label="Username"/>
+        <Input
+          handleChange={(e) => this.handleChange(e)}
+          type="password"
+          name="password"
+          placeholder="Password"
+          label="Password"/>
+        <Input
+          handleChange={(e) => this.handleChange(e)}
+          type="password"
+          name="password_confirmation"
+          placeholder="Confirm password"
+          label="Confirm password"/>
+        <Submit text="Submit"/>
+      </Form>
     );
   }
 }
 
 Register.propTypes = {
-  open: PropTypes.bool,
-  closeModal: PropTypes.func,
+  postRegister: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    closeModal: () => dispatch(toggleRegisterModal(false)),
+    postRegister: (userInfo) => dispatch(register(userInfo)),
+    closeModal: () => dispatch(closeModal()),
   };
 };
 
-const mapStateToProps = state => {
-  return {
-    open: isRegisterOpen(state),
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Register);
+export default connect(null, mapDispatchToProps)(Register);
