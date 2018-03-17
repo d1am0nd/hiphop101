@@ -1,6 +1,7 @@
 
 .modal {
-  @include wrapper;  position: fixed;
+  @include wrapper;
+  position: fixed;
   z-index: 1; /* Sit on top */
   width: 80%; /* Full width */
   max-width: $tightWidth;
@@ -35,16 +36,48 @@
     }
   }
   .title {
-    // text-align: center;
+    font-size: 2rem;
+    margin-bottom: 10px;
+
+    @include large {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
   }
 
   .modal-content {
     form {
-      label {
+      $padding: 10px;
+
+      .form-group {
+        margin-bottom: 10px;
         display: block;
-      }
-      input {
-        display: block;
+
+        label {
+          margin-bottom: 5px;
+          display: block;
+          font-size: 1.2rem;
+
+          @include large {
+            margin-bottom: 5px;
+            line-height: 1.4rem;
+          }
+        }
+        input {
+          font-size: 1rem;
+          line-height: 1.1rem;
+          padding: 3px 4px;
+          display: block;
+          width: 100%;
+
+          @include large {
+            line-height: 1.1rem;
+            padding: 6px 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: inset 1px 1px 2px -1px rgba(0,0,0,0.15);
+          }
+        }
       }
     }
   }
