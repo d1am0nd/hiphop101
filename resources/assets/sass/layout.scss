@@ -56,20 +56,6 @@ body {
   grid-area: content;
 }
 
-.nav {
-  @include wrapper;
-  grid-area: nav;
-
-  input {
-    width: 100%;
-    font-size: $emphSize;
-    @include wrapper(2px);
-    @include large {
-      padding: 5px;
-    }
-  }
-}
-
 .footer {
   @include wrapper;
   grid-area: footer;
