@@ -9,6 +9,7 @@ const Input = ({
   placeholder,
   name,
   label,
+  autoFocus,
 }) => {
   return (
     <div className="form-group">
@@ -17,6 +18,7 @@ const Input = ({
         onChange={(e) => handleChange(e)}
         type={type ? type : 'text'}
         name={name}
+        autoFocus={!!autoFocus}
         placeholder={placeholder}/>
     </div>
   );
@@ -27,6 +29,7 @@ Input.propTypes = {
   handleChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  autoFocus: PropTypes.bool,
 
   label: PropTypes.string,
 };

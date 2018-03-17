@@ -46,6 +46,7 @@ class Register extends Component {
       <Form handleSubmit={(e) => this.handleSubmit(e)}>
         <Input
           handleChange={(e) => this.handleChange(e)}
+          autoFocus={true}
           type="email"
           name="email"
           placeholder="Email"
