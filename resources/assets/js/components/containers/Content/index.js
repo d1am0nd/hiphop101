@@ -1,11 +1,20 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {Route} from 'react-router-dom';
+
+import routes from '@/routes';
 
 class Content extends Component {
   render() {
     return (
       <article className="content">
-        {this.props.children}
+        {routes.map((route, i) => (
+          <Route
+            exact={true}
+            key={i}
+            path={route.path}
+            component={route.component}/>
+        ))}
       </article>
     );
   }

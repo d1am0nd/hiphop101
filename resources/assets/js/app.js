@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import axios from 'axios';
+import {BrowserRouter} from 'react-router-dom';
 
 import {Provider} from 'react-redux';
 import App from '@/components/App';
@@ -29,7 +30,9 @@ if (isAuthenticated()) {
 
 ReactDOM.render(
   <Provider store={store}>
-    <App/>
+    <BrowserRouter>
+      <App/>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );
