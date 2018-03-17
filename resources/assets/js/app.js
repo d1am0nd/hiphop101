@@ -8,6 +8,8 @@ import App from '@/components/App';
 import {createStore} from '@/store';
 import {setUser, setToken} from '@/store/actions/auth';
 import {isAuthenticated, getAuth} from '@/auth/store';
+import {getToken} from '@/auth/parsers';
+import {setAuthHeader} from '@/auth/helpers';
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 axios.defaults.headers.common['Accept'] = 'application/json';
@@ -15,9 +17,14 @@ axios.defaults.headers.common['Accept'] = 'application/json';
 const store = createStore();
 
 if (isAuthenticated()) {
-  const {user, token} = getAuth();
-  store.dispatch(setUser(user));
-  store.dispatch(setToken(token));
+  const {
+    user: userObj,
+    token: tokenObj,
+  } = getAuth();
+
+  store.dispatch(setUser(userObj));
+  store.dispatch(setToken(tokenObj));
+  setAuthHeader(getToken(tokenObj));
 }
 
 ReactDOM.render(
