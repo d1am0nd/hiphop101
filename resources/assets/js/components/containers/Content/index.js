@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Route} from 'react-router-dom';
 
-import routes from '@/routes';
+import {routes} from '@/routes';
 
 class Content extends Component {
   render() {
@@ -13,7 +13,7 @@ class Content extends Component {
             exact={true}
             key={i}
             path={route.path}
-            component={route.component}/>
+            render={() => <route.component {...route.props}/>}/>
         ))}
       </article>
     );

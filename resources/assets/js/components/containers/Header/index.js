@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
-import {
-  isAuth,
-} from '@/store/selectors/auth';
+import {isAuth} from '@/store/selectors/auth';
 
 import Title from './Title';
 import Auth from './Auth';
@@ -13,7 +12,9 @@ import Profile from './Profile';
 const Header = ({isAuth}) => (
   <header className="head">
     <Title>
-      Hip Hop 101
+      <Link to="/">
+        Hip Hop 101
+      </Link>
     </Title>
     {
       isAuth ?

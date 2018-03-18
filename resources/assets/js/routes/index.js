@@ -5,11 +5,29 @@ const routes = [
   {
     path: '/',
     component: Home,
+    props: {
+      auth: true,
+    },
+    info: {
+      name: 'Home',
+    },
   },
   {
     path: '/faq',
     component: Faq,
+    props: {
+
+    },
+    info: {
+      name: 'FAQ',
+      sidebar: true,
+    },
   },
 ];
 
-export default routes;
+const sidebar = routes.filter((route) => !!route.info.sidebar);
+
+export {
+  routes,
+  sidebar,
+};

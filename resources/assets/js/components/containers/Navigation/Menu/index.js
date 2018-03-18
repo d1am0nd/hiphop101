@@ -1,12 +1,19 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
+
+import {sidebar} from '@/routes';
 
 export default class Menu extends Component {
   render() {
     return (
       <ul>
-        <li><a href="">Nav 1</a></li>
-        <li><a href="">Nav 2</a></li>
-        <li><a href="">Nav 3</a></li>
+        {sidebar.map((route) => (
+          <li key={route.path}>
+            <Link to={route.path}>
+              {route.info.name}
+            </Link>
+          </li>
+        ))}
       </ul>
     );
   }
