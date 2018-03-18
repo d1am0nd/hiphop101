@@ -12,7 +12,7 @@ class Artist extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['name', 'description', 'wikipedia_url'];
+    protected $fillable = ['name', 'slug', 'description', 'wikipedia_url'];
 
     public function scopeBySlug($q, $slug)
     {
