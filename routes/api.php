@@ -19,7 +19,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group([
     'prefix' => 'auth',
-], function ($router) {
+], function () {
     Route::post('register', 'AuthController@register');
     Route::post('login', 'AuthController@login');
+});
+
+Route::group([
+    'prefix' => 'artists',
+], function () {
+    Route::get('/', 'ArtistController@index');
+    Route::post('/', 'ArtistController@store');
+    Route::get('{slug}', 'ArtistController@show');
 });
