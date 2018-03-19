@@ -1,5 +1,6 @@
 import Home from '@/components/scenes/Home';
 import Faq from '@/components/scenes/Faq';
+import Artist from '@/components/scenes/Artist';
 
 const routes = [
   {
@@ -15,12 +16,16 @@ const routes = [
   {
     path: '/faq',
     component: Faq,
-    props: {
-
-    },
     info: {
       name: 'FAQ',
       sidebar: true,
+    },
+  },
+  {
+    path: '/artists/:slug',
+    component: Artist,
+    info: {
+      sidebar: false,
     },
   },
 ];

@@ -43,6 +43,9 @@ class Login extends Component {
     return (
       <Form handleSubmit={(e) => this.handleSubmit(e)}>
         <Input
+          attributes={{
+            autoFocus: true,
+          }}
           handleChange={(e) => this.handleChange(e)}
           autoFocus={true}
           type="email"

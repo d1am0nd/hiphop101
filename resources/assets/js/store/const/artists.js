@@ -1,0 +1,7 @@
+const SET_SEARCH = 'SET_SEARCH';
+const SET_SEARCH_LIST = 'SET_SEARCH_LIST';
+
+export {
+  SET_SEARCH,
+  SET_SEARCH_LIST,
+};

@@ -2,12 +2,44 @@
   @include wrapper;
   grid-area: nav;
 
-  input {
-    width: 100%;
-    font-size: $emphSize;
-    @include wrapper(2px);
-    @include large {
-      padding: 5px;
+  .search {
+    $pad: 5px;
+
+    position: relative;
+    input {
+      width: 100%;
+      font-size: $emphSize;
+      @include wrapper(2px);
+      @include large {
+        padding: $pad;
+      }
+    }
+
+    ul {
+      @include wrapper(0);
+      position: absolute;
+      background-color: $lightShade;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      border-top: 0;
+
+      li {
+        display: block;
+        position: relative;
+        text-decoration: none;
+        width: 100%;
+        padding: $pad;
+
+        a {
+          display: block;
+          width: 100%;
+        }
+        &:hover {
+          color: $mainBrand;
+          cursor: pointer;
+        }
+      }
     }
   }
 }

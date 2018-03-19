@@ -21,6 +21,6 @@ class Artist extends Model
 
     public function scopeSearch($q, $search)
     {
-        return $q->where('name', 'LIKE', $search . '%');
+        return $q->where('name', 'LIKE', "%$search%");
     }
 }

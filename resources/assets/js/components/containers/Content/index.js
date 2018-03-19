@@ -13,7 +13,11 @@ class Content extends Component {
             exact={true}
             key={i}
             path={route.path}
-            render={() => <route.component {...route.props}/>}/>
+            render={(props) => (
+              <route.component
+                {...props}
+                {...route.props}/>
+            )}/>
         ))}
       </article>
     );
