@@ -25,15 +25,13 @@ class ArtistController extends Controller
                 ->when($request->has('search'), function ($q) use ($request) {
                     $q->search($request->input('search'));
                 })
-                ->paginate(10)
+                ->paginate(config('defaults.pagination.per_page'))
         );
     }
 
-    public function show(Request $request, $slug)
+    public function show(Request $request, Artist $artist)
     {
-        return new ArtistResource(
-            $this->model->bySlug($slug)->firstOrFail()
-        );
+        return new ArtistResource($artist);
     }
 
     public function store(StoreArtistRequest $request)

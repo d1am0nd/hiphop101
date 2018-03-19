@@ -26,7 +26,7 @@ class StoreArtistRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:artists',
+            'name' => ['required', 'unique:artists'],
             'description' => 'between:150,400',
             'wikipedia_url' => [new WikipediaUrl]
         ];

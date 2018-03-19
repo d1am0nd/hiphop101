@@ -30,5 +30,12 @@ Route::group([
 ], function () {
     Route::get('/', 'ArtistController@index');
     Route::post('/', 'ArtistController@store');
-    Route::get('{slug}', 'ArtistController@show');
+    Route::get('{artist}', 'ArtistController@show');
+
+    Route::group([
+        'prefix' => '{artist}/articles',
+    ], function () {
+        Route::get('/', 'ArtistArticleController@index');
+        Route::get('{prefix}/{slug}', 'ArtistArticleController@show');
+    });
 });
