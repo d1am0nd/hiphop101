@@ -1,9 +1,13 @@
 import {
   register as registerApi,
+  logout as logoutApi,
   login as loginApi,
 } from '@/api/auth';
+import {getData} from '@/api/helpers';
 import {SET_USER, SET_TOKEN} from '@/store/const/auth';
 import {storeAuth, clearAuth} from '@/auth/store';
+import {getToken} from '@/auth/parsers';
+import {setAuthHeader} from '@/auth/helpers';
 
 const setUser = (user) => {
   return (dispatch) => {
@@ -22,10 +26,11 @@ const register = (userInfo) => {
     return new Promise((resolve, reject) => {
       registerApi(userInfo)
         .then((res) => {
-          const {user, token} = res.data;
+          const {user, token} = getData(res);
           storeAuth(user, token); // Stores to localStorage
           dispatch(setUser(user));
           dispatch(setToken(token));
+          setAuthHeader(getToken(token));
           resolve(res);
         })
         .catch((err) => {
@@ -40,10 +45,12 @@ const login = (credentials) => {
     return new Promise((resolve, reject) => {
       loginApi(credentials)
         .then((res) => {
-          const {user, token} = res.data;
+          console.log(getData(res));
+          const {user, token} = getData(res);
           storeAuth(user, token); // Stores to localStorage
           dispatch(setUser(user));
           dispatch(setToken(token));
+          setAuthHeader(getToken(token));
           resolve(res);
         })
         .catch((err) => {
@@ -55,9 +62,18 @@ const login = (credentials) => {
 
 const logout = () => {
   return (dispatch) => {
-    clearAuth();
-    dispatch(setUser({}));
-    dispatch(setToken({}));
+    return new Promise((resolve, reject) => {
+      logoutApi()
+        .then((res) => {
+          clearAuth();
+          dispatch(setUser({}));
+          dispatch(setToken({}));
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
   };
 };
 

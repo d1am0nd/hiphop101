@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Users\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Auth\LogoutRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 
 class AuthController extends Controller
@@ -31,12 +32,12 @@ class AuthController extends Controller
         $token = $this->auth->attempt($request->only([
             'email', 'password',
         ]));
-
-        return response()->json(array_merge([
-            'user' => $user,
-        ], [
-            'token' => $this->tokenArray($token),
-        ]));
+        return response()->json([
+            'data' => [
+                'user'  => $user,
+                'token' => $this->tokenArray($token),
+            ],
+        ]);
     }
 
     public function login(LoginRequest $request)
@@ -44,11 +45,21 @@ class AuthController extends Controller
         if (! $token = $this->auth->attempt($request->only('email', 'password'))) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-        return response()->json(array_merge([
-            'user' => $this->auth->user(),
-        ], [
-            'token' => $this->tokenArray($token),
-        ]));
+        return response()->json([
+            'data' => [
+                'user'  => $this->auth->user(),
+                'token' => $this->tokenArray($token),
+            ],
+        ]);
+    }
+
+    public function  logout(LogoutRequest $request)
+    {
+        return response()->json([
+            'data' => [
+                'status' => 'success',
+            ],
+        ]);
     }
 
 
