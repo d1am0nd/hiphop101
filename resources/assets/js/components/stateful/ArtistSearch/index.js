@@ -5,14 +5,12 @@ import {searchByName} from '@/api/artists';
 import {getData} from '@/api/helpers';
 
 import Input from '@/components/simple/form/Input';
-import Dropdown from './Dropdown';
 
 class ArtistSearch extends Component {
   constructor() {
     super();
     this.state = {
       timer: null,
-      artists: [],
     };
   }
 
@@ -26,40 +24,29 @@ class ArtistSearch extends Component {
       timer: setTimeout(
         () => searchByName(target.value)
           .then((res) => {
-            this.setState({
-              artists: getData(res),
-            });
+            this.props.handleListChange(getData(res));
           })
           .catch((err) => {
-            console.log('err');
+            console.log(err);
           }),
-        300
+        this.props.timer ? this.props.timer : 300
       ),
     });
   }
 
   render() {
     return (
-      <div className="artist-search">
-        <Input
-          handleChange={(e) => this.handleChange(e)}
-          type="search"
-          name="Search"
-          placeholder="Search artist..."/>
-        <Dropdown
-          handleArtistClick={
-            (e, artist) => this.props.handleArtistClick(e, artist)
-          }
-          show={this.props.showDropdown}
-          artists={this.state.artists}/>
-      </div>
+      <Input
+        {...this.props.inputProps}
+        handleChange={(e) => this.handleChange(e)}/>
     );
   }
 }
 
 ArtistSearch.propTypes = {
-  handleArtistClick: PropTypes.func.isRequired,
-  showDropdown: PropTypes.bool,
+  handleListChange: PropTypes.func.isRequired,
+  inputProps: PropTypes.object,
+  timer: PropTypes.number,
 };
 
 export default ArtistSearch;
