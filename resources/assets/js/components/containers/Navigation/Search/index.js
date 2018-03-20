@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {
   clearSearch,
   setSearchAndFetch as search,
-} from '@/store/actions/artists';
+} from '@/store/actions/sidesearch';
 
 import Input from '@/components/simple/form/Input';
 import Dropdown from './Dropdown';

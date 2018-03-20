@@ -1,16 +1,15 @@
 import {createSelector} from 'reselect';
 
-const artistSelector = (store) => store.artists;
-const searchSelector = (store) => artistSelector(store).search;
+const sidesearchSelector = (store) => store.sidesearch;
 
 const getSearchInput = createSelector(
-  searchSelector,
+  sidesearchSelector,
   (search) => search.input
 );
 
 // Get username: string
 const getSearchList = createSelector(
-  searchSelector,
+  sidesearchSelector,
   (search) => search.list
 );
 

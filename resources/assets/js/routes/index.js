@@ -1,14 +1,12 @@
 import Home from '@/components/scenes/Home';
 import Faq from '@/components/scenes/Faq';
 import Artist from '@/components/scenes/Artist';
+import NewArticle from '@/components/scenes/NewArticle';
 
 const routes = [
   {
     path: '/',
     component: Home,
-    props: {
-      auth: true,
-    },
     info: {
       name: 'Home',
     },
@@ -24,6 +22,16 @@ const routes = [
   {
     path: '/artists/:slug',
     component: Artist,
+    info: {
+      sidebar: false,
+    },
+  },
+  {
+    path: '/articles/new',
+    component: NewArticle,
+    props: {
+      auth: true,
+    },
     info: {
       sidebar: false,
     },

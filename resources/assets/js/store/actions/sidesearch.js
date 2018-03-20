@@ -3,7 +3,7 @@ import {getData} from '@/api/helpers';
 import {
   SET_SEARCH,
   SET_SEARCH_LIST,
-} from '@/store/const/artists';
+} from '@/store/const/sidesearch';
 
 const setSearch = (input) => {
   return (dispatch) => {
@@ -11,10 +11,16 @@ const setSearch = (input) => {
   };
 };
 
+const setList = (list) => {
+  return (dispatch) => {
+    dispatch({type: SET_SEARCH_LIST, payload: list});
+  };
+};
+
 const setSearchAndFetch = (input) => {
   return (dispatch) => {
     return new Promise((resolve, reject) => {
-      dispatch({type: SET_SEARCH, payload: input});
+      dispatch(setSearch(input));
       searchByName(input)
         .then((res) => {
           dispatch({
@@ -32,8 +38,8 @@ const setSearchAndFetch = (input) => {
 
 const clearSearch = () => {
   return (dispatch) => {
-    setSearch('');
-    dispatch({type: SET_SEARCH_LIST, payload: []});
+    dispatch(setSearch(''));
+    dispatch(setList([]));
   };
 };
 

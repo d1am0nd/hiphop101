@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
-import {getSearchList} from '@/store/selectors/artists';
-import {clearSearch} from '@/store/actions/artists';
+import {getSearchList} from '@/store/selectors/sidesearch';
+import {clearSearch} from '@/store/actions/sidesearch';
 
-import {artistRoute} from '@/routes/factories';
+import {artistUrl} from '@/routes/routes';
 
 const Dropdown = ({artists, clearSearch}) => (
   <ul
@@ -16,7 +16,7 @@ const Dropdown = ({artists, clearSearch}) => (
         onClick={() => clearSearch()}
         key={i}>
         <Link
-          to={artistRoute(slug)}>
+          to={artistUrl(slug)}>
           {name}
         </Link>
       </li>
