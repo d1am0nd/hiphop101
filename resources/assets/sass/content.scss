@@ -1,0 +1,18 @@
+.content {
+  @include wrapper;
+  grid-area: content;
+
+  .list-content {
+    ul {
+      padding: 0;
+
+      li {
+        display: block;
+
+        h2 {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}

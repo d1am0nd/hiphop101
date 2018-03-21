@@ -31,7 +31,7 @@ class Search extends Component {
           inputProps={{
             type: 'search',
             name: 'search',
-            placeholder: 'Search....',
+            placeholder: 'Search...',
             attributes: {
               id: 'nav-search-input',
               tabIndex: 1,

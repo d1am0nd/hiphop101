@@ -1,5 +1,5 @@
 const artistUrl = (slug) => `/artists/${slug}`;
-const newArticleUrl = () => `/article/new`;
+const newArticleUrl = () => `/articles/new`;
 
 export {
   artistUrl,

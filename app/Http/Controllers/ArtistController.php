@@ -22,9 +22,10 @@ class ArtistController extends Controller
         return ArtistResource::collection(
             $this
                 ->model
-                ->when($request->has('search'), function ($q) use ($request) {
+                ->when($request->input('search', false), function ($q) use ($request) {
                     $q->search($request->input('search'));
                 })
+                ->order()
                 ->paginate(config('defaults.pagination.per_page'))
         );
     }

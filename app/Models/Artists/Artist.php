@@ -2,6 +2,7 @@
 
 namespace App\Models\Artists;
 
+use DB;
 use App\Lib\Traits\Detailable;
 use App\Models\Artists\ArtistArticle;
 use Illuminate\Database\Eloquent\Model;
@@ -42,6 +43,17 @@ class Artist extends Model
 
     public function scopeSearch($q, $search)
     {
-        return $q->where('name', 'LIKE', "%$search%");
+        return $q
+            ->selectRaw(
+                "*, " .
+                "MATCH (name, description) AGAINST(? IN BOOLEAN MODE) as relevancy, " .
+                "MATCH (name) AGAINST(? IN BOOLEAN MODE) as name_relevancy",
+                ["$search*", "$search*"]
+            )
+            ->whereRaw(
+                "MATCH (name, description) AGAINST(? IN BOOLEAN MODE)",
+                ["$search*"]
+            )
+            ->orderByRaw('relevancy + name_relevancy DESC');
     }
 }

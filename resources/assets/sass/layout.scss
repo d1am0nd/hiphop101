@@ -51,11 +51,6 @@ body {
   }
 }
 
-.content {
-  @include wrapper;
-  grid-area: content;
-}
-
 .footer {
   @include wrapper;
   grid-area: footer;
