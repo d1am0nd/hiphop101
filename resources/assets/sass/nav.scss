@@ -17,6 +17,7 @@
 
     ul {
       @include wrapper(0);
+      display: block;
       position: absolute;
       background-color: $lightShade;
       width: 100%;

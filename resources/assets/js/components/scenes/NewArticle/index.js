@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 
+import {newArtistUrl} from '@/routes/routes';
+
 import H1 from '@/components/simple/content/H1';
 import ArtistSearch from '@/components/stateful/ArtistSearch';
 import List from './List';
@@ -24,14 +26,13 @@ class NewArticle extends Component {
       <div className="list-content">
         <H1>New article</H1>
 
-        <Link to="/">Add an artist</Link>
+        <Link to={newArtistUrl()}>Add an artist</Link>
 
         <ArtistSearch
           inputProps={{
-            type: 'search',
-            name: 'search',
-            placeholder: 'Search...',
             attributes: {
+              placeholder: 'Search...',
+              name: 'search',
               id: 'content-search-input',
               autoFocus: true,
             },

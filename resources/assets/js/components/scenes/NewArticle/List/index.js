@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
+import {newArtistArticleUrl} from '@/routes/routes';
+
 const List = ({artists}) => {
   return (
     <ul>
@@ -12,7 +14,7 @@ const List = ({artists}) => {
             {artist.description}
           </div>
           <div className="actions">
-            <Link to="/">Write</Link>
+            <Link to={newArtistArticleUrl(artist.slug)}>Write</Link>
           </div>
         </li>
       ))}

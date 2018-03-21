@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const ARTISTS_URL = '/api/artists';
+const NEW_ARTIST_URL = '/api/artists';
 
 const searchByName = (name) => axios
   .get(ARTISTS_URL, {
@@ -9,6 +10,10 @@ const searchByName = (name) => axios
     },
   });
 
+const postNewArtist = (artist) => axios
+  .post(NEW_ARTIST_URL, artist);
+
 export {
   searchByName,
+  postNewArtist,
 };

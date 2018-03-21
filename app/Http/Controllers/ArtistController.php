@@ -42,7 +42,7 @@ class ArtistController extends Controller
                 array_merge(
                     $request->input(),
                     [
-                        'slug' => $request->input('slug')
+                        'slug' => $request->input('name')
                     ]
                 )
             )

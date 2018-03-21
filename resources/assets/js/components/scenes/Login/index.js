@@ -45,18 +45,20 @@ class Login extends Component {
         <Input
           attributes={{
             autoFocus: true,
+            type: 'email',
+            name: 'email',
+            placeholder: 'Email',
           }}
           handleChange={(e) => this.handleChange(e)}
-          autoFocus={true}
-          type="email"
-          name="email"
-          placeholder="Email"
           label="Email"/>
         <Input
+          attributes={{
+            autoFocus: true,
+            type: 'password',
+            name: 'password',
+            placeholder: 'Password',
+          }}
           handleChange={(e) => this.handleChange(e)}
-          type="password"
-          name="password"
-          placeholder="Password"
           label="Password"/>
         <Submit text="Submit"/>
       </Form>

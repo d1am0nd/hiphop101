@@ -29,10 +29,9 @@ class Search extends Component {
       <div className="search">
         <ArtistSearch
           inputProps={{
-            type: 'search',
-            name: 'search',
-            placeholder: 'Search...',
             attributes: {
+              name: 'search',
+              placeholder: 'Search...',
               id: 'nav-search-input',
               tabIndex: 1,
             },

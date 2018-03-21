@@ -3,25 +3,21 @@ import PropTypes from 'prop-types';
 
 import Label from '@/components/simple/form/Label';
 
-const Input = ({
-  attributes,
-  handleChange,
-  label,
-}) => {
+const TextArea = ({handleChange, attributes, label}) => {
   return (
     <div className="form-group">
       {!!label ? <Label>{label}</Label> : null}
-      <input
-        {...attributes}
-        onChange={(e) => handleChange(e)}/>
+      <textarea
+        onChange={(e) => handleChange(e)}
+        {...attributes}/>
     </div>
   );
 };
 
-Input.propTypes = {
+TextArea.propTypes = {
+  label: PropTypes.string,
   attributes: PropTypes.object,
   handleChange: PropTypes.func.isRequired,
-  label: PropTypes.string,
 };
 
-export default Input;
+export default TextArea;

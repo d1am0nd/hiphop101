@@ -7,7 +7,10 @@ import {getData} from '@/api/helpers';
 import {SET_USER, SET_TOKEN} from '@/store/const/auth';
 import {storeAuth, clearAuth} from '@/auth/store';
 import {getToken} from '@/auth/parsers';
-import {setAuthHeader} from '@/auth/helpers';
+import {
+  setAuthHeader,
+  removeAuthHeader,
+} from '@/auth/helpers';
 
 const setUser = (user) => {
   return (dispatch) => {
@@ -45,7 +48,6 @@ const login = (credentials) => {
     return new Promise((resolve, reject) => {
       loginApi(credentials)
         .then((res) => {
-          console.log(getData(res));
           const {user, token} = getData(res);
           storeAuth(user, token); // Stores to localStorage
           dispatch(setUser(user));
@@ -68,6 +70,7 @@ const logout = () => {
           clearAuth();
           dispatch(setUser({}));
           dispatch(setToken({}));
+          removeAuthHeader();
           resolve(res);
         })
         .catch((err) => {

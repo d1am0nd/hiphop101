@@ -47,29 +47,34 @@ class Register extends Component {
         <Input
           attributes={{
             autoFocus: true,
+            type: 'email',
+            name: 'email',
+            placeholder: 'Email',
           }}
           handleChange={(e) => this.handleChange(e)}
-          autoFocus={true}
-          type="email"
-          name="email"
-          placeholder="Email"
           label="Email"/>
         <Input
           handleChange={(e) => this.handleChange(e)}
-          name="name"
-          placeholder="Username"
+          attributes={{
+            name: 'name',
+            placeholder: 'Username',
+          }}
           label="Username"/>
         <Input
           handleChange={(e) => this.handleChange(e)}
-          type="password"
-          name="password"
-          placeholder="Password"
+          attributes={{
+            name: 'name',
+            type: 'password',
+            placeholder: 'Password',
+          }}
           label="Password"/>
         <Input
           handleChange={(e) => this.handleChange(e)}
-          type="password"
-          name="password_confirmation"
-          placeholder="Confirm password"
+          attributes={{
+            name: 'name',
+            type: 'password',
+            placeholder: 'Confirm password',
+          }}
           label="Confirm password"/>
         <Submit text="Submit"/>
       </Form>
