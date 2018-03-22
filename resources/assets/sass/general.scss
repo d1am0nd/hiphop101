@@ -1,0 +1,14 @@
+input, textarea {
+  @include wrapper(1px);
+  // border-radius: 2px;
+  border: $borderParams;
+  width: 100%;
+  font-size: $fontSize;
+  padding: 5px;
+
+  &[type="submit"] {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

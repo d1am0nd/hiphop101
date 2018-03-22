@@ -6,9 +6,6 @@
     $pad: 5px;
 
     position: relative;
-    input {
-      @include input;
-    }
 
     ul {
       @include wrapper(0);

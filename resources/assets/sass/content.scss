@@ -31,13 +31,5 @@
       display: block;
       margin-bottom: 5px;
     }
-    input, textarea {
-      @include input;
-      &[type="submit"] {
-        &:hover {
-          cursor: pointer;
-        }
-      }
-    }
   }
 }
