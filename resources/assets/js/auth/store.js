@@ -1,18 +1,25 @@
 const TOKEN_STORAGE = 'TOKEN_STORAGE';
 const USER_STORAGE = 'USER_STORAGE';
 
-const storeAuth = (userObj, tokenObj) => {
+const storeUser = (userObj) => {
   // Save user
   localStorage.setItem(
     USER_STORAGE,
     JSON.stringify(userObj)
   );
+};
 
+const storeToken = (tokenObj) => {
   // Save token
   localStorage.setItem(
     TOKEN_STORAGE,
     JSON.stringify(tokenObj)
   );
+};
+
+const storeAuth = (userObj, tokenObj) => {
+  storeUser(userObj);
+  storeToken(tokenObj);
 };
 
 const clearAuth = () => {
@@ -35,6 +42,8 @@ const isAuthenticated = () => {
 };
 
 export {
+  storeUser,
+  storeToken,
   storeAuth,
   getAuth,
   clearAuth,

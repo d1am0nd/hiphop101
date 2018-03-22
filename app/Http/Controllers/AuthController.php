@@ -53,12 +53,19 @@ class AuthController extends Controller
         ]);
     }
 
-    public function  logout(LogoutRequest $request)
+    public function logout(LogoutRequest $request)
     {
         return response()->json([
             'data' => [
                 'status' => 'success',
             ],
+        ]);
+    }
+
+    public function refreshToken(Request $request)
+    {
+        return response()->json([
+            'data' => $this->tokenArray(auth()->refresh()),
         ]);
     }
 
@@ -75,7 +82,7 @@ class AuthController extends Controller
         return [
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            // 'expires_in' => auth()->factory()->getTTL() * 60
         ];
     }
 }

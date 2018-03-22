@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 
 const Submit = ({text}) => {
   return (
+    /*
+    <button type="submit">
+      {text}
+    </button>
+    */
     <input
       value={text}
       type="submit"/>

@@ -13,6 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        /*
         \DB::listen(function ($query) {
             \Log::info([
                 $query->sql,
@@ -20,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
                 $query->time
             ]);
         });
+        */
     }
 
     /**

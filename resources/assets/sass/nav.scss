@@ -12,6 +12,8 @@
 
     ul {
       @include wrapper(0);
+      border: $borderParams;
+
       display: block;
       position: absolute;
       background-color: $lightShade;

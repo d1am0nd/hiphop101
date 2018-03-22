@@ -2,6 +2,10 @@
   @include wrapper;
   grid-area: content;
 
+  @include large{
+    border-left: $borderParams;
+  }
+
   button {
     font-size: $emphSize;
   }
@@ -28,10 +32,7 @@
       margin-bottom: 5px;
     }
     input, textarea {
-      @include wrapper(1px);
-      width: 100%;
-      font-size: $fontSize;
-      padding: 5px;
+      @include input;
       &[type="submit"] {
         &:hover {
           cursor: pointer;

@@ -1,7 +1,5 @@
 @mixin wrapper($padding: 10px) {
-    border: 1px solid $darkShade;
     background-color: $lightShade;
-    border-radius: 2px;
     padding: $padding;
     /*
     box-shadow: 0 8px 8px -12px rgba(0, 0, 0, 0.56),
@@ -18,10 +16,10 @@
 }
 
 @mixin input() {
+  @include wrapper(1px);
+  border-radius: 2px;
+  border: $borderParams;
   width: 100%;
-  font-size: $emphSize;
-  @include wrapper(2px);
-  @include large {
-    padding: $pad;
-  }
+  font-size: $fontSize;
+  padding: 5px;
 }
