@@ -13,13 +13,12 @@ h1 {
 
 .wrapper {
   display: grid;
-  grid-gap: 10px 10px;
+  // grid-gap: 10px 10px;
   grid-template-areas:
     "header"
     "nav"
     "content"
     "footer";
-
 
   @include large {
     grid-template-columns: $sideLg 1fr;
