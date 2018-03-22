@@ -7,12 +7,7 @@
 
     position: relative;
     input {
-      width: 100%;
-      font-size: $emphSize;
-      @include wrapper(2px);
-      @include large {
-        padding: $pad;
-      }
+      @include input;
     }
 
     ul {

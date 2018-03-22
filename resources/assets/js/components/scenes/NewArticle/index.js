@@ -26,7 +26,9 @@ class NewArticle extends Component {
       <div className="list-content">
         <H1>New article</H1>
 
-        <Link to={newArtistUrl()}>Add an artist</Link>
+        <Link className="cta" to={newArtistUrl()}>
+          Add an artist
+        </Link>
 
         <ArtistSearch
           inputProps={{

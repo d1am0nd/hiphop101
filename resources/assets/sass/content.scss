@@ -2,6 +2,10 @@
   @include wrapper;
   grid-area: content;
 
+  button {
+    font-size: $emphSize;
+  }
+
   .list-content {
     ul {
       padding: 0;
@@ -11,6 +15,26 @@
 
         h2 {
           font-size: 1.5rem;
+        }
+      }
+    }
+  }
+
+  form, div {
+    max-width: 400px;
+    label {
+      font-size: $emphSize;
+      display: block;
+      margin-bottom: 5px;
+    }
+    input, textarea {
+      @include wrapper(1px);
+      width: 100%;
+      font-size: $fontSize;
+      padding: 5px;
+      &[type="submit"] {
+        &:hover {
+          cursor: pointer;
         }
       }
     }

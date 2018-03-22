@@ -65,12 +65,13 @@ const login = (credentials) => {
 const logout = () => {
   return (dispatch) => {
     return new Promise((resolve, reject) => {
+      removeAuthHeader();
+      dispatch(setUser({}));
+      dispatch(setToken({}));
+      clearAuth();
+
       logoutApi()
         .then((res) => {
-          clearAuth();
-          dispatch(setUser({}));
-          dispatch(setToken({}));
-          removeAuthHeader();
           resolve(res);
         })
         .catch((err) => {

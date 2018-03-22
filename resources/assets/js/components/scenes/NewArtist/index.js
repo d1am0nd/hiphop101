@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {withRouter} from 'react-router-dom';
 
 import {postNewArtist} from '@/api/artists';
-import {getErr} from '@/api/helpers';
+import {getErr, getData} from '@/api/helpers';
+import {newArtistArticleUrl} from '@/routes/routes';
+import {textBetween} from '@/validation/text';
 
 import H1 from '@/components/simple/content/H1';
 import Form from '@/components/simple/form/Form';
@@ -13,31 +17,49 @@ class NewArtist extends Component {
   constructor() {
     super();
     this.state = {
-      name: '',
-      description: '',
-      wikipedia_url: '',
+      values: {
+        name: '',
+        description: '',
+        wikipedia_url: '',
+      },
+      errors: {
+        name: [],
+        description: [],
+        wikipedia_url: [],
+      },
     };
   }
 
   handleSubmit(e) {
+    const {values, errors} = this.state;
+    const {history} = this.props;
     e.preventDefault();
-    postNewArtist(this.state)
+    postNewArtist(values)
       .then((res) => {
-        console.log(res);
+        history.push(newArtistArticleUrl(getData(res).slug));
       })
       .catch((err) => {
-        console.log(getErr(err));
+        this.setState({
+          errors: {
+            ...errors,
+            ...getErr(err),
+          },
+        });
       });
   }
 
   handleChange(e) {
     const {name, value} = e.target;
     this.setState({
-      [name]: value,
+      values: {
+        ...this.state.values,
+        [name]: value,
+      },
     });
   }
 
   render() {
+    const {values, errors} = this.state;
     return (
       <div>
         <H1>Add an artist</H1>
@@ -49,21 +71,31 @@ class NewArtist extends Component {
               placeholder: 'Artist name',
               name: 'name',
             }}
-            label="Artist name"/>
+            label="Artist name"
+            errors={errors.name}/>
           <Input
             handleChange={(e) => this.handleChange(e)}
             attributes={{
               placeholder: 'https://en.wikipedia.org/wiki/Kevin_Gates',
               name: 'wikipedia_url',
             }}
-            label="Wikipedia URL"/>
+            label="Wikipedia URL"
+            errors={errors.wikipedia_url}/>
           <TextArea
             handleChange={(e) => this.handleChange(e)}
             attributes={{
               placeholder: 'Description',
               name: 'description',
+              rows: 8,
             }}
-            label="Short description"/>
+            label="Short description"
+            help={textBetween({
+              input: values.description,
+              name: 'Description',
+              min: 150,
+              max: 400,
+            })}
+            errors={errors.description}/>
           <Submit text="Submit"/>
         </Form>
       </div>
@@ -71,4 +103,8 @@ class NewArtist extends Component {
   }
 }
 
-export default NewArtist;
+NewArtist.propTypes = {
+  history: PropTypes.object.isRequired,
+};
+
+export default withRouter(NewArtist);
