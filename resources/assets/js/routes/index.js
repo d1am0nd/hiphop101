@@ -5,6 +5,8 @@ import NewArtist from '@/components/scenes/NewArtist';
 import NewArticle from '@/components/scenes/NewArticle';
 import NewArtistArticle from '@/components/scenes/NewArtistArticle';
 
+import authOnly from '@/components/hoc/authOnly';
+
 const routes = [
   {
     path: '/',
@@ -30,30 +32,21 @@ const routes = [
   },
   {
     path: '/articles/new',
-    component: NewArticle,
-    props: {
-      auth: true,
-    },
+    component: authOnly(NewArticle),
     info: {
       sidebar: false,
     },
   },
   {
     path: '/articles/:slug/new',
-    component: NewArtistArticle,
-    props: {
-      auth: true,
-    },
+    component: authOnly(NewArtistArticle),
     info: {
       sidebar: false,
     },
   },
   {
     path: '/artist/new',
-    component: NewArtist,
-    props: {
-      auth: true,
-    },
+    component: authOnly(NewArtist),
     info: {
       sidebar: false,
     },
