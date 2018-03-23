@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const H1 = ({children, attributes}) => {
+const H6 = ({children, attributes}) => {
   return (
-    <h1 {...attributes}>
+    <h6 {...attributes}>
       {children}
-    </h1>
+    </h6>
   );
 };
 
-H1.propTypes = {
+H6.propTypes = {
   children: PropTypes.node,
   attributes: PropTypes.object,
 };
 
-export default H1;
+export default H6;

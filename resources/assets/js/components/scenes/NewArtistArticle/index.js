@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom';
-// import {EditorState} from 'draft-js';
-import {Editor} from 'react-draft-wysiwyg';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 import {textBetween} from '@/validation/text';
 import {findBySlug, postNewArtistArticle} from '@/api/artists';
@@ -31,9 +28,6 @@ class NewArtistArticle extends Component {
         description: [],
         content: [],
       },
-      editorState: props.htmlToEditorState(
-        `Write here`
-      ),
     };
   }
 
@@ -74,22 +68,11 @@ class NewArtistArticle extends Component {
     });
   }
 
-  handleEditorChange(editorState) {
-    this.setState({
-      editorState,
-      values: {
-        ...this.state.values,
-        content: this.props.editorStateToHtml(editorState),
-      },
-    });
-  }
-
   render() {
     const {
       artist,
       values,
       errors,
-      editorState,
     } = this.state;
     return (
       <div>
@@ -120,17 +103,19 @@ class NewArtistArticle extends Component {
               max: 400,
             })}
             errors={errors.description}/>
-          <Editor
-            toolbar={{...this.props.defaultConfig}}
-            editorState={editorState}
-            wrapperClassName="wysiwyg-wrapper"
-            editorClassName="wysiwyg-editor"
-            onEditorStateChange={
-              (e, test) => this.handleEditorChange(e, test)
-            }/>
-          <div dangerouslySetInnerHTML={
-            {__html: this.props.editorStateToHtml(editorState)}
-          }/>
+          <TextArea
+            handleChange={(e) => this.handleInputChange(e)}
+            attributes={{
+              placeholder: 'Content',
+              name: 'content',
+              rows: 30,
+              tabIndex: 2,
+            }}
+            label="Article content"
+            errors={errors.content}/>
+          <div dangerouslySetInnerHTML={{
+            __html: this.props.editorStateToHtml(values.content),
+          }}/>
           <Submit text="Submit"/>
         </Form>
       </div>
@@ -139,9 +124,7 @@ class NewArtistArticle extends Component {
 };
 
 NewArtistArticle.propTypes = {
-  defaultConfig: PropTypes.object.isRequired,
   editorStateToHtml: PropTypes.func.isRequired,
-  htmlToEditorState: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
 };
 
