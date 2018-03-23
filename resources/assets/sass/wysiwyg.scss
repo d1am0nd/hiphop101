@@ -1,0 +1,10 @@
+.wysiwyg-wrapper {
+  .wysiwyg-editor {
+    border: $borderParams;
+    padding-left: 10px;
+    padding-right: 10px;
+    img {
+      max-width: 100%;
+    }
+  }
+}

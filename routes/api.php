@@ -37,6 +37,7 @@ Route::group([
         'prefix' => '{artist}/articles',
     ], function () {
         Route::get('/', 'ArtistArticleController@index');
+        Route::post('/', 'ArtistArticleController@store');
         Route::get('{prefix}/{slug}', 'ArtistArticleController@show');
     });
 });

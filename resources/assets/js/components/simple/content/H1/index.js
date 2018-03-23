@@ -10,7 +10,7 @@ const H1 = ({children}) => {
 };
 
 H1.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.node,
 };
 
 export default H1;

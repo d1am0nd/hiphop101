@@ -1,6 +1,7 @@
 .content {
   @include wrapper;
   grid-area: content;
+  max-width: 800px;
 
   @include large{
     border-left: $borderParams;
@@ -25,7 +26,6 @@
   }
 
   form, div {
-    max-width: 400px;
     label {
       font-size: $emphSize;
       display: block;

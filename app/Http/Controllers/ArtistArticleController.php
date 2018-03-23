@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Artists\Artist;
 use App\Models\Artists\ArtistArticle;
 use App\Http\Resources\ArtistArticleResource;
+use App\Http\Requests\StoreArtistArticleRequest;
 
 class ArtistArticleController extends Controller
 {
@@ -37,8 +38,10 @@ class ArtistArticleController extends Controller
         );
     }
 
-    public function store(Request $request, Artist $artist)
+    public function store(StoreArtistArticleRequest $request, Artist $artist)
     {
-
+        return [
+            'data' => 'success',
+        ];
     }
 }

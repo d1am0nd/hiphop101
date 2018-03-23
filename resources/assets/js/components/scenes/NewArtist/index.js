@@ -31,9 +31,9 @@ class NewArtist extends Component {
   }
 
   handleSubmit(e) {
+    e.preventDefault();
     const {values, errors} = this.state;
     const {history} = this.props;
-    e.preventDefault();
     postNewArtist(values)
       .then((res) => {
         history.push(newArtistArticleUrl(getData(res).slug));
