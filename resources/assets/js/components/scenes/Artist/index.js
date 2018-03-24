@@ -20,7 +20,7 @@ class Artist extends Component {
     };
   }
 
-  componentDidMount() {
+  fetchData() {
     const {slug} = this.props.match.params;
     getArtistArticles(slug)
       .then((res) => {
@@ -32,6 +32,16 @@ class Artist extends Component {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      this.fetchData();
+    }
+  }
+
+  componentDidMount() {
+    this.fetchData();
   }
 
   render() {
@@ -65,6 +75,7 @@ class Artist extends Component {
 
 Artist.propTypes = {
   match: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
 };
 
 export default withRouter(Artist);

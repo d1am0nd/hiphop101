@@ -4,6 +4,7 @@ import Artist from '@/components/scenes/Artist';
 import NewArtist from '@/components/scenes/NewArtist';
 import NewArticle from '@/components/scenes/NewArticle';
 import NewArtistArticle from '@/components/scenes/NewArtistArticle';
+import ArtistArticle from '@/components/scenes/ArtistArticle';
 
 import authOnly from '@/components/hoc/authOnly';
 
@@ -26,6 +27,13 @@ const routes = [
   {
     path: '/artists/:slug',
     component: Artist,
+    info: {
+      sidebar: false,
+    },
+  },
+  {
+    path: '/artists/:artistSlug/:prefix/:articleSlug',
+    component: ArtistArticle,
     info: {
       sidebar: false,
     },

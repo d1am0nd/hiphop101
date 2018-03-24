@@ -19,7 +19,7 @@ const paramsWithToken = (params = {}) => {
         )
       ),
     },
-  } : {};
+  } : params;
 };
 
 const post = (url, data = {}, params = {}) => axios

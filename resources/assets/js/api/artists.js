@@ -4,7 +4,10 @@ const ARTISTS_URL = '/api/artists';
 
 const artistsUrl = () => ARTISTS_URL;
 const artistUrl = (slug) => `${artistsUrl()}/${slug}`;
-const articleUrl = (artistSlug) => `${artistsUrl()}/${artistSlug}/articles`;
+const articlesUrl = (artistSlug) => `${artistsUrl()}/${artistSlug}/articles`;
+const articleUrl = (artistSlug, prefix, articleSlug) => {
+  return `${articlesUrl(artistSlug)}/${prefix}/${articleSlug}`;
+};
 
 const searchByName = (name) => get(
   artistsUrl(),
@@ -15,14 +18,18 @@ const searchByName = (name) => get(
   }
 );
 
-// Post new artist
-const postNewArtist = (artist) => post(artistsUrl(), artist);
-
 // Find artist by slug
-const findBySlug = (slug) => get(artistUrl(slug));
+const findArtist = (slug) => get(artistUrl(slug));
+
+const findArticle = (artistSlug, prefix, articleSlug) => get(
+  articleUrl(artistSlug, prefix, articleSlug)
+);
 
 // Get artist with articles
-const getArtistArticles = (slug) => get(articleUrl(slug));
+const getArtistArticles = (slug) => get(articlesUrl(slug));
+
+// Post new artist
+const postNewArtist = (artist) => post(artistsUrl(), artist);
 
 // Post new article for an artist
 const postNewArtistArticle = (slug, article) => post(
@@ -32,7 +39,8 @@ const postNewArtistArticle = (slug, article) => post(
 export {
   searchByName,
   postNewArtist,
-  findBySlug,
+  findArtist,
+  findArticle,
 
   getArtistArticles,
   postNewArtistArticle,

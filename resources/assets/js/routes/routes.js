@@ -1,6 +1,6 @@
 const artistUrl = (slug) => `/artists/${slug}`;
 const articleUrl = (artistSlug, prefix, articleSlug) => {
-  return `${artistUrl(artistSlug)}/articles/${prefix}/${articleSlug}`;
+  return `${artistUrl(artistSlug)}/${prefix}/${articleSlug}`;
 };
 const newArticleUrl = (artistSlug) => `${artistSlug}/articles/new`;
 const newArtistUrl = () => `/artist/new`;

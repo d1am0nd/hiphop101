@@ -33,13 +33,15 @@ class ArtistArticleController extends Controller
 
     public function show(Request $request, Artist $artist, $prefix, $slug)
     {
-        return new ArtistArticleResource(
+        return (new ArtistArticleResource(
             $artist
                 ->articles()
                 ->byPrefix($prefix)
                 ->bySlug($slug)
                 ->firstOrFail()
-        );
+        ))->additional([
+            'parent' => new ArtistResource($artist),
+        ]);
     }
 
     public function store(StoreArtistArticleRequest $request, Artist $artist)

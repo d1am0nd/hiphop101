@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom';
 
 import {textBetween} from '@/validation/text';
-import {findBySlug, postNewArtistArticle} from '@/api/artists';
+import {findArtist, postNewArtistArticle} from '@/api/artists';
 import {getErr, getData} from '@/api/helpers';
 import hasEditor from '@/components/hoc/hasEditor';
 
@@ -34,7 +34,7 @@ class NewArtistArticle extends Component {
 
   componentDidMount() {
     const {slug} = this.props.match.params;
-    findBySlug(slug)
+    findArtist(slug)
       .then((res) => {
         this.setState({
           artist: getData(res),
