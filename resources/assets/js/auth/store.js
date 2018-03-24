@@ -27,13 +27,23 @@ const clearAuth = () => {
   localStorage.removeItem(TOKEN_STORAGE);
 };
 
-const getAuth = () => {
+const getToken = () => {
   const token = localStorage.getItem(TOKEN_STORAGE);
+  return !!token ? JSON.parse(token) : null;
+};
+
+const getUser = () => {
   const user = localStorage.getItem(USER_STORAGE);
+  return !!user ? JSON.parse(user) : null;
+};
+
+const getAuth = () => {
+  const token = getToken();
+  const user = getUser();
 
   return (!!token && !!user) ? {
-    token: JSON.parse(token),
-    user: JSON.parse(user),
+    token,
+    user,
   } : null;
 };
 
@@ -45,6 +55,8 @@ export {
   storeUser,
   storeToken,
   storeAuth,
+  getToken,
+  getUser,
   getAuth,
   clearAuth,
   isAuthenticated,

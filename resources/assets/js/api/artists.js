@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {authPost} from './defaults';
 
 const ARTISTS_URL = '/api/artists';
 const NEW_ARTIST_URL = '/api/artists';
@@ -12,14 +13,14 @@ const searchByName = (name) => axios
     },
   });
 
-const postNewArtist = (artist) => axios
-  .post(NEW_ARTIST_URL, artist);
+const postNewArtist = (artist) => authPost(NEW_ARTIST_URL, artist);
 
 const findBySlug = (slug) => axios
   .get(`${ARTISTS_URL}/${slug}`);
 
-const postNewArtistArticle = (slug, article) => axios
-  .post(articleUrl(slug), article);
+const postNewArtistArticle = (slug, article) => authPost(
+  articleUrl(slug), article
+);
 
 export {
   searchByName,

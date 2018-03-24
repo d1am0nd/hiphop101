@@ -37,7 +37,7 @@ const heading = (renderer) => (text, level, raw) => {
     <Comp attributes={{
       id: raw.toLowerCase().replace(/[^\w]+/g, '-'),
     }}>
-      text
+      {text}
     </Comp>
   );
 };
