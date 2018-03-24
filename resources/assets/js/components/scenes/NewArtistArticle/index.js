@@ -12,6 +12,7 @@ import Form from '@/components/simple/form/Form';
 import Input from '@/components/simple/form/Input';
 import Submit from '@/components/simple/form/Submit';
 import TextArea from '@/components/simple/form/TextArea';
+import Article from '@/components/renders/Article';
 
 class NewArtistArticle extends Component {
   constructor(props) {
@@ -66,6 +67,7 @@ class NewArtistArticle extends Component {
         [target.name]: target.value,
       },
     });
+    console.log(this.state.values);
   }
 
   render() {
@@ -113,11 +115,9 @@ class NewArtistArticle extends Component {
             }}
             label="Article content"
             errors={errors.content}/>
-          <div dangerouslySetInnerHTML={{
-            __html: this.props.editorStateToHtml(values.content),
-          }}/>
           <Submit text="Submit"/>
         </Form>
+        <Article article={this.state.values}/>
       </div>
     );
   }

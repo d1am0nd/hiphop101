@@ -1,24 +1,31 @@
-import axios from 'axios';
-import {authPost} from './defaults';
+import {post, get} from './defaults';
 
 const ARTISTS_URL = '/api/artists';
-const NEW_ARTIST_URL = '/api/artists';
 
-const articleUrl = (artistSlug) => `${ARTISTS_URL}/${artistSlug}/articles`;
+const artistsUrl = () => ARTISTS_URL;
+const artistUrl = (slug) => `${artistsUrl()}/${slug}`;
+const articleUrl = (artistSlug) => `${artistsUrl()}/${artistSlug}/articles`;
 
-const searchByName = (name) => axios
-  .get(ARTISTS_URL, {
+const searchByName = (name) => get(
+  artistsUrl(),
+  {
     params: {
       search: name,
     },
-  });
+  }
+);
 
-const postNewArtist = (artist) => authPost(NEW_ARTIST_URL, artist);
+// Post new artist
+const postNewArtist = (artist) => post(artistsUrl(), artist);
 
-const findBySlug = (slug) => axios
-  .get(`${ARTISTS_URL}/${slug}`);
+// Find artist by slug
+const findBySlug = (slug) => get(artistUrl(slug));
 
-const postNewArtistArticle = (slug, article) => authPost(
+// Get artist with articles
+const getArtistArticles = (slug) => get(articleUrl(slug));
+
+// Post new article for an artist
+const postNewArtistArticle = (slug, article) => post(
   articleUrl(slug), article
 );
 
@@ -27,5 +34,6 @@ export {
   postNewArtist,
   findBySlug,
 
+  getArtistArticles,
   postNewArtistArticle,
 };

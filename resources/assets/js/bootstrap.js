@@ -3,8 +3,7 @@ import axios from 'axios';
 import {createStore} from '@/store';
 import {isAuthenticated, getAuth} from '@/auth/store';
 import {setUser, setToken, refresh} from '@/store/actions/auth';
-import {getToken} from '@/auth/parsers';
-import {setAuthHeader} from '@/auth/helpers';
+import {parseToken, setAuthHeader} from '@/auth/helpers';
 
 // Set axios global defaults
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -23,7 +22,7 @@ if (isAuthenticated()) {
 
   store.dispatch(setUser(userObj));
   store.dispatch(setToken(tokenObj));
-  setAuthHeader(getToken(tokenObj));
+  setAuthHeader(parseToken(tokenObj));
 
   store.dispatch(refresh());
 }

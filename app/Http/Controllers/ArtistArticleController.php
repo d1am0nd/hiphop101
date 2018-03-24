@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Artists\Artist;
 use App\Models\Artists\ArtistArticle;
+use App\Http\Resources\ArtistResource;
 use App\Http\Resources\ArtistArticleResource;
+use App\Http\Resources\ArtistArticleCollection;
 use App\Http\Requests\StoreArtistArticleRequest;
 
 class ArtistArticleController extends Controller
@@ -20,11 +22,13 @@ class ArtistArticleController extends Controller
 
     public function index(Request $request, Artist $artist)
     {
-        return ArtistArticleResource::collection(
+        return (new ArtistArticleCollection(
             $artist
                 ->articles()
                 ->paginate(config('defaults.pagination.per_page'))
-        );
+        ))->additional([
+            'parent' => new ArtistResource($artist),
+        ]);
     }
 
     public function show(Request $request, Artist $artist, $prefix, $slug)

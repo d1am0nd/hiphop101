@@ -6,6 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ArtistArticleResource extends JsonResource
 {
+
     /**
      * Transform the resource into an array.
      *

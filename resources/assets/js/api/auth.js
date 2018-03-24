@@ -1,21 +1,24 @@
-import axios from 'axios';
-
-import {authPost} from './defaults';
+import {post} from './defaults';
 
 const REGISTER_URL = '/api/auth/register';
 const LOGIN_URL = '/api/auth/login';
 const LOGOUT_URL = '/api/auth/logout';
 const REFRESH_URL = '/api/auth/refresh';
 
+const registerUrl = () => REGISTER_URL;
+const loginUrl = () => LOGIN_URL;
+const logoutUrl = () => LOGOUT_URL;
+const refreshUrl = () => REFRESH_URL;
+
 // Requires: name, email, password, password_confirmation
-const register = (registerInfo) => axios.post(REGISTER_URL, registerInfo);
+const register = (registerInfo) => post(registerUrl(), registerInfo);
 
 // Requires: email, password
-const login = (credentials) => axios.post(LOGIN_URL, credentials);
+const login = (credentials) => post(loginUrl(), credentials);
 
-const logout = () => authPost(LOGOUT_URL);
+const logout = () => post(logoutUrl());
 
-const refreshToken = () => authPost(REFRESH_URL);
+const refreshToken = () => post(refreshUrl());
 
 export {
   register,

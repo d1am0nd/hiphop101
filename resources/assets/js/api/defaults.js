@@ -1,12 +1,15 @@
 import axios from 'axios';
 
 import {getToken} from '@/auth/store';
-import {getToken as parseToken} from '@/auth/parsers';
-import {createHeaderToken} from '@/auth/helpers';
+import {
+  createHeaderToken,
+  parseToken,
+} from '@/auth/helpers';
 
 // To add token on the go
 const paramsWithToken = (params = {}) => {
-  return {
+  const tokenObj = getToken();
+  return tokenObj !== null ? {
     ...params,
     headers: {
       ...params.headers,
@@ -16,16 +19,16 @@ const paramsWithToken = (params = {}) => {
         )
       ),
     },
-  };
+  } : {};
 };
 
-const authPost = (url, data = {}, params = {}) => axios
+const post = (url, data = {}, params = {}) => axios
   .post(url, data, paramsWithToken(params));
 
-const authGet = (url, params = {}) => axios
+const get = (url, params = {}) => axios
   .get(url, paramsWithToken(params));
 
 export {
-  authPost,
-  authGet,
+  post,
+  get,
 };

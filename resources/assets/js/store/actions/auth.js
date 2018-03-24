@@ -7,8 +7,8 @@ import {
 import {getData} from '@/api/helpers';
 import {SET_USER, SET_TOKEN} from '@/store/const/auth';
 import {storeToken, storeAuth, clearAuth} from '@/auth/store';
-import {getToken} from '@/auth/parsers';
 import {
+  parseToken,
   setAuthHeader,
   removeAuthHeader,
 } from '@/auth/helpers';
@@ -17,7 +17,7 @@ const loginFacade = (dispatch, user, token) => {
   storeAuth(user, token); // Stores to localStorage
   dispatch(setUser(user)); // Sets redux user
   dispatch(setToken(token)); // Sets redux token
-  setAuthHeader(getToken(token)); // Sets axios header defaults
+  setAuthHeader(parseToken(token)); // Sets axios header defaults
 };
 
 const setUser = (user) => {
@@ -92,7 +92,7 @@ const refresh = () => {
           const token = getData(res);
           storeToken(token); // Stores to localStorage
           dispatch(setToken(token)); // Sets redux token
-          setAuthHeader(getToken(token)); // Sets axios header defaults
+          setAuthHeader(parseToken(token)); // Sets axios header defaults
         })
         .catch((err) => {
           dispatch(setUser({}));
