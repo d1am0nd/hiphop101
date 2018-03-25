@@ -24,6 +24,13 @@ Route::group([
     Route::post('login', 'AuthController@login');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refreshToken');
+
+    Route::group([
+        'prefix' => 'articles',
+        'middleware' => 'auth',
+    ], function () {
+        Route::get('/', 'UserArticleController@index');
+    });
 });
 
 Route::group([

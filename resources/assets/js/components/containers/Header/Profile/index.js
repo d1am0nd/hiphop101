@@ -5,12 +5,13 @@ import {Link} from 'react-router-dom';
 
 import {logout} from '@/store/actions/auth';
 import {getUsername} from '@/store/selectors/auth';
-
-import {newArticleUrl} from '@/routes/routes';
+import {newArticleUrl, profileUrl} from '@/routes/routes';
 
 const Profile = ({username, logout}) => (
   <div className="profile">
-    {username}
+    <Link to={profileUrl()}>
+      {username}
+    </Link>
     &nbsp;|&nbsp;
     <Link to={newArticleUrl()}>
       New article

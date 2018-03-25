@@ -33,7 +33,7 @@ const postNewArtist = (artist) => post(artistsUrl(), artist);
 
 // Post new article for an artist
 const postNewArtistArticle = (slug, article) => post(
-  articleUrl(slug), article
+  articlesUrl(slug), article
 );
 
 export {

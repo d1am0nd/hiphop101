@@ -2,33 +2,35 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom';
 
-import {textBetween} from '@/validation/text';
+// import {textBetween} from '@/validation/text';
 import {findArtist, postNewArtistArticle} from '@/api/artists';
 import {getErr, getData} from '@/api/helpers';
 import hasEditor from '@/components/hoc/hasEditor';
+import {
+  values as articleValues,
+  errors as articleErrors,
+} from '@/objects/article';
+import {
+  values as artistValues,
+} from '@/objects/artist';
 
 import H1 from '@/components/simple/content/H1';
+import ArticleForm from '@/components/forms/ArticleForm';
+import Article from '@/components/renders/Article';
+/*
 import Form from '@/components/simple/form/Form';
 import Input from '@/components/simple/form/Input';
 import Submit from '@/components/simple/form/Submit';
 import TextArea from '@/components/simple/form/TextArea';
-import Article from '@/components/renders/Article';
+*/
 
 class NewArtistArticle extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      artist: {},
-      values: {
-        title: '',
-        description: '',
-        content: '',
-      },
-      errors: {
-        title: [],
-        description: [],
-        content: [],
-      },
+      artist: {...artistValues},
+      values: {...articleValues},
+      errors: {...articleErrors},
     };
   }
 
@@ -48,6 +50,7 @@ class NewArtistArticle extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const {artist, values} = this.state;
+    console.log(artist, values);
     postNewArtistArticle(artist.slug, values)
       .then((res) => {
         console.log('RES', getData(res));
@@ -59,7 +62,7 @@ class NewArtistArticle extends Component {
       });
   }
 
-  handleInputChange(e) {
+  handleChange(e) {
     const {target} = e;
     this.setState({
       values: {
@@ -67,7 +70,6 @@ class NewArtistArticle extends Component {
         [target.name]: target.value,
       },
     });
-    console.log(this.state.values);
   }
 
   render() {
@@ -79,45 +81,12 @@ class NewArtistArticle extends Component {
     return (
       <div>
         <H1>New article for {artist.name}</H1>
-        <Form handleSubmit={(e) => this.handleSubmit(e)}>
-          <Input
-            handleChange={(e) => this.handleInputChange(e)}
-            attributes={{
-              placeholder: 'Title',
-              tabIndex: 1,
-              name: 'title',
-            }}
-            errors={errors.title}
-            label="Title"/>
-          <TextArea
-            handleChange={(e) => this.handleInputChange(e)}
-            attributes={{
-              placeholder: 'Description',
-              name: 'description',
-              rows: 8,
-              tabIndex: 2,
-            }}
-            label="Short description"
-            help={textBetween({
-              input: values.description,
-              name: 'Description',
-              min: 150,
-              max: 400,
-            })}
-            errors={errors.description}/>
-          <TextArea
-            handleChange={(e) => this.handleInputChange(e)}
-            attributes={{
-              placeholder: 'Content',
-              name: 'content',
-              rows: 30,
-              tabIndex: 2,
-            }}
-            label="Article content"
-            errors={errors.content}/>
-          <Submit text="Submit"/>
-        </Form>
         <Article article={this.state.values}/>
+        <ArticleForm
+          article={values}
+          errors={errors}
+          handleChange={(e) => this.handleChange(e)}
+          handleSubmit={(e) => this.handleSubmit(e)}/>
       </div>
     );
   }
@@ -133,3 +102,43 @@ export default hasEditor(
     NewArtistArticle
   )
 );
+/*
+  <Form handleSubmit={(e) => this.handleSubmit(e)}>
+    <Input
+      handleChange={(e) => this.handleInputChange(e)}
+      attributes={{
+        placeholder: 'Title',
+        tabIndex: 1,
+        name: 'title',
+      }}
+      errors={errors.title}
+      label="Title"/>
+    <TextArea
+      handleChange={(e) => this.handleInputChange(e)}
+      attributes={{
+        placeholder: 'Description',
+        name: 'description',
+        rows: 8,
+        tabIndex: 2,
+      }}
+      label="Short description"
+      help={textBetween({
+        input: values.description,
+        name: 'Description',
+        min: 150,
+        max: 400,
+      })}
+      errors={errors.description}/>
+    <TextArea
+      handleChange={(e) => this.handleInputChange(e)}
+      attributes={{
+        placeholder: 'Content',
+        name: 'content',
+        rows: 30,
+        tabIndex: 2,
+      }}
+      label="Article content"
+      errors={errors.content}/>
+    <Submit text="Submit"/>
+  </Form>
+ */

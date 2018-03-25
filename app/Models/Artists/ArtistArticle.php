@@ -5,12 +5,13 @@ namespace App\Models\Artists;
 use App\Models\Users\User;
 use App\Models\Artists\Artist;
 use App\Lib\Traits\Detailable;
+use App\Lib\Traits\UnixTimestamps;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ArtistArticle extends Model
 {
-    use SoftDeletes, Detailable;
+    use SoftDeletes, Detailable, UnixTimestamps;
 
     protected $fillable = [
         'active',
@@ -50,5 +51,10 @@ class ArtistArticle extends Model
     public function scopeBySlug($q, $slug)
     {
         return $q->where('slug', $slug);
+    }
+
+    public function scopeByUserId($q, $uid)
+    {
+        return $q->where('user_id', $uid);
     }
 }

@@ -25,6 +25,14 @@ class ArtistArticleController extends Controller
         return (new ArtistArticleCollection(
             $artist
                 ->articles()
+                // If my_articles = 1, show current users articles
+                ->when(
+                    $request->input('my_articles') === 1 &&
+                    auth()->check(),
+                    function ($q) {
+                        $q->byUserId(auth()->id());
+                    }
+                )
                 ->paginate(config('defaults.pagination.per_page'))
         ))->additional([
             'parent' => new ArtistResource($artist),
@@ -46,8 +54,21 @@ class ArtistArticleController extends Controller
 
     public function store(StoreArtistArticleRequest $request, Artist $artist)
     {
-        return [
-            'data' => 'success',
-        ];
+        return (new ArtistArticleResource(
+            $this->model->create(
+                array_merge(
+                    $request->input(),
+                    [
+                        'active' => true,
+                        'slug' => str_slug($request->input('title')),
+                        'artist_id' => $artist->id,
+                        'user_id' => auth()->id(),
+                        'prefix' => substr(md5(auth()->id()), 0, 6),
+                    ]
+                )
+            )
+        ))->additional([
+            'parent' => new ArtistResource($artist),
+        ]);
     }
 }

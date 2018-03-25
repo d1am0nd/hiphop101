@@ -5,6 +5,7 @@ import NewArtist from '@/components/scenes/NewArtist';
 import NewArticle from '@/components/scenes/NewArticle';
 import NewArtistArticle from '@/components/scenes/NewArtistArticle';
 import ArtistArticle from '@/components/scenes/ArtistArticle';
+import MyProfile from '@/components/scenes/MyProfile';
 
 import authOnly from '@/components/hoc/authOnly';
 
@@ -55,6 +56,13 @@ const routes = [
   {
     path: '/artist/new',
     component: authOnly(NewArtist),
+    info: {
+      sidebar: false,
+    },
+  },
+  {
+    path: '/profile',
+    component: authOnly(MyProfile),
     info: {
       sidebar: false,
     },

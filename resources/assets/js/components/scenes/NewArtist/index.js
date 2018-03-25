@@ -6,6 +6,7 @@ import {postNewArtist} from '@/api/artists';
 import {getErr, getData} from '@/api/helpers';
 import {newArtistArticleUrl} from '@/routes/routes';
 import {textBetween} from '@/validation/text';
+import {values, errors} from '@/objects/artist';
 
 import H1 from '@/components/simple/content/H1';
 import Form from '@/components/simple/form/Form';
@@ -17,16 +18,8 @@ class NewArtist extends Component {
   constructor() {
     super();
     this.state = {
-      values: {
-        name: '',
-        description: '',
-        wikipedia_url: '',
-      },
-      errors: {
-        name: [],
-        description: [],
-        wikipedia_url: [],
-      },
+      values: {...values},
+      errors: {...errors},
     };
   }
 

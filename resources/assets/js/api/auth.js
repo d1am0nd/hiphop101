@@ -1,14 +1,16 @@
-import {post} from './defaults';
+import {post, get} from './defaults';
 
 const REGISTER_URL = '/api/auth/register';
 const LOGIN_URL = '/api/auth/login';
 const LOGOUT_URL = '/api/auth/logout';
 const REFRESH_URL = '/api/auth/refresh';
+const MY_ARTICLES_URL = '/api/auth/articles';
 
 const registerUrl = () => REGISTER_URL;
 const loginUrl = () => LOGIN_URL;
 const logoutUrl = () => LOGOUT_URL;
 const refreshUrl = () => REFRESH_URL;
+const myArticlesUrl = () => MY_ARTICLES_URL;
 
 // Requires: name, email, password, password_confirmation
 const register = (registerInfo) => post(registerUrl(), registerInfo);
@@ -20,9 +22,12 @@ const logout = () => post(logoutUrl());
 
 const refreshToken = () => post(refreshUrl());
 
+const myArticles = () => get(myArticlesUrl());
+
 export {
   register,
   logout,
   login,
   refreshToken,
+  myArticles,
 };

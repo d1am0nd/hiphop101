@@ -4,6 +4,12 @@ import {withRouter} from 'react-router-dom';
 
 import {findArticle} from '@/api/artists';
 import {getData, getParent} from '@/api/helpers';
+import {
+  values as artistValues,
+} from '@/objects/artist';
+import {
+  values as articleValues,
+} from '@/objects/article';
 
 import Article from '@/components/renders/Article';
 
@@ -11,15 +17,8 @@ class ArtistArticle extends Component {
   constructor() {
     super();
     this.state = {
-      artist: {
-        name: '',
-        description: '',
-      },
-      article: {
-        title: '',
-        description: '',
-        content: '',
-      },
+      artist: {...artistValues},
+      article: {...articleValues},
     };
   }
 
