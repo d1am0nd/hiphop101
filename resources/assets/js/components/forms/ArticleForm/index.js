@@ -20,7 +20,7 @@ const ArticleForm = ({
         placeholder: 'Title',
         tabIndex: 1,
         name: 'title',
-        value: article.name,
+        value: article.title,
       }}
       errors={errors.title}
       label="Title"/>

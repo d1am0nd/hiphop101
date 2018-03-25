@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom';
 
-// import {textBetween} from '@/validation/text';
 import {findArtist, postNewArtistArticle} from '@/api/artists';
 import {getErr, getData} from '@/api/helpers';
 import hasEditor from '@/components/hoc/hasEditor';

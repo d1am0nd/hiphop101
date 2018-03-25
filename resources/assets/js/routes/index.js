@@ -4,6 +4,7 @@ import Artist from '@/components/scenes/Artist';
 import NewArtist from '@/components/scenes/NewArtist';
 import NewArticle from '@/components/scenes/NewArticle';
 import NewArtistArticle from '@/components/scenes/NewArtistArticle';
+import EditArtistArticle from '@/components/scenes/EditArtistArticle';
 import ArtistArticle from '@/components/scenes/ArtistArticle';
 import MyProfile from '@/components/scenes/MyProfile';
 
@@ -42,6 +43,13 @@ const routes = [
   {
     path: '/articles/new',
     component: authOnly(NewArticle),
+    info: {
+      sidebar: false,
+    },
+  },
+  {
+    path: '/articles/:id',
+    component: authOnly(EditArtistArticle),
     info: {
       sidebar: false,
     },

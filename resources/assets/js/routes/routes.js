@@ -5,6 +5,7 @@ const articleUrl = (artistSlug, prefix, articleSlug) => {
 const newArticleUrl = () => `/articles/new`;
 const newArtistUrl = () => `/artist/new`;
 const newArtistArticleUrl = (slug) => `/articles/${slug}/new`;
+const editArticleUrl = (id) => `/articles/${id}`;
 
 const profileUrl = () => `/profile`;
 
@@ -15,6 +16,8 @@ export {
   newArtistUrl,
   newArticleUrl,
   newArtistArticleUrl,
+
+  editArticleUrl,
 
   profileUrl,
 };

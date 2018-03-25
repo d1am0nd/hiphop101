@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Artists\ArtistArticle;
+use App\Http\Resources\UserArticleResource;
 use App\Http\Resources\UserArticleCollection;
+use App\Http\Requests\StoreArtistArticleRequest;
 
 class UserArticleController extends Controller
 {
@@ -25,5 +27,27 @@ class UserArticleController extends Controller
                 ->byUserId(auth()->id())
                 ->paginate(config('defaults.pagination.per_page'))
         );
+    }
+
+    public function show(Request $request, ArtistArticle $article)
+    {
+        return new UserArticleResource($article);
+    }
+
+    public function update(StoreArtistArticleRequest $request, ArtistArticle $article)
+    {
+        $article->fill(
+            array_merge(
+                $request->only([
+                    'title',
+                    'description',
+                    'content',
+                ]),
+                [
+                    'slug' => str_slug($request->input('title')),
+                ]
+            )
+        )->save();
+        return new UserArticleResource($article);
     }
 }

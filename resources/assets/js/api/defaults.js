@@ -28,7 +28,11 @@ const post = (url, data = {}, params = {}) => axios
 const get = (url, params = {}) => axios
   .get(url, paramsWithToken(params));
 
+const patch = (url, data = {}, params = {}) => axios
+  .patch(url, data, paramsWithToken(params));
+
 export {
   post,
+  patch,
   get,
 };

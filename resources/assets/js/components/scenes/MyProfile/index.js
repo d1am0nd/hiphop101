@@ -5,13 +5,12 @@ import {connect} from 'react-redux';
 import {getUsername} from '@/store/selectors/auth';
 import {getData} from '@/api/helpers';
 import {myArticles} from '@/api/auth';
-import {articleUrl} from '@/routes/routes';
+import {articleUrl, editArticleUrl} from '@/routes/routes';
 
 import {Link} from 'react-router-dom';
 import ArticleShort from '@/components/renders/ArticleShort';
 import H1 from '@/components/simple/content/H1';
 import Section from '@/components/simple/content/Section';
-import A from '@/components/simple/content/A';
 
 class MyProfile extends Component {
   constructor() {
@@ -57,9 +56,9 @@ class MyProfile extends Component {
                     </Link>
                   </li>
                   <li>
-                    <A href="#">
+                    <Link to={editArticleUrl(article.id)}>
                       Edit
-                    </A>
+                    </Link>
                   </li>
                 </ul>
               </li>

@@ -30,6 +30,8 @@ Route::group([
         'middleware' => 'auth',
     ], function () {
         Route::get('/', 'UserArticleController@index');
+        Route::get('{article}', 'UserArticleController@show');
+        Route::patch('{article}', 'UserArticleController@update');
     });
 });
 
