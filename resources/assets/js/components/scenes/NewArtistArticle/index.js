@@ -17,12 +17,6 @@ import {
 import H1 from '@/components/simple/content/H1';
 import ArticleForm from '@/components/forms/ArticleForm';
 import Article from '@/components/renders/Article';
-/*
-import Form from '@/components/simple/form/Form';
-import Input from '@/components/simple/form/Input';
-import Submit from '@/components/simple/form/Submit';
-import TextArea from '@/components/simple/form/TextArea';
-*/
 
 class NewArtistArticle extends Component {
   constructor(props) {
@@ -50,7 +44,6 @@ class NewArtistArticle extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const {artist, values} = this.state;
-    console.log(artist, values);
     postNewArtistArticle(artist.slug, values)
       .then((res) => {
         console.log('RES', getData(res));
@@ -102,43 +95,3 @@ export default hasEditor(
     NewArtistArticle
   )
 );
-/*
-  <Form handleSubmit={(e) => this.handleSubmit(e)}>
-    <Input
-      handleChange={(e) => this.handleInputChange(e)}
-      attributes={{
-        placeholder: 'Title',
-        tabIndex: 1,
-        name: 'title',
-      }}
-      errors={errors.title}
-      label="Title"/>
-    <TextArea
-      handleChange={(e) => this.handleInputChange(e)}
-      attributes={{
-        placeholder: 'Description',
-        name: 'description',
-        rows: 8,
-        tabIndex: 2,
-      }}
-      label="Short description"
-      help={textBetween({
-        input: values.description,
-        name: 'Description',
-        min: 150,
-        max: 400,
-      })}
-      errors={errors.description}/>
-    <TextArea
-      handleChange={(e) => this.handleInputChange(e)}
-      attributes={{
-        placeholder: 'Content',
-        name: 'content',
-        rows: 30,
-        tabIndex: 2,
-      }}
-      label="Article content"
-      errors={errors.content}/>
-    <Submit text="Submit"/>
-  </Form>
- */
