@@ -25,12 +25,19 @@ class ArtistArticleController extends Controller
         return (new ArtistArticleCollection(
             $artist
                 ->articles()
+                ->withCount('likes')
                 // If my_articles = 1, show current users articles
                 ->when(
                     $request->input('my_articles') === 1 &&
                     auth()->check(),
                     function ($q) {
                         $q->byUserId(auth()->id());
+                    }
+                )
+                ->when(
+                    auth()->check(),
+                    function ($q) {
+                        $q->with('myLike');
                     }
                 )
                 ->paginate(config('defaults.pagination.per_page'))
@@ -46,6 +53,13 @@ class ArtistArticleController extends Controller
                 ->articles()
                 ->byPrefix($prefix)
                 ->bySlug($slug)
+                ->withCount('likes')
+                ->when(
+                    auth()->check(),
+                    function ($q) {
+                        $q->with('myLike');
+                    }
+                )
                 ->firstOrFail()
         ))->additional([
             'parent' => new ArtistResource($artist),
@@ -70,5 +84,29 @@ class ArtistArticleController extends Controller
         ))->additional([
             'parent' => new ArtistResource($artist),
         ]);
+    }
+
+    public function like(Request $request, Artist $artist, $prefix, $slug)
+    {
+        return [
+            'data' => $artist
+                ->articles()
+                ->byPrefix($prefix)
+                ->bySlug($slug)
+                ->firstOrFail()
+                ->like(auth()->id())
+        ];
+    }
+
+    public function unlike(Request $request, Artist $artist, $prefix, $slug)
+    {
+        return [
+            'data' => $artist
+                ->articles()
+                ->byPrefix($prefix)
+                ->bySlug($slug)
+                ->firstOrFail()
+                ->unlike(auth()->id())
+        ];
     }
 }

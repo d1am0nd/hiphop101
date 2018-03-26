@@ -4,6 +4,7 @@ namespace App\Models\Artists;
 
 use App\Models\Users\User;
 use App\Models\Artists\Artist;
+use App\Lib\Traits\Likable;
 use App\Lib\Traits\Detailable;
 use App\Lib\Traits\UnixTimestamps;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ArtistArticle extends Model
 {
-    use SoftDeletes, Detailable, UnixTimestamps;
+    use SoftDeletes, Detailable, UnixTimestamps, Likable;
 
     protected $fillable = [
         'active',

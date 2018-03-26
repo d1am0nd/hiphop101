@@ -24,19 +24,22 @@ class UserArticleController extends Controller
             $this
                 ->model
                 ->with('artist')
+                ->withCount('likes')
                 ->byUserId(auth()->id())
                 ->paginate(config('defaults.pagination.per_page'))
         );
     }
 
-    public function show(Request $request, ArtistArticle $article)
+    public function show(Request $request, $id)
     {
-        return new UserArticleResource($article);
+        return new UserArticleResource(
+            $this->model->byUserId(auth()->id())->findOrFail($id)
+        );
     }
 
-    public function update(StoreArtistArticleRequest $request, ArtistArticle $article)
+    public function update(StoreArtistArticleRequest $request, $id)
     {
-        $article->fill(
+        return $this->model->byUserId(auth()->id())->where('id', $id)->update(
             array_merge(
                 $request->only([
                     'title',
@@ -47,7 +50,6 @@ class UserArticleController extends Controller
                     'slug' => str_slug($request->input('title')),
                 ]
             )
-        )->save();
-        return new UserArticleResource($article);
+        );
     }
 }

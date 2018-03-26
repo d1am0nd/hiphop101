@@ -13,10 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::group([
     'prefix' => 'auth',
 ], function () {
@@ -27,11 +23,11 @@ Route::group([
 
     Route::group([
         'prefix' => 'articles',
-        'middleware' => 'auth',
+        'middleware' => 'auth:api',
     ], function () {
         Route::get('/', 'UserArticleController@index');
-        Route::get('{article}', 'UserArticleController@show');
-        Route::patch('{article}', 'UserArticleController@update');
+        Route::get('{id}', 'UserArticleController@show');
+        Route::patch('{id}', 'UserArticleController@update');
     });
 });
 
@@ -48,5 +44,12 @@ Route::group([
         Route::get('/', 'ArtistArticleController@index');
         Route::post('/', 'ArtistArticleController@store');
         Route::get('{prefix}/{slug}', 'ArtistArticleController@show');
+
+        Route::group([
+            'middleware' => 'auth:api',
+        ], function () {
+            Route::post('{prefix}/{slug}/like', 'ArtistArticleController@like');
+            Route::post('{prefix}/{slug}/dislike', 'ArtistArticleController@unlike');
+        });
     });
 });

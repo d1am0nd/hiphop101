@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom';
 
-import {findArticle} from '@/api/artists';
+import {findArticle, likeArticle} from '@/api/artists';
 import {getData, getParent} from '@/api/helpers';
 import {
   values as artistValues,
@@ -12,6 +12,7 @@ import {
 } from '@/objects/article';
 
 import Article from '@/components/renders/Article';
+import Like from '@/components/stateful/Like';
 
 class ArtistArticle extends Component {
   constructor() {
@@ -42,10 +43,23 @@ class ArtistArticle extends Component {
   }
 
   render() {
-    const {article} = this.state;
+    const {artist, article} = this.state;
+    const postLike = () => likeArticle(
+      artist.slug, article.prefix, article.slug
+    );
+    const postUnlike = () => unlikeArticle(
+      artist.slug, article.prefix, article.slug
+    );
     return (
       <div>
         <Article article={article}/>
+        <Like
+          likesCount={article.likes_count}
+          alreadyLiked={!!article.liked}
+          postLike={postLike}
+          handleLike={(res) => this.handleLike(res)}
+          postUnlike={postUnlike}
+          handleUnlike={(res) => this.handleUnlike(res)}/>
       </div>
     );
   }

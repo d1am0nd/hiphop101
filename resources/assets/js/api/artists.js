@@ -8,6 +8,12 @@ const articlesUrl = (artistSlug) => `${artistsUrl()}/${artistSlug}/articles`;
 const articleUrl = (artistSlug, prefix, articleSlug) => {
   return `${articlesUrl(artistSlug)}/${prefix}/${articleSlug}`;
 };
+const articleLikeUrl = (artistSlug, prefix, articleSlug) => {
+  return `${articleUrl(artistSlug, prefix, articleSlug)}/like`;
+};
+const articleUnlikeUrl = (artistSlug, prefix, articleSlug) => {
+  return `${articleUrl(artistSlug, prefix, articleSlug)}/like`;
+};
 
 const searchByName = (name) => get(
   artistsUrl(),
@@ -36,6 +42,14 @@ const postNewArtistArticle = (slug, article) => post(
   articlesUrl(slug), article
 );
 
+const likeArticle = (artistSlug, prefix, articleSlug) => post(
+  articleLikeUrl(artistSlug, prefix, articleSlug)
+);
+
+const unlikeArticle = (artistSlug, prefix, articleSlug) => post(
+  articleUnlikeUrl(artistSlug, prefix, articleSlug)
+);
+
 export {
   searchByName,
   postNewArtist,
@@ -44,4 +58,6 @@ export {
 
   getArtistArticles,
   postNewArtistArticle,
+  likeArticle,
+  unlikeArticle,
 };

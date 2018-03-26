@@ -21,6 +21,14 @@ class ArtistArticleResource extends JsonResource
             'prefix' => $this->prefix,
             'description' => $this->description,
             'content' => $this->content,
+            'likes_count' => $this->when(
+                $this->likes_count !== null,
+                $this->likes_count
+            ),
+            'liked' => $this->when(
+                auth()->check(),
+                $this->myLike !== null
+            )
         ];
     }
 }

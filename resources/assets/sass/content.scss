@@ -24,6 +24,31 @@
       }
     }
   }
+  .like-container {
+    div {
+      display: inline-block;
+
+      &.like-count {
+        font-size: 30px;
+        margin-right: 5px;
+      }
+
+      svg {
+        width: 30px;
+        height: 34px;
+        margin-bottom: -5px;
+        cursor: pointer;
+        path {
+          fill: $mainBrand;
+        }
+      }
+
+      &.like-unlike {
+        display: block;
+        cursor: pointer;
+      }
+    }
+  }
   ul.short-descriptions {
     padding: 0;
 
