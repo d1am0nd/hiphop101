@@ -7,12 +7,14 @@ import thunk from 'redux-thunk';
 
 import {authReducer} from '@/store/reducers/auth';
 import {modalReducer} from '@/store/reducers/modal';
+import {artistReducer} from '@/store/reducers/artists';
 
 const createStore = () => {
   return reduxCreateStore(
     combineReducers({
       auth: authReducer,
       modal: modalReducer,
+      artist: artistReducer,
     }),
     applyMiddleware(thunk)
   );

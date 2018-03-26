@@ -49,7 +49,7 @@ Route::group([
             'middleware' => 'auth:api',
         ], function () {
             Route::post('{prefix}/{slug}/like', 'ArtistArticleController@like');
-            Route::post('{prefix}/{slug}/dislike', 'ArtistArticleController@unlike');
+            Route::post('{prefix}/{slug}/unlike', 'ArtistArticleController@unlike');
         });
     });
 });

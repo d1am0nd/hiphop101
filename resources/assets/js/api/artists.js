@@ -12,7 +12,7 @@ const articleLikeUrl = (artistSlug, prefix, articleSlug) => {
   return `${articleUrl(artistSlug, prefix, articleSlug)}/like`;
 };
 const articleUnlikeUrl = (artistSlug, prefix, articleSlug) => {
-  return `${articleUrl(artistSlug, prefix, articleSlug)}/like`;
+  return `${articleUrl(artistSlug, prefix, articleSlug)}/unlike`;
 };
 
 const searchByName = (name) => get(

@@ -1,28 +1,19 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
 
-import {findArticle, likeArticle} from '@/api/artists';
-import {getData, getParent} from '@/api/helpers';
 import {
-  values as artistValues,
-} from '@/objects/artist';
-import {
-  values as articleValues,
-} from '@/objects/article';
+  fetchArticle,
+  likeArticle,
+  unlikeArticle,
+} from '@/store/actions/artists';
+import {getArtist, getArticle} from '@/store/selectors/artists';
 
 import Article from '@/components/renders/Article';
 import Like from '@/components/stateful/Like';
 
 class ArtistArticle extends Component {
-  constructor() {
-    super();
-    this.state = {
-      artist: {...artistValues},
-      article: {...articleValues},
-    };
-  }
-
   componentDidMount() {
     const {
       artistSlug,
@@ -30,20 +21,21 @@ class ArtistArticle extends Component {
       articleSlug,
     } = this.props.match.params;
 
-    findArticle(artistSlug, prefix, articleSlug)
-      .then((res) => {
-        this.setState({
-          artist: getParent(res),
-          article: getData(res),
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    console.log(this.props);
+    this.props.fetchArticle(
+      artistSlug,
+      prefix,
+      articleSlug
+    );
   }
 
   render() {
-    const {artist, article} = this.state;
+    const {
+      artist,
+      article,
+      likeArticle,
+      unlikeArticle,
+    } = this.props;
     const postLike = () => likeArticle(
       artist.slug, article.prefix, article.slug
     );
@@ -67,6 +59,54 @@ class ArtistArticle extends Component {
 
 ArtistArticle.propTypes = {
   match: PropTypes.object.isRequired,
+  fetchArticle: PropTypes.func.isRequired,
+  likeArticle: PropTypes.func.isRequired,
+  unlikeArticle: PropTypes.func.isRequired,
+  artist: PropTypes.object.isRequired,
+  article: PropTypes.object.isRequired,
 };
 
-export default withRouter(ArtistArticle);
+const mapStateToProps = (state) => {
+  return {
+    artist: getArtist(state),
+    article: getArticle(state),
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchArticle: (
+      artistSlug,
+      prefix,
+      articleSlug
+    ) => dispatch(fetchArticle(
+      artistSlug,
+      prefix,
+      articleSlug
+    )),
+    likeArticle: (
+      artistSlug,
+      prefix,
+      articleSlug
+    ) => dispatch(likeArticle(
+      artistSlug,
+      prefix,
+      articleSlug
+    )),
+    unlikeArticle: (
+      artistSlug,
+      prefix,
+      articleSlug
+    ) => dispatch(unlikeArticle(
+      artistSlug,
+      prefix,
+      articleSlug
+    )),
+  };
+};
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(ArtistArticle));
