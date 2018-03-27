@@ -37,13 +37,13 @@ window.addEventListener('storage', (e) => {
     store.dispatch(setUser(
       !!newValue ? JSON.parse(newValue) : {}
     ));
+    window.dispatchEvent(authChanged());
     break;
   }
   case TOKEN_STORAGE: {
     store.dispatch(setToken(
       !!newValue ? JSON.parse(newValue) : {}
     ));
-    window.dispatchEvent(authChanged());
     break;
   }
   }
