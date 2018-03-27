@@ -1,9 +1,11 @@
 import axios from 'axios';
 
+import {TOKEN_STORAGE, USER_STORAGE} from '@/auth/store';
 import {createStore} from '@/store';
 import {isAuthenticated, getAuth} from '@/auth/store';
 import {setUser, setToken, refresh} from '@/store/actions/auth';
 import {parseToken, setAuthHeader} from '@/auth/helpers';
+import {event as authChanged} from '@/events/authchanged';
 
 // Set axios global defaults
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -26,6 +28,26 @@ if (isAuthenticated()) {
 
   store.dispatch(refresh());
 }
+
+// Add storage listener to listen to Auth changes
+window.addEventListener('storage', (e) => {
+  const {newValue} = e;
+  switch (e.key) {
+  case USER_STORAGE: {
+    store.dispatch(setUser(
+      !!newValue ? JSON.parse(newValue) : {}
+    ));
+    break;
+  }
+  case TOKEN_STORAGE: {
+    store.dispatch(setToken(
+      !!newValue ? JSON.parse(newValue) : {}
+    ));
+    window.dispatchEvent(authChanged());
+    break;
+  }
+  }
+});
 
 export {
   store,

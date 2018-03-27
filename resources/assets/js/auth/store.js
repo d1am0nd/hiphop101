@@ -60,4 +60,7 @@ export {
   getAuth,
   clearAuth,
   isAuthenticated,
+
+  TOKEN_STORAGE,
+  USER_STORAGE,
 };

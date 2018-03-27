@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
+import {name as authChanged} from '@/events/authchanged';
 import {
   fetchArticle,
   likeArticle,
@@ -14,7 +15,7 @@ import Article from '@/components/renders/Article';
 import Like from '@/components/stateful/Like';
 
 class ArtistArticle extends Component {
-  componentDidMount() {
+  fetchData() {
     const {
       artistSlug,
       prefix,
@@ -27,6 +28,17 @@ class ArtistArticle extends Component {
       prefix,
       articleSlug
     );
+  }
+
+  componentDidMount() {
+    this.fetchData();
+    window.addEventListener(authChanged, () => {
+      this.fetchData();
+    });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener(authchanged);
   }
 
   render() {
