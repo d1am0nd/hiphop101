@@ -22,7 +22,6 @@ class ArtistArticle extends Component {
       articleSlug,
     } = this.props.match.params;
 
-    console.log(this.props);
     this.props.fetchArticle(
       artistSlug,
       prefix,
@@ -30,15 +29,17 @@ class ArtistArticle extends Component {
     );
   }
 
+  authChangedHandler(e) {
+    this.fetchData();
+  }
+
   componentDidMount() {
     this.fetchData();
-    window.addEventListener(authChanged, () => {
-      this.fetchData();
-    });
+    window.addEventListener(authChanged, this.authChangedHandler);
   }
 
   componentWillUnmount() {
-    window.removeEventListener(authchanged);
+    window.removeEventListener(authChanged, this.authChangedHandler);
   }
 
   render() {
