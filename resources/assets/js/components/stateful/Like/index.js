@@ -13,7 +13,9 @@ class Like extends Component {
     if (isAuthenticated()) {
       postLike()
         .then((res) => {
-          handleLike(res);
+          if (handleLike) {
+            handleLike(res);
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -28,7 +30,9 @@ class Like extends Component {
     if (isAuthenticated()) {
       postUnlike()
         .then((res) => {
-          handleUnlike(res);
+          if (handleUnlike) {
+            handleUnlike(res);
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -65,8 +69,8 @@ Like.propTypes = {
   likesCount: PropTypes.number.isRequired,
   postLike: PropTypes.func.isRequired,
   postUnlike: PropTypes.func.isRequired,
-  handleUnlike: PropTypes.func.isRequired,
-  handleLike: PropTypes.func.isRequired,
+  handleUnlike: PropTypes.func,
+  handleLike: PropTypes.func,
   openRegister: PropTypes.func.isRequired,
   alreadyLiked: PropTypes.bool.isRequired,
 };

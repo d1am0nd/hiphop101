@@ -1,9 +1,10 @@
 import {
   SET_ARTIST,
   SET_ARTICLE,
+  SET_ARTICLES,
 } from '@/store/const/artists';
 import {
-  findArtist,
+  getArtistArticles,
   findArticle,
   likeArticle as likeApi,
   unlikeArticle as unlikeApi,
@@ -22,12 +23,19 @@ const setArticle = (article) => {
   };
 };
 
-const fetchArtist = (artistSlug) => {
+const setArticles = (articles) => {
+  return (dispatch) => {
+    dispatch({type: SET_ARTICLES, payload: articles});
+  };
+};
+
+const fetchArtistWithArticles = (artistSlug) => {
   return (dispatch) => {
     return new Promise((resolve, reject) => {
-      findArtist(artistSlug)
+      getArtistArticles(artistSlug)
         .then((res) => {
-          setArtist(getData(res));
+          dispatch(setArtist(getParent(res)));
+          dispatch(setArticles(getData(res)));
           resolve(res);
         })
         .catch((err) => {
@@ -75,8 +83,10 @@ const likeArticle = (
       )
         .then((res) => {
           if (getData(res) === true) {
+            const {article} = state().artist;
             dispatch(setArticle({
-              ...state().artist.article,
+              ...article,
+              likes_count: ++article.likes_count,
               liked: 1,
             }));
           }
@@ -103,8 +113,10 @@ const unlikeArticle = (
       )
         .then((res) => {
           if (getData(res) === true) {
+            const {article} = state().artist;
             dispatch(setArticle({
-              ...state().artist.article,
+              ...article,
+              likes_count: --article.likes_count,
               liked: 0,
             }));
           }
@@ -120,6 +132,7 @@ const unlikeArticle = (
 export {
   fetchArtist,
   fetchArticle,
+  fetchArtistWithArticles,
   likeArticle,
   unlikeArticle,
 };

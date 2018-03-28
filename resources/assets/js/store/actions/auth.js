@@ -6,7 +6,7 @@ import {
 } from '@/api/auth';
 import {getData} from '@/api/helpers';
 import {SET_USER, SET_TOKEN} from '@/store/const/auth';
-import {storeToken, storeAuth, clearAuth} from '@/auth/store';
+import {storeAuth, clearAuth} from '@/auth/store';
 import {
   parseToken,
   setAuthHeader,
@@ -89,9 +89,8 @@ const refresh = () => {
     return new Promise((resolve, reject) => {
       refreshApi()
         .then((res) => {
-          const token = getData(res);
-          storeToken(token); // Stores to localStorage
-          dispatch(setToken(token)); // Sets redux token
+          const {user, token} = getData(res);
+          loginFacade(dispatch, user, token);
           setAuthHeader(parseToken(token)); // Sets axios header defaults
         })
         .catch((err) => {

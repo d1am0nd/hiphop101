@@ -1,6 +1,7 @@
 import {
   SET_ARTIST,
   SET_ARTICLE,
+  SET_ARTICLES,
 } from '@/store/const/artists';
 import {
   values as artistObj,
@@ -16,6 +17,7 @@ const initialState = {
   article: {
     ...articleObj,
   },
+  articles: [],
 };
 
 export const artistReducer = (state = initialState, action) => {
@@ -31,6 +33,13 @@ export const artistReducer = (state = initialState, action) => {
     state = {
       ...state,
       article: action.payload,
+    };
+    break;
+  }
+  case SET_ARTICLES: {
+    state = {
+      ...state,
+      articles: action.payload,
     };
     break;
   }

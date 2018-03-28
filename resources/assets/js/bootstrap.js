@@ -5,7 +5,7 @@ import {createStore} from '@/store';
 import {isAuthenticated, getAuth} from '@/auth/store';
 import {setUser, setToken, refresh} from '@/store/actions/auth';
 import {parseToken, setAuthHeader} from '@/auth/helpers';
-import {event as authChanged} from '@/events/authchanged';
+import {dispatch as dispatchAuthChanged} from '@/events/authchanged';
 
 // Set axios global defaults
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -37,7 +37,7 @@ window.addEventListener('storage', (e) => {
     store.dispatch(setUser(
       !!newValue ? JSON.parse(newValue) : {}
     ));
-    window.dispatchEvent(authChanged());
+    dispatchAuthChanged(!!newValue ? JSON.parse(newValue) : null);
     break;
   }
   case TOKEN_STORAGE: {

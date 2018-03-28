@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import {name as authChanged} from '@/events/authchanged';
 import {
   fetchArticle,
   likeArticle,
@@ -11,10 +10,17 @@ import {
 } from '@/store/actions/artists';
 import {getArtist, getArticle} from '@/store/selectors/artists';
 
+import hasAuthListener from '@/components/hoc/hasAuthListener';
 import Article from '@/components/renders/Article';
 import Like from '@/components/stateful/Like';
 
 class ArtistArticle extends Component {
+  constructor() {
+    super();
+    this.fetchData = this.fetchData.bind(this);
+    this.authChangedHandler = this.authChangedHandler.bind(this);
+  }
+
   fetchData() {
     const {
       artistSlug,
@@ -35,11 +41,15 @@ class ArtistArticle extends Component {
 
   componentDidMount() {
     this.fetchData();
-    window.addEventListener(authChanged, this.authChangedHandler);
+    this.props.addAuthListener(
+      this.authChangedHandler
+    );
   }
 
   componentWillUnmount() {
-    window.removeEventListener(authChanged, this.authChangedHandler);
+    this.props.removeAuthListener(
+      this.authChangedHandler
+    );
   }
 
   render() {
@@ -62,9 +72,7 @@ class ArtistArticle extends Component {
           likesCount={article.likes_count}
           alreadyLiked={!!article.liked}
           postLike={postLike}
-          handleLike={(res) => this.handleLike(res)}
-          postUnlike={postUnlike}
-          handleUnlike={(res) => this.handleUnlike(res)}/>
+          postUnlike={postUnlike}/>
       </div>
     );
   }
@@ -77,6 +85,9 @@ ArtistArticle.propTypes = {
   unlikeArticle: PropTypes.func.isRequired,
   artist: PropTypes.object.isRequired,
   article: PropTypes.object.isRequired,
+
+  addAuthListener: PropTypes.func.isRequired,
+  removeAuthListener: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -122,4 +133,4 @@ export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(ArtistArticle));
+  )(hasAuthListener(ArtistArticle)));

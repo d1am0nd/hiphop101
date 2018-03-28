@@ -3,6 +3,7 @@ import {createSelector} from 'reselect';
 const mainSelector = (store) => store.artist;
 const artistSelector = (store) => mainSelector(store).artist;
 const articleSelector = (store) => mainSelector(store).article;
+const articlesSelector = (store) => mainSelector(store).articles;
 
 const getArtist = createSelector(
   artistSelector,
@@ -14,6 +15,11 @@ const getArticle = createSelector(
   (article) => article
 );
 
+const getArticles = createSelector(
+  articlesSelector,
+  (articles) => articles
+);
+
 const isArticleLiked = createSelector(
   articleSelector,
   (article) => article.liked === 1
@@ -22,5 +28,6 @@ const isArticleLiked = createSelector(
 export {
   getArtist,
   getArticle,
+  getArticles,
   isArticleLiked,
 };
