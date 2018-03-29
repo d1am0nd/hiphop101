@@ -16,6 +16,11 @@ const isAuth = createSelector(
   isUserFilled
 );
 
+const getUser = createSelector(
+  userSelector,
+  (user) => user
+);
+
 // Get username: string
 const getUsername = createSelector(
   userSelector,
@@ -30,6 +35,7 @@ const getBearerToken = createSelector(
 
 export {
   isAuth,
+  getUser,
   getUsername,
   getBearerToken,
 };

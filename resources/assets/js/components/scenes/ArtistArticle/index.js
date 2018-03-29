@@ -46,12 +46,6 @@ class ArtistArticle extends Component {
     );
   }
 
-  componentWillUnmount() {
-    this.props.removeAuthListener(
-      this.authChangedHandler
-    );
-  }
-
   render() {
     const {
       artist,
@@ -87,7 +81,7 @@ ArtistArticle.propTypes = {
   article: PropTypes.object.isRequired,
 
   addAuthListener: PropTypes.func.isRequired,
-  removeAuthListener: PropTypes.func.isRequired,
+  // removeAuthListener: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {

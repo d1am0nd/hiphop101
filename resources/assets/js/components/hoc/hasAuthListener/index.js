@@ -1,28 +1,55 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
-import {name as authChanged} from '@/events/authchanged';
+import {getUser} from '@/store/selectors/auth';
 
 const hasAuthListener = (Component) => {
   class HasAuthListener extends React.Component {
-    addAuthListener(handleFunc) {
-      window.addEventListener(`${authChanged}`, handleFunc);
+    constructor() {
+      super();
+      this.addAuthListener = this.addAuthListener.bind(this);
+      this.state = {
+        handleFunc: () => {},
+      };
     }
 
-    removeAuthListener(handleFunc) {
-      window.addEventListener(`${authChanged}`, handleFunc);
+    addAuthListener(handleFunc) {
+      console.log(this);
+      this.setState({
+        handleFunc: handleFunc,
+      });
+    }
+
+    componentDidUpdate(prevProps) {
+      const {user: prevUser} = prevProps;
+      const {user: newUser} = this.props;
+
+      if (JSON.stringify(prevUser) !== JSON.stringify(newUser)) {
+        this.state.handleFunc();
+      }
     }
 
     render() {
       return (
         <Component
           {...this.props}
-          addAuthListener={this.addAuthListener}
-          removeAuthListener={this.removeAuthListener}/>
+          addAuthListener={this.addAuthListener}/>
       );
     }
   }
 
-  return HasAuthListener;
+  const mapStateToProps = (state) => {
+    return {
+      user: getUser(state),
+    };
+  };
+
+  HasAuthListener.propTypes = {
+    user: PropTypes.object,
+  };
+
+  return connect(mapStateToProps)(HasAuthListener);
 };
 
 export default hasAuthListener;
