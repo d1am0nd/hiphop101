@@ -11,6 +11,7 @@ const Dropdown = ({artists, handleClick}) => (
       <li
         key={i}>
         <Link
+          tabIndex={i + 1}
           onClick={(e) => handleClick(e)}
           to={artistUrl(slug)}>
           {name}

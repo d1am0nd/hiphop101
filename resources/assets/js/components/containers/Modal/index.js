@@ -43,7 +43,7 @@ class Modal extends Component {
     return (
       <div
         onClick={(e) => this.handleBackgroundClick(e)}
-        className={`modal-wrapper ${open === true ? '' : 'hide'}`}>
+        className={`modal-wrapper ${open === true ? '' : 'hide-modal'}`}>
         <div
           onClick={(e) => this.handleModalClick(e)}
           key={title} className="modal">

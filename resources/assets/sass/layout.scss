@@ -43,19 +43,23 @@ h1 {
   grid-area: header;
   background-color: $darkShade;
   color: $lightShade;
+  padding: 5px 10px 5px 10px;
+
+  display: flex;
+  justify-content: space-between;
 
   @include large {
-    display: flex;
-    justify-content: space-between;
+    padding: 10px;
   }
 
   .title {
     text-align: center;
-    font-size: $titleSize;
-    margin-right: $pad;
+    font-size: 15px;
+    line-height: 30px;
+    text-align: left;
     @include large {
       flex-basis: $sideLg;
-      text-align: left;
+      font-size: $titleSize;
     }
   }
 
@@ -67,21 +71,23 @@ h1 {
 
   .right {
     text-align: center;
-    margin-top: 5px;
+    // margin-top: 5px;
 
     @include large {
       text-align: left;
       margin-top: 2px;
     }
     a {
+      font-size: 0.8em;
       transition: $transition;
       border: 1px solid $lightShade;
       background: $darkShade;
-      margin-right: 5px;
+      margin-left: 5px;
       padding: 2px 5px !important;
 
       @include large {
         padding: 4px 10px !important;
+        font-size: 1em;
       }
       &:hover {
         background: black;
@@ -102,7 +108,7 @@ h1 {
   */
   .profile {
     line-height: $titleSize;
-    margin-left: auto;
+    margin-top: 1px;
 
     ul {
       margin: 0;

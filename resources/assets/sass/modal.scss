@@ -4,20 +4,24 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   top: 0;
+  transition: $transition;
+
+  &.hide-modal {
+    opacity: 0;
+    // z-index: -1;
+    pointer-events: none;
+  }
 
   .modal {
     @include wrapper;
+    border-radius: 2px;
     position: fixed;
     z-index: 1; /* Sit on top */
     width: 80%; /* Full width */
     max-width: $tightWidth;
     overflow: auto; /* Enable scroll if needed */
-    background-color: $lightAccent;
+    background-color: $darkShade;
     color: $lightShade;
-
-    &.hide {
-      transition: $transition;
-    }
 
     top: 5%;
     left: 50%;
