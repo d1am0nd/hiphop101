@@ -1,22 +1,19 @@
-@mixin button() {
-  text-decoration: none;
+@mixin smButton() {
+  font-size: 0.8em;
   transition: $transition;
-  text-transform: uppercase;
+  border: 1px solid $lightShade;
+  background: $darkShade;
   padding: 2px 5px !important;
 
   @include large {
-    padding: 4px 10px !important;
+    font-size: 1em;
   }
-
   &:hover {
-    background: black;
+    cursor: pointer;
     color: $darkShade;
     text-decoration: none;
     border: 1px solid $lightShade;
     background: $lightShade;
-    @include large {
-      padding: 4px 10px !important;
-    }
   }
 }
 

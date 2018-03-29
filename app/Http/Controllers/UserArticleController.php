@@ -26,7 +26,8 @@ class UserArticleController extends Controller
                 ->with('artist')
                 ->withCount('likes')
                 ->byUserId(auth()->id())
-                ->paginate(config('defaults.pagination.per_page'))
+                ->get()
+                // ->paginate(config('defaults.pagination.per_page'))
         );
     }
 

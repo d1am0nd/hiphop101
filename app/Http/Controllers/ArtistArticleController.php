@@ -25,15 +25,17 @@ class ArtistArticleController extends Controller
         return (new ArtistArticleCollection(
             $artist
                 ->articles()
+                ->popular()
                 ->withCount('likes')
                 // If my_articles = 1, show current users articles
                 ->when(
-                    $request->input('my_articles') === 1 &&
+                    $request->input('my_articles') == 1 &&
                     auth()->check(),
                     function ($q) {
                         $q->byUserId(auth()->id());
                     }
                 )
+                // If authenticated, add myLike
                 ->when(
                     auth()->check(),
                     function ($q) {

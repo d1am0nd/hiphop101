@@ -6,7 +6,7 @@ import {sidebar} from '@/routes';
 export default class Menu extends Component {
   render() {
     return (
-      <ul>
+      <ul className="nav-links">
         {sidebar.map((route) => (
           <li key={route.path}>
             <Link to={route.path}>

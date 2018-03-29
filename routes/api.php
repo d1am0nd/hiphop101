@@ -53,3 +53,9 @@ Route::group([
         });
     });
 });
+
+Route::group([
+    'prefix' => 'articles'
+], function () {
+    Route::get('/', 'ArticleController@index');
+});

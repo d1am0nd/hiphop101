@@ -1,6 +1,10 @@
 .nav {
   @include wrapper;
   grid-area: nav;
+  padding-bottom: 0;
+  @include large {
+    margin-bottom: 10px;
+  }
 
   .search {
     $pad: 5px;
@@ -34,6 +38,56 @@
           color: $mainBrand;
           cursor: pointer;
         }
+      }
+    }
+  }
+
+  ul.nav-links {
+    padding: 0;
+    margin: 0;
+    display: flex;
+
+    li {
+      @include smButton;
+      background-color: $lightShade;
+      border-color: $darkShade;
+      font-size: 1em;
+      padding-left: 5px !important;
+      text-align: center;
+
+      flex: 1;
+      list-style: none;
+      margin: 2px;
+      margin-top: 5px;
+
+      @include large {
+        text-align: left;
+        padding: 4px 4px !important;
+      }
+
+      &:nth-child(odd) {
+        margin-left: 0;
+      }
+      &:nth-child(even) {
+        margin-right: 0;
+      }
+
+      &:hover {
+        background-color: $darkShade;
+        border: 1px solid $darkShade;
+
+        a {
+          color: $lightShade;
+        }
+      }
+
+      a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        transition: $transition;
+        color: $darkShade;
       }
     }
   }

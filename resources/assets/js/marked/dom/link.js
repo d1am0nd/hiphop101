@@ -18,6 +18,11 @@ const link = (renderer) => (href, title, text) => {
   if (prot.indexOf('javascript:') === 0 || prot.indexOf('vbscript:') === 0) {
     return '';
   }
+  return `<a href="${href}"` +
+    `title="${title}"` +
+    `target="_blank">` +
+    text +
+    `</a>`;
   return renderToString(
     <A
       href={href}

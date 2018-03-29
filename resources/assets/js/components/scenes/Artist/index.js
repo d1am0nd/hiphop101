@@ -9,7 +9,6 @@ import {fetchArtistWithArticles} from '@/store/actions/artists';
 
 import ArtistRender from '@/components/renders/Artist';
 import H2 from '@/components/simple/content/H2';
-import Description from '@/components/simple/content/Description';
 
 class Artist extends Component {
   fetchData() {
@@ -38,9 +37,9 @@ class Artist extends Component {
               <H2>
                 {article.title}
               </H2>
-              <Description>
+              <p>
                 {article.description}
-              </Description>
+              </p>
               <div>
                 <Link to={
                   articleUrl(artist.slug, article.prefix, article.slug)

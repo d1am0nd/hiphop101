@@ -78,26 +78,12 @@ h1 {
       margin-top: 2px;
     }
     a {
-      font-size: 0.8em;
-      transition: $transition;
-      border: 1px solid $lightShade;
-      background: $darkShade;
-      margin-left: 5px;
+      @include smButton;
       padding: 2px 5px !important;
+      margin-left: 5px;
 
       @include large {
         padding: 4px 10px !important;
-        font-size: 1em;
-      }
-      &:hover {
-        background: black;
-        color: $darkShade;
-        text-decoration: none;
-        border: 1px solid $lightShade;
-        background: $lightShade;
-        @include large {
-          padding: 4px 10px !important;
-        }
       }
     }
   }

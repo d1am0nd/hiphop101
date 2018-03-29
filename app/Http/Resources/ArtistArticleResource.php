@@ -20,7 +20,10 @@ class ArtistArticleResource extends JsonResource
             'slug' => $this->slug,
             'prefix' => $this->prefix,
             'description' => $this->description,
-            'content' => $this->content,
+            'content' => $this->when(
+                $this->content !== null,
+                $this->content
+            ),
             'likes_count' => $this->when(
                 $this->likes_count !== null,
                 $this->likes_count
