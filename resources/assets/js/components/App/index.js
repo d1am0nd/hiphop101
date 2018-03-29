@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {BrowserRouter} from 'react-router-dom';
 
 import Header from '@/components/containers/Header';
 import Navigation from '@/components/containers/Navigation';
@@ -9,16 +10,19 @@ import Modal from '@/components/containers/Modal';
 class App extends Component {
   render() {
     return (
-      <div className={`wrapper`}>
-        <Header/>
-        <Navigation/>
-        <Content>
-          Home
-        </Content>
-        <Footer/>
-
-        <Modal/>
-      </div>
+      <BrowserRouter>
+        <div>
+          <div className={`wrapper`}>
+            <Header/>
+            <Navigation/>
+            <Content>
+              Home
+            </Content>
+            <Footer/>
+          </div>
+          <Modal/>
+        </div>
+      </BrowserRouter>
     );
   }
 }

@@ -9,17 +9,23 @@ import {newArticleUrl, profileUrl} from '@/routes/routes';
 
 const Profile = ({username, logout}) => (
   <div className="profile">
-    <Link to={profileUrl()}>
-      {username}
-    </Link>
-    &nbsp;|&nbsp;
-    <Link to={newArticleUrl()}>
-      New article
-    </Link>
-    &nbsp;|&nbsp;
-    <a
-      onClick={(e) => logout()}
-      href="javascript:;">Logout</a>
+    <ul>
+      <li>
+        <Link to={profileUrl()}>
+          {username}
+        </Link>
+      </li>
+      <li>
+        <Link to={newArticleUrl()}>
+          New article
+        </Link>
+      </li>
+      <li>
+        <a
+          onClick={(e) => logout()}
+          href="javascript:;">Logout</a>
+      </li>
+    </ul>
   </div>
 );
 

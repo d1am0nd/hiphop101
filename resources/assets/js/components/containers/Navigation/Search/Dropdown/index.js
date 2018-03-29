@@ -8,7 +8,8 @@ const Dropdown = ({artists, handleClick}) => (
   <ul
     className={artists.length === 0 ? 'hide' : ''}>
     {artists.map(({name, slug}, i) => (
-      <li key={i}>
+      <li
+        key={i}>
         <Link
           onClick={(e) => handleClick(e)}
           to={artistUrl(slug)}>

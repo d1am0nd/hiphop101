@@ -1,9 +1,12 @@
-* {box-sizing: border-box;}
+* {
+  box-sizing: border-box;
+  font-family: $font;
+}
 
 body {
   max-width: $maxWidth;
   margin: auto;
-  padding: $pad;
+  padding: 0;
   background-color: $lightShade;
 }
 
@@ -13,6 +16,7 @@ h1 {
 
 .wrapper {
   display: grid;
+  height: 100%;
   // grid-gap: 10px 10px;
   grid-template-areas:
     "header"
@@ -37,23 +41,76 @@ h1 {
 .head {
   @include wrapper;
   grid-area: header;
+  background-color: $darkShade;
+  color: $lightShade;
+
+  @include large {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .title {
+    text-align: center;
+    font-size: $titleSize;
+    margin-right: $pad;
+    @include large {
+      flex-basis: $sideLg;
+      text-align: left;
+    }
+  }
+
+  a {
+    color: $lightShade;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .right {
+    text-align: center;
+    margin-top: 5px;
+
+    @include large {
+      text-align: left;
+      margin-top: 2px;
+    }
+    a {
+      transition: $transition;
+      border: 1px solid $lightShade;
+      background: $darkShade;
+      margin-right: 5px;
+      padding: 2px 5px !important;
+
+      @include large {
+        padding: 4px 10px !important;
+      }
+      &:hover {
+        background: black;
+        color: $darkShade;
+        text-decoration: none;
+        border: 1px solid $lightShade;
+        background: $lightShade;
+        @include large {
+          padding: 4px 10px !important;
+        }
+      }
+    }
+  }
+  /*
   @include large {
     border-bottom: $borderParams;
   }
-
-  display: flex;
-  justify-content: space-between;
-
-  .title {
-    @include large {
-      flex-basis: $sideLg;
-    }
-    font-size: $titleSize;
-    margin-right: $pad;
-  }
+  */
   .profile {
     line-height: $titleSize;
     margin-left: auto;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      li {
+        display: inline-block;
+      }
+    }
   }
 }
 

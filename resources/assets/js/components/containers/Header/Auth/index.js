@@ -9,13 +9,18 @@ import {
 
 const Auth = ({openLogin, openRegister}) => (
   <div className="profile">
-    <a
-      onClick={(e) => openLogin()}
-      href="javascript:;">Login</a>
-    &nbsp;|&nbsp;
-    <a
-      onClick={(e) => openRegister()}
-      href="javascript:;">Register</a>
+    <ul>
+      <li>
+        <a
+          onClick={(e) => openLogin(e)}
+          href="javascript:;">Login</a>
+      </li>
+      <li>
+        <a
+          onClick={(e) => openRegister(e)}
+          href="javascript:;">Register</a>
+      </li>
+    </ul>
   </div>
 );
 
@@ -26,8 +31,14 @@ Auth.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    openLogin: () => dispatch(openLogin()),
-    openRegister: () => dispatch(openRegister()),
+    openLogin: (e) => {
+      e.stopPropagation();
+      dispatch(openLogin());
+    },
+    openRegister: (e) => {
+      e.stopPropagation();
+      dispatch(openRegister());
+    },
   };
 };
 

@@ -24,9 +24,9 @@
         position: relative;
         text-decoration: none;
         width: 100%;
-        padding: $pad;
 
         a {
+          margin: $pad;
           display: block;
           width: 100%;
         }

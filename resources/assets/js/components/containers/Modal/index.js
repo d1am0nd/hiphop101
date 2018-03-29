@@ -14,6 +14,14 @@ import {
 } from '@/store/actions/modal';
 
 class Modal extends Component {
+  handleModalClick(e) {
+    e.stopPropagation();
+  }
+
+  handleBackgroundClick(e) {
+    this.props.closeModal();
+  }
+
   renderContent() {
     switch (this.props.type) {
     case 'login': {
@@ -33,17 +41,23 @@ class Modal extends Component {
       closeModal,
     } = this.props;
     return (
-      <div key={title} className={`modal ${open === true ? '' : 'hide'}`}>
-        <div className="close">
-          <div
-            onClick={(e) => closeModal()}
-            className="icon"/>
-        </div>
-        <div className="title">
-          {title}
-        </div>
-        <div className="modal-content">
-          {this.renderContent()}
+      <div
+        onClick={(e) => this.handleBackgroundClick(e)}
+        className={`modal-wrapper ${open === true ? '' : 'hide'}`}>
+        <div
+          onClick={(e) => this.handleModalClick(e)}
+          key={title} className="modal">
+          <div className="close">
+            <div
+              onClick={(e) => closeModal()}
+              className="icon"/>
+          </div>
+          <div className="title">
+            {title}
+          </div>
+          <div className="modal-content">
+            {this.renderContent()}
+          </div>
         </div>
       </div>
     );

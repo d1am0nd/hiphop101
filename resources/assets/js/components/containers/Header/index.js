@@ -16,11 +16,13 @@ const Header = ({isAuth}) => (
         Hip Hop 101
       </Link>
     </Title>
-    {
-      isAuth ?
-        <Profile/> :
-        <Auth/>
-    }
+    <div className="right">
+      {
+        isAuth ?
+          <Profile/> :
+          <Auth/>
+      }
+    </div>
   </header>
 );
 

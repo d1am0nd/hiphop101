@@ -1,3 +1,25 @@
+@mixin button() {
+  text-decoration: none;
+  transition: $transition;
+  text-transform: uppercase;
+  padding: 2px 5px !important;
+
+  @include large {
+    padding: 4px 10px !important;
+  }
+
+  &:hover {
+    background: black;
+    color: $darkShade;
+    text-decoration: none;
+    border: 1px solid $lightShade;
+    background: $lightShade;
+    @include large {
+      padding: 4px 10px !important;
+    }
+  }
+}
+
 .cta {
   padding: 5px 10px;
   margin-bottom: 10px;
@@ -7,3 +29,27 @@
   background-color: $mainBrand;
   color: $lightShade;
 }
+
+/*
+  color: $lightShade;
+  text-decoration: none;
+  font-size: 0.8em;
+  border: 1px solid $lightShade;
+  background: $darkAccent;
+  text-transform: uppercase;
+  margin-right: 5px;
+
+  @include large {
+    padding: 4px 10px !important;
+  }
+  &:hover {
+    background: black;
+    color: $darkAccent;
+    text-decoration: none;
+    border: 1px solid $lightShade;
+    background: $lightShade;
+    @include large {
+      padding: 4px 10px !important;
+    }
+  }
+*/
