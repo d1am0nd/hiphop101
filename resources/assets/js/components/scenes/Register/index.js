@@ -63,7 +63,7 @@ class Register extends Component {
         <Input
           handleChange={(e) => this.handleChange(e)}
           attributes={{
-            name: 'name',
+            name: 'password',
             type: 'password',
             placeholder: 'Password',
           }}
@@ -71,7 +71,7 @@ class Register extends Component {
         <Input
           handleChange={(e) => this.handleChange(e)}
           attributes={{
-            name: 'name',
+            name: 'password_confirmation',
             type: 'password',
             placeholder: 'Confirm password',
           }}
