@@ -15,7 +15,6 @@ const hasAuthListener = (Component) => {
     }
 
     addAuthListener(handleFunc) {
-      console.log(this);
       this.setState({
         handleFunc: handleFunc,
       });
