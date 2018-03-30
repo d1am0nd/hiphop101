@@ -73,12 +73,12 @@ class NewArtistArticle extends Component {
     return (
       <div>
         <H1>New article for {artist.name}</H1>
-        <Article article={this.state.values}/>
         <ArticleForm
           article={values}
           errors={errors}
           handleChange={(e) => this.handleChange(e)}
           handleSubmit={(e) => this.handleSubmit(e)}/>
+        <Article article={this.state.values}/>
       </div>
     );
   }

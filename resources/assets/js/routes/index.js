@@ -1,5 +1,5 @@
 import Home from '@/components/scenes/Home';
-import Faq from '@/components/scenes/Faq';
+import About from '@/components/scenes/About';
 import Artist from '@/components/scenes/Artist';
 import NewArtist from '@/components/scenes/NewArtist';
 import NewArticle from '@/components/scenes/NewArticle';
@@ -20,10 +20,10 @@ const routes = [
     },
   },
   {
-    path: '/faq',
-    component: Faq,
+    path: '/about',
+    component: About,
     info: {
-      name: 'FAQ',
+      name: 'About',
       sidebar: true,
     },
   },
@@ -49,7 +49,7 @@ const routes = [
     },
   },
   {
-    path: '/articles/:id',
+    path: '/articles/id/:id',
     component: authOnly(EditArtistArticle),
     info: {
       sidebar: false,

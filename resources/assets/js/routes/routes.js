@@ -5,7 +5,7 @@ const articleUrl = (artistSlug, prefix, articleSlug) => {
 const newArticleUrl = () => `/articles/new`;
 const newArtistUrl = () => `/artist/new`;
 const newArtistArticleUrl = (slug) => `/articles/${slug}/new`;
-const editArticleUrl = (id) => `/articles/${id}`;
+const editArticleUrl = (id) => `/articles/id/${id}`;
 
 const profileUrl = () => `/profile`;
 

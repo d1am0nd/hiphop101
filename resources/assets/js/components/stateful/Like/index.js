@@ -44,12 +44,15 @@ class Like extends Component {
     const {likesCount, alreadyLiked} = this.props;
     return (
       <div className="like-container">
-        <div className="like-count">
+        <div
+          title="Total likes"
+          className="like-count">
           {likesCount}
         </div>
         {!alreadyLiked ?
           <div
             onClick={(e) => this.handleLike(e)}
+            title="Like"
             className="like-icon">
             <ChevronUp/>
           </div> :

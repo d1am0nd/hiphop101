@@ -12,6 +12,7 @@ import {
   errors as articleErrors,
 } from '@/objects/artist';
 import ArticleForm from '@/components/forms/ArticleForm';
+import Article from '@/components/renders/Article';
 
 class EditArtistArticle extends Component {
   constructor() {
@@ -68,11 +69,14 @@ class EditArtistArticle extends Component {
     return (
       <div>
         {typeof values.id !== 'undefined' ?
-          <ArticleForm
-            article={values}
-            errors={errors}
-            handleChange={(e) => this.handleChange(e)}
-            handleSubmit={(e) => this.handleSubmit(e)}/> : null
+          <div>
+            <ArticleForm
+              article={values}
+              errors={errors}
+              handleChange={(e) => this.handleChange(e)}
+              handleSubmit={(e) => this.handleSubmit(e)}/>
+            <Article article={values}/>
+          </div> : null
         }
       </div>
     );

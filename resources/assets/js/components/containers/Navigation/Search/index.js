@@ -34,6 +34,7 @@ class Search extends Component {
               placeholder: 'Search...',
               id: 'nav-search-input',
               tabIndex: 1,
+              title: 'Search artists',
             },
           }}
           handleListChange={(list) => this.handleListChange(list)}/>

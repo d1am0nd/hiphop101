@@ -33,7 +33,7 @@ class NewArticle extends Component {
         <ArtistSearch
           inputProps={{
             attributes: {
-              placeholder: 'Search...',
+              placeholder: 'Select artist...',
               name: 'search',
               id: 'content-search-input',
               autoFocus: true,
