@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
+import Times from '@/components/icons/Times';
 import Login from '@/components/scenes/Login';
 import Register from '@/components/scenes/Register';
 import {
@@ -51,6 +52,10 @@ class Modal extends Component {
             <div
               onClick={(e) => closeModal()}
               className="icon"/>
+            <Times
+              attributes={{
+                onClick: (e) => closeModal(),
+              }}/>
           </div>
           <div className="title">
             {title}
