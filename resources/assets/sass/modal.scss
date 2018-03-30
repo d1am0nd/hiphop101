@@ -30,14 +30,15 @@
     margin-right: -50%;
     transform: translate(-50%);
 
+    $topHeight: 30px;
     .close {
       position: absolute;
       right: 10px;
       top: 10px;
 
       svg {
-        width: 32px;
-        height: 32px;
+        width: $topHeight;
+        height: $topHeight;
         fill: $lightShade;
         &:hover {
           cursor: pointer;
@@ -49,7 +50,7 @@
       margin-bottom: 10px;
 
       @include large {
-        font-size: 3rem;
+        font-size: $topHeight;
         margin-bottom: 15px;
       }
     }
@@ -61,7 +62,6 @@
         .form-group {
           margin-bottom: 10px;
           display: block;
-
           label {
             margin-bottom: 5px;
             display: block;
@@ -90,12 +90,5 @@
         }
       }
     }
-
-    hr {
-      border: 0;
-      background-color: $mainBrand;
-      height: 1px;
-    }
   }
-
 }
