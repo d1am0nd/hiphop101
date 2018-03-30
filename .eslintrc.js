@@ -41,6 +41,6 @@ module.exports = {
 
     'react/jsx-uses-vars': 1,
 
-    'no-console': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'no-console': 0, // process.env.NODE_ENV === 'production' ? 2 : 0,
   }
 }
