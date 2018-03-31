@@ -26,6 +26,7 @@ class ArtistArticleController extends Controller
         return (new ArtistArticleCollection(
             $artist
                 ->articles()
+                ->active()
                 ->popular()
                 ->withCount('likes')
                 // If my_articles = 1, show current users articles
@@ -56,6 +57,7 @@ class ArtistArticleController extends Controller
                 ->articles()
                 ->byPrefix($prefix)
                 ->bySlug($slug)
+                ->active()
                 ->withCount('likes')
                 ->when(
                     auth()->check(),

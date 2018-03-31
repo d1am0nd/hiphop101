@@ -24,7 +24,7 @@ class EditArtistArticle extends Component {
     };
   }
 
-  componentDidMount() {
+  fetchData() {
     const {id} = this.props.match.params;
     myArticle(id)
       .then((res) => {
@@ -35,6 +35,10 @@ class EditArtistArticle extends Component {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  componentDidMount() {
+    this.fetchData();
   }
 
   handleChange(e) {
@@ -53,9 +57,11 @@ class EditArtistArticle extends Component {
     const {values} = this.state;
     values.active = !!active;
 
+    console.log(values);
+
     patchArticle(id, values)
       .then((res) => {
-        console.log(getData(res));
+        this.fetchData();
       })
       .catch((err) => {
         this.setState({

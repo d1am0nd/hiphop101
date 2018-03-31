@@ -43,13 +43,14 @@ class UserArticleController extends Controller
         return $this
             ->model
             ->byUserId(auth()->id())
-            ->when($request->input('active') == 1, function ($q) {
-                $q->active();
+            ->when($request->input('active') == 0, function ($q) {
+                $q->active(false);
             })
             ->where('id', $id)
             ->update(
                 array_merge(
                     $request->only([
+                        'active',
                         'title',
                         'description',
                         'content',
