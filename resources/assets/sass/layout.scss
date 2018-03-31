@@ -79,6 +79,8 @@ h1 {
     }
     a {
       @include smButton;
+      @include inverseBtnColors;
+
       padding: 2px 5px !important;
       margin-left: 5px;
 

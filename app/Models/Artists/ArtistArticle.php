@@ -58,4 +58,9 @@ class ArtistArticle extends Model
     {
         return $q->where('user_id', $uid);
     }
+
+    public function scopeActive($q)
+    {
+        return $q->where('active', 1);
+    }
 }

@@ -47,10 +47,13 @@ class EditArtistArticle extends Component {
     });
   }
 
-  handleSubmit(e) {
+  handleSubmit(e, active) {
     e.preventDefault();
     const {id} = this.props.match.params;
-    patchArticle(id, this.state.values)
+    const {values} = this.state;
+    values.active = !!active;
+
+    patchArticle(id, values)
       .then((res) => {
         console.log(getData(res));
       })
@@ -74,7 +77,8 @@ class EditArtistArticle extends Component {
               article={values}
               errors={errors}
               handleChange={(e) => this.handleChange(e)}
-              handleSubmit={(e) => this.handleSubmit(e)}/>
+              handlePublish={(e) => this.handleSubmit(e, true)}
+              handleSaveDraft={(e) => this.handleSubmit(e, false)}/>
             <Article article={values}/>
           </div> : null
         }

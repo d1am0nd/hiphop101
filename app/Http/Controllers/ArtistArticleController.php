@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Artists\Artist;
 use App\Models\Artists\ArtistArticle;
 use App\Http\Resources\ArtistResource;
+use App\Http\Resources\UserArticleResource;
 use App\Http\Resources\ArtistArticleResource;
 use App\Http\Resources\ArtistArticleCollection;
 use App\Http\Requests\StoreArtistArticleRequest;
@@ -70,12 +71,11 @@ class ArtistArticleController extends Controller
 
     public function store(StoreArtistArticleRequest $request, Artist $artist)
     {
-        return (new ArtistArticleResource(
+        return (new UserArticleResource(
             $this->model->create(
                 array_merge(
                     $request->input(),
                     [
-                        'active' => true,
                         'slug' => str_slug($request->input('title')),
                         'artist_id' => $artist->id,
                         'user_id' => auth()->id(),

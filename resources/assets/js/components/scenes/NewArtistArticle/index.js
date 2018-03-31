@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom';
 
+import {editArticleUrl} from '@/routes/routes';
 import {findArtist, postNewArtistArticle} from '@/api/artists';
 import {getErr, getData} from '@/api/helpers';
 import hasEditor from '@/components/hoc/hasEditor';
@@ -40,12 +41,23 @@ class NewArtistArticle extends Component {
       });
   }
 
-  handleSubmit(e) {
+  handleSubmit(e, publish) {
     e.preventDefault();
     const {artist, values} = this.state;
+    values.active = !!publish;
+
+    if (!!publish) {
+      window.confirm(
+        `Are you sure you want to publish the article? ` +
+        `Once published it can no longer be deleted or unpublished.`
+      );
+    }
+
     postNewArtistArticle(artist.slug, values)
       .then((res) => {
-        console.log('RES', getData(res));
+        this.props.history.push(
+          editArticleUrl(getData(res).id)
+        );
       })
       .catch((err) => {
         this.setState({
@@ -77,7 +89,8 @@ class NewArtistArticle extends Component {
           article={values}
           errors={errors}
           handleChange={(e) => this.handleChange(e)}
-          handleSubmit={(e) => this.handleSubmit(e)}/>
+          handlePublish={(e) => this.handleSubmit(e, true)}
+          handleSaveDraft={(e) => this.handleSubmit(e, false)}/>
         <Article article={this.state.values}/>
       </div>
     );
@@ -87,6 +100,7 @@ class NewArtistArticle extends Component {
 NewArtistArticle.propTypes = {
   editorStateToHtml: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 export default hasEditor(

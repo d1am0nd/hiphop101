@@ -49,8 +49,8 @@
 
     li {
       @include smButton;
-      background-color: $lightShade;
-      border-color: $darkShade;
+      @include baseBtnColors;
+
       font-size: 1em;
       padding-left: 5px !important;
       text-align: center;
@@ -73,9 +73,6 @@
       }
 
       &:hover {
-        background-color: $darkShade;
-        border: 1px solid $darkShade;
-
         a {
           color: $lightShade;
         }

@@ -6,6 +6,7 @@ import Form from '@/components/simple/form/Form';
 import Input from '@/components/simple/form/Input';
 import Submit from '@/components/simple/form/Submit';
 import TextArea from '@/components/simple/form/TextArea';
+import ButtonList from '@/components/simple/content/ButtonList';
 
 const ArtistForm = ({
   artist,
@@ -49,7 +50,16 @@ const ArtistForm = ({
         max: 400,
       })}
       errors={errors.description}/>
-    <Submit text="Submit"/>
+    <ButtonList>
+      {[
+        <Submit
+          attributes={{
+            className: 'btn-inverse on-white',
+          }}
+          key={0}
+          text="Submit"/>,
+      ]}
+    </ButtonList>
   </Form>
 );
 

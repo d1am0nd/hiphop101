@@ -40,17 +40,23 @@ class UserArticleController extends Controller
 
     public function update(StoreArtistArticleRequest $request, $id)
     {
-        return $this->model->byUserId(auth()->id())->where('id', $id)->update(
-            array_merge(
-                $request->only([
-                    'title',
-                    'description',
-                    'content',
-                ]),
-                [
-                    'slug' => str_slug($request->input('title')),
-                ]
-            )
-        );
+        return $this
+            ->model
+            ->byUserId(auth()->id())
+            ->when($request->input('active') == 1, function ($q) {
+                $q->active();
+            })
+            ->where('id', $id)->update(
+                array_merge(
+                    $request->only([
+                        'title',
+                        'description',
+                        'content',
+                    ]),
+                    [
+                        'slug' => str_slug($request->input('title')),
+                    ]
+                )
+            );
     }
 }

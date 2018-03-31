@@ -53,7 +53,6 @@ class Login extends Component {
           label="Email"/>
         <Input
           attributes={{
-            autoFocus: true,
             type: 'password',
             name: 'password',
             placeholder: 'Password',

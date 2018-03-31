@@ -1,8 +1,7 @@
 @mixin smButton() {
   font-size: 0.8em;
   transition: $transition;
-  border: 1px solid $lightShade;
-  background: $darkShade;
+  border: 1px solid;
   padding: 2px 5px !important;
 
   @include large {
@@ -10,10 +9,63 @@
   }
   &:hover {
     cursor: pointer;
-    color: $darkShade;
     text-decoration: none;
+    border: 1px solid;
+  }
+}
+
+@mixin baseBtnColors {
+  color: $darkShade;
+  transition: $transition;
+  border-color: $darkShade;
+  background: $lightShade;
+  &:hover {
+    color: $lightShade;
+    border: 1px solid $darkShade;
+    background: $darkShade;
+  }
+}
+
+@mixin inverseBtnColors {
+  color: $lightShade;
+  transition: $transition;
+  border-color: $lightShade;
+  background: $darkShade;
+  &:hover {
+    color: $darkShade;
     border: 1px solid $lightShade;
     background: $lightShade;
+  }
+}
+
+.btn-normal {
+  @include baseBtnColors;
+  &.on-white {
+    &:hover {
+      border-color: $darkShade !important;
+    }
+  }
+}
+
+.btn-inverse {
+  @include inverseBtnColors;
+  &.on-white {
+    border-color: $darkShade !important;
+  }
+}
+
+ul.button-list {
+  list-style: none;
+  padding: 0;
+
+  li {
+    display: inline-block;
+    margin-right: 10px;
+
+    a, button {
+      @include smButton;
+      text-decoration: none;
+    }
   }
 }
 

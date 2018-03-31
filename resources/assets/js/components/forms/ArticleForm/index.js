@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {textBetween} from '@/validation/text';
+import {textBetween, textMin} from '@/validation/text';
 import Form from '@/components/simple/form/Form';
 import Input from '@/components/simple/form/Input';
-import Submit from '@/components/simple/form/Submit';
 import TextArea from '@/components/simple/form/TextArea';
+import ButtonList from '@/components/simple/content/ButtonList';
 
 const ArticleForm = ({
   article,
   errors,
   handleChange,
-  handleSubmit,
+  handlePublish,
+  handleSaveDraft,
 }) => (
-  <Form handleSubmit={(e) => handleSubmit(e)}>
+  <Form>
     <Input
       handleChange={(e) => handleChange(e)}
       attributes={{
@@ -51,8 +52,31 @@ const ArticleForm = ({
         value: article.content,
       }}
       label="Article content"
+      help={textMin({
+        input: article.content,
+        name: 'Content',
+        min: 800,
+      })}
       errors={errors.content}/>
-    <Submit text="Submit"/>
+    <ButtonList>
+      {[
+        <a
+          key={0}
+          className="btn-inverse on-white"
+          onClick={(e) => handlePublish(e)}
+          href="javascript:;">
+          Submit
+        </a>,
+        !!!article.active ?
+          <a
+            key={1}
+            className="btn-normal on-white"
+            onClick={(e) => handleSaveDraft(e)}
+            href="javascript:;">
+            Save draft
+          </a> : null,
+      ]}
+    </ButtonList>
   </Form>
 );
 
@@ -60,7 +84,8 @@ ArticleForm.propTypes = {
   article: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   handleChange: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
+  handlePublish: PropTypes.func.isRequired,
+  handleSaveDraft: PropTypes.func.isRequired,
 };
 
 export default ArticleForm;

@@ -1,14 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Submit = ({text}) => {
+const Submit = ({text, attributes}) => {
   return (
-    /*
-    <button type="submit">
-      {text}
-    </button>
-    */
     <input
+      {...attributes}
       value={text}
       type="submit"/>
   );
@@ -16,6 +12,7 @@ const Submit = ({text}) => {
 
 Submit.propTypes = {
   text: PropTypes.string.isRequired,
+  attributes: PropTypes.object,
 };
 
 export default Submit;

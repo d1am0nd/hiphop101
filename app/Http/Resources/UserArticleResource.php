@@ -17,6 +17,7 @@ class UserArticleResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'active' => $this->active,
             'title' => $this->title,
             'slug' => $this->slug,
             'prefix' => $this->prefix,

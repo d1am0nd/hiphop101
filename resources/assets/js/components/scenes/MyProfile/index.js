@@ -38,33 +38,40 @@ class MyProfile extends Component {
     return (
       <div>
         <H1>{username}</H1>
-        <Section title="My articles">
-          <ul className="short-descriptions">
-            {articles.map((article, i) => (
-              <li key={i}>
-                <ArticleShort article={article}/>
-                <ul className="buttons">
-                  <li>
-                    <Link to={
-                      articleUrl(
-                        article.artist.slug,
-                        article.prefix,
-                        article.slug
-                      )
-                    }>
-                      See
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to={editArticleUrl(article.id)}>
-                      Edit
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-            ))}
-          </ul>
-        </Section>
+        {articles.length > 0 ?
+          <Section title="My articles">
+            <ul className="short-descriptions">
+              {articles.map((article, i) => (
+                <li key={i}>
+                  <ArticleShort article={article}/>
+                  <ul className="buttons">
+                    <li>
+                      <Link to={editArticleUrl(article.id)}>
+                        Edit
+                      </Link>
+                    </li>
+                    <li>
+                      {article.active === 1 ?
+                        <Link to={
+                          articleUrl(
+                            article.artist.slug,
+                            article.prefix,
+                            article.slug
+                          )
+                        }>
+                          See
+                        </Link> :
+                        <b>Not published</b>
+                      }
+                    </li>
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          </Section>
+          :
+          <Section title="You haven't written any articles"/>
+        }
       </div>
     );
   }

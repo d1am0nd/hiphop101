@@ -10,7 +10,7 @@ const Form = ({handleSubmit, children}) => {
 };
 
 Form.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func,
   children: PropTypes.node.isRequired,
 };
 
