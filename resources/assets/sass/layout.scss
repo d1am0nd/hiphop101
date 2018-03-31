@@ -92,11 +92,7 @@ h1 {
       }
     }
   }
-  /*
-  @include large {
-    border-bottom: $borderParams;
-  }
-  */
+
   .profile {
     line-height: $titleSize;
     margin-top: 1px;
@@ -114,7 +110,7 @@ h1 {
 .footer {
   @include wrapper;
   @include large {
-    border-top: $borderParams;
+    border-top: 1px solid $mainBrand;
   }
   grid-area: footer;
 }

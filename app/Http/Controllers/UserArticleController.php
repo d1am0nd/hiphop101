@@ -46,7 +46,8 @@ class UserArticleController extends Controller
             ->when($request->input('active') == 1, function ($q) {
                 $q->active();
             })
-            ->where('id', $id)->update(
+            ->where('id', $id)
+            ->update(
                 array_merge(
                     $request->only([
                         'title',
@@ -58,5 +59,15 @@ class UserArticleController extends Controller
                     ]
                 )
             );
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        return $this
+            ->model
+            ->byUserId(auth()->id())
+            ->active(false)
+            ->where('id', $id)
+            ->forceDelete();
     }
 }

@@ -1,4 +1,4 @@
-import {post, patch, get} from './defaults';
+import {post, patch, get, del} from './defaults';
 
 const REGISTER_URL = '/api/auth/register';
 const LOGIN_URL = '/api/auth/login';
@@ -26,6 +26,7 @@ const refreshToken = () => post(refreshUrl());
 const myArticles = () => get(myArticlesUrl());
 const myArticle = (id) => get(myArticleUrl(id));
 const patchArticle = (id, article) => patch(myArticleUrl(id), article);
+const deleteArticle = (id) => del(myArticleUrl(id));
 
 export {
   register,
@@ -35,4 +36,5 @@ export {
   myArticles,
   myArticle,
   patchArticle,
+  deleteArticle,
 };

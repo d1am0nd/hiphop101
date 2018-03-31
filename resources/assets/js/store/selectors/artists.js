@@ -20,6 +20,13 @@ const getArticles = createSelector(
   (articles) => articles
 );
 
+const getMyArticles = createSelector(
+  articlesSelector,
+  (articles) => articles.filter(
+    (article) => typeof article.artist !== 'undefined'
+  )
+);
+
 const isArticleLiked = createSelector(
   articleSelector,
   (article) => article.liked === 1
@@ -29,5 +36,6 @@ export {
   getArtist,
   getArticle,
   getArticles,
+  getMyArticles,
   isArticleLiked,
 };

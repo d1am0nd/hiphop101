@@ -27,20 +27,20 @@ const Faq = () => {
         <i>If you ain{'\''}t got nothing nice to say, then don{'\''}t
         say nothing</i>
       </H2>
-      <Description>
+      <p>
         All reviews should be a generally positive introduction to the artist.
         So if you decide to write your own, which is highly encouraged, please
         write about an artist you deeply care about and can write a nice
         introduction for someone who might want to get into them.
-      </Description>
+      </p>
       <H2>Currently in beta</H2>
-      <Description>
+      <p>
         The website is currently in beta. If you have any suggestions for
         improvements or would like to help build it, don{`'`}t hesitate to
         send an email to
         {` `}
         <A href="mailto:hiphop101beta@gmail.com">hiphop101beta@gmail.com</A>.
-      </Description>
+      </p>
     </div>
   );
 };

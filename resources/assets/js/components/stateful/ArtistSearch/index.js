@@ -38,8 +38,11 @@ class ArtistSearch extends Component {
   render() {
     return (
       <Input
-        type="search"
         {...this.props.inputProps}
+        attributes={{
+          type: 'search',
+          ...this.props.inputProps.attributes,
+        }}
         handleChange={(e) => this.handleChange(e)}/>
     );
   }

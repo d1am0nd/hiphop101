@@ -9,6 +9,10 @@ import {
   likeArticle as likeApi,
   unlikeArticle as unlikeApi,
 } from '@/api/artists';
+import {
+  myArticles,
+  deleteArticle,
+} from '@/api/auth';
 import {getData, getParent} from '@/api/helpers';
 
 const setArtist = (artist) => {
@@ -60,6 +64,40 @@ const fetchArticle = (
         .then((res) => {
           dispatch(setArticle(getData(res)));
           dispatch(setArtist(getParent(res)));
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  };
+};
+
+const fetchMyArticles = () => {
+  return (dispatch) => {
+    return new Promise((resolve, reject) => {
+      myArticles()
+        .then((res) => {
+          dispatch(setArticles(getData(res)));
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  };
+};
+
+const deleteMyArticle = (id) => {
+  return (dispatch, store) => {
+    return new Promise((resolve, reject) => {
+      deleteArticle(id)
+        .then((res) => {
+          dispatch(setArticles(
+            store().artist.articles.filter((article) => {
+              return article.id !== id;
+            })
+          ));
           resolve(res);
         })
         .catch((err) => {
@@ -132,7 +170,9 @@ const unlikeArticle = (
 export {
   fetchArtist,
   fetchArticle,
+  fetchMyArticles,
   fetchArtistWithArticles,
+  deleteMyArticle,
   likeArticle,
   unlikeArticle,
 };

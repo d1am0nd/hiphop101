@@ -28,6 +28,7 @@ Route::group([
         Route::get('/', 'UserArticleController@index');
         Route::get('{id}', 'UserArticleController@show');
         Route::patch('{id}', 'UserArticleController@update');
+        Route::delete('{id}', 'UserArticleController@destroy');
     });
 });
 

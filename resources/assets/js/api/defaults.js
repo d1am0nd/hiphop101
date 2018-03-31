@@ -31,8 +31,12 @@ const get = (url, params = {}) => axios
 const patch = (url, data = {}, params = {}) => axios
   .patch(url, data, paramsWithToken(params));
 
+const del = (url) => axios
+  .delete(url);
+
 export {
   post,
   patch,
   get,
+  del,
 };
