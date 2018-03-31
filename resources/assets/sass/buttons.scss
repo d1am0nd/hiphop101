@@ -38,6 +38,18 @@
   }
 }
 
+@mixin darkAccentBtnColors {
+  color: $lightShade;
+  transition: $transition;
+  border-color: $lightShade;
+  background: $darkAccent;
+  &:hover {
+    color: $darkAccent;
+    border: 1px solid $lightShade;
+    background: $lightShade;
+  }
+}
+
 .btn-normal {
   @include baseBtnColors;
   &.on-white {
@@ -51,6 +63,15 @@
   @include inverseBtnColors;
   &.on-white {
     border-color: $darkShade !important;
+  }
+}
+
+.btn-alert {
+  @include darkAccentBtnColors;
+  &.on-white {
+    &:hover {
+      border-color: $darkAccent;
+    }
   }
 }
 

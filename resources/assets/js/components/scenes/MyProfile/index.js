@@ -41,7 +41,7 @@ class MyProfile extends Component {
                         [
                           <a
                             key={1}
-                            className="btn-red on-white"
+                            className="btn-alert on-white"
                             onClick={
                               (e) => this.props.deleteMyArticle(article.id)
                             }
