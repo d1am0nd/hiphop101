@@ -99,7 +99,22 @@
     label {
       font-size: $emphSize;
       display: block;
-      margin-bottom: 5px;
+    }
+  }
+
+  .back-to-artist {
+    display: block;
+    font-size: 23px;
+    color: $mainBrand;
+    text-decoration: none;
+    margin-top: 3px;
+    margin-bottom: 2px;
+    svg {
+      fill: $mainBrand;
+      width: 20px;
+      height: 20px;
+      margin-bottom: -2px;
+      margin-left: -3px;
     }
   }
 }

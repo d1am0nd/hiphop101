@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {withRouter} from 'react-router-dom';
+import {withRouter, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
+import {artistUrl} from '@/routes/routes';
 import {
   fetchArticle,
   likeArticle,
@@ -14,6 +15,7 @@ import {getId} from '@/store/selectors/auth';
 import hasAuthListener from '@/components/hoc/hasAuthListener';
 import Article from '@/components/renders/Article';
 import Like from '@/components/stateful/Like';
+import ChevronLeft from '@/components/icons/ChevronLeft';
 
 class ArtistArticle extends Component {
   constructor() {
@@ -64,6 +66,10 @@ class ArtistArticle extends Component {
     );
     return (
       <div>
+        <Link to={artistUrl(artist.slug)} className="back-to-artist">
+          <ChevronLeft/>
+          {artist.name}
+        </Link>
         <Article article={article}/>
         <Like
           likesCount={article.likes_count}
