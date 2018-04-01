@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ArtistArticleResource extends JsonResource
@@ -20,6 +21,10 @@ class ArtistArticleResource extends JsonResource
             'slug' => $this->slug,
             'prefix' => $this->prefix,
             'description' => $this->description,
+            'user' => $this->when(
+                $this->user !== null,
+                new UserResource($this->user)
+            ),
             'content' => $this->when(
                 $this->content !== null,
                 $this->content

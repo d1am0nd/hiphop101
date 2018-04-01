@@ -8,6 +8,7 @@ import {getArtist, getArticles} from '@/store/selectors/artists';
 import {fetchArtistWithArticles} from '@/store/actions/artists';
 
 import ArtistRender from '@/components/renders/Artist';
+import ButtonList from '@/components/simple/content/ButtonList';
 import H2 from '@/components/simple/content/H2';
 
 class Artist extends Component {
@@ -40,13 +41,18 @@ class Artist extends Component {
               <p>
                 {article.description}
               </p>
-              <div>
-                <Link to={
-                  articleUrl(artist.slug, article.prefix, article.slug)
-                }>
-                More
-                </Link>
-              </div>
+              <ButtonList>
+                {[
+                  <Link
+                    key={0}
+                    className="btn-inverse on-white"
+                    to={
+                      articleUrl(artist.slug, article.prefix, article.slug)
+                    }>
+                  Read
+                  </Link>,
+                ]}
+              </ButtonList>
             </li>
           ))}
         </ul>

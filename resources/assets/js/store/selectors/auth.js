@@ -27,14 +27,21 @@ const getUsername = createSelector(
   (user) => user.name
 );
 
+const getId = createSelector(
+  userSelector,
+  (user) => user.id ? user.id : 0
+);
+
 // Get full bearer token: string
 const getBearerToken = createSelector(
   tokenSelector,
   (token) => createHeaderToken(parseToken(token))
 );
 
+
 export {
   isAuth,
+  getId,
   getUser,
   getUsername,
   getBearerToken,

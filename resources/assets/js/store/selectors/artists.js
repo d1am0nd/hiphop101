@@ -15,6 +15,11 @@ const getArticle = createSelector(
   (article) => article
 );
 
+const getArticleUser = createSelector(
+  articlesSelector,
+  (article) => article.user ? article.user : {}
+);
+
 const getArticles = createSelector(
   articlesSelector,
   (articles) => articles
@@ -36,6 +41,7 @@ export {
   getArtist,
   getArticle,
   getArticles,
+  getArticleUser,
   getMyArticles,
   isArticleLiked,
 };

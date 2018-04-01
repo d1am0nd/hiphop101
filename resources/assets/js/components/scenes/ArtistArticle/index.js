@@ -8,7 +8,8 @@ import {
   likeArticle,
   unlikeArticle,
 } from '@/store/actions/artists';
-import {getArtist, getArticle} from '@/store/selectors/artists';
+import {getArtist, getArticle, getArticleUser} from '@/store/selectors/artists';
+import {getId} from '@/store/selectors/auth';
 
 import hasAuthListener from '@/components/hoc/hasAuthListener';
 import Article from '@/components/renders/Article';
@@ -50,8 +51,10 @@ class ArtistArticle extends Component {
     const {
       artist,
       article,
+      articleUser,
       likeArticle,
       unlikeArticle,
+      userId,
     } = this.props;
     const postLike = () => likeArticle(
       artist.slug, article.prefix, article.slug
@@ -64,6 +67,7 @@ class ArtistArticle extends Component {
         <Article article={article}/>
         <Like
           likesCount={article.likes_count}
+          canLike={articleUser.id === userId}
           alreadyLiked={!!article.liked}
           postLike={postLike}
           postUnlike={postUnlike}/>
@@ -74,6 +78,8 @@ class ArtistArticle extends Component {
 
 ArtistArticle.propTypes = {
   match: PropTypes.object.isRequired,
+  userId: PropTypes.number,
+  articleUser: PropTypes.object,
   fetchArticle: PropTypes.func.isRequired,
   likeArticle: PropTypes.func.isRequired,
   unlikeArticle: PropTypes.func.isRequired,
@@ -88,6 +94,8 @@ const mapStateToProps = (state) => {
   return {
     artist: getArtist(state),
     article: getArticle(state),
+    articleUser: getArticleUser(state),
+    userId: getId(state),
   };
 };
 

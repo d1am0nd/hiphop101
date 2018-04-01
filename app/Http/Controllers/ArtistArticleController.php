@@ -29,6 +29,7 @@ class ArtistArticleController extends Controller
                 ->active()
                 ->popular()
                 ->withCount('likes')
+                ->with('user')
                 // If my_articles = 1, show current users articles
                 ->when(
                     $request->input('my_articles') == 1 &&
@@ -59,6 +60,7 @@ class ArtistArticleController extends Controller
                 ->bySlug($slug)
                 ->active()
                 ->withCount('likes')
+                ->with('user')
                 ->when(
                     auth()->check(),
                     function ($q) {
@@ -95,6 +97,7 @@ class ArtistArticleController extends Controller
         return [
             'data' => $artist
                 ->articles()
+                ->notByUser(auth()->id())
                 ->byPrefix($prefix)
                 ->bySlug($slug)
                 ->firstOrFail()
@@ -107,6 +110,7 @@ class ArtistArticleController extends Controller
         return [
             'data' => $artist
                 ->articles()
+                ->notByUser(auth()->id())
                 ->byPrefix($prefix)
                 ->bySlug($slug)
                 ->firstOrFail()

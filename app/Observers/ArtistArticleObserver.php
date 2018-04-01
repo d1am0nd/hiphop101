@@ -9,7 +9,11 @@ class ArtistArticleObserver
 {
     public function created(ArtistArticle $artist)
     {
-        // Add details
-        $artist->addDetails();
+        if (auth()->check()) {
+            // Add details
+            $artist->addDetails();
+            // Autolike
+            $artist->like(auth()->id());
+        }
     }
 }

@@ -2,6 +2,7 @@ export const values = {
   name: '',
   wikipedia_url: '',
   description: '',
+  user: {},
 };
 
 export const errors = {

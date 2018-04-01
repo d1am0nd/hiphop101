@@ -41,7 +41,7 @@ class Like extends Component {
   }
 
   render() {
-    const {likesCount, alreadyLiked} = this.props;
+    const {likesCount, alreadyLiked, canLike} = this.props;
     return (
       <div className="like-container">
         <div
@@ -49,26 +49,29 @@ class Like extends Component {
           className="like-count">
           {likesCount}
         </div>
-        {!alreadyLiked ?
-          <div
-            onClick={(e) => this.handleLike(e)}
-            title="Like"
-            className="like-icon">
-            <ChevronUp/>
-          </div> :
-          <div
-            onClick={(e) => this.handleUnlike(e)}
-            className="like-unlike">
-            <a href="javascript:;">
-              Unlike
-            </a>
-          </div>}
+        {canLike ?
+          !alreadyLiked ?
+            <div
+              onClick={(e) => this.handleLike(e)}
+              title="Like"
+              className="like-icon">
+              <ChevronUp/>
+            </div> :
+            <div
+              onClick={(e) => this.handleUnlike(e)}
+              className="like-unlike">
+              <a href="javascript:;">
+                Unlike
+              </a>
+            </div>
+          : null}
       </div>
     );
   }
 }
 
 Like.propTypes = {
+  canLike: PropTypes.bool.isRequired,
   likesCount: PropTypes.number.isRequired,
   postLike: PropTypes.func.isRequired,
   postUnlike: PropTypes.func.isRequired,

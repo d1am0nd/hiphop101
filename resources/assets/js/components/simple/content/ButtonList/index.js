@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const BututonList = ({children}) => {
+const ButtonList = ({children}) => {
   return (
     <ul className="button-list">
       {children.map((btn, i) => (
@@ -11,8 +11,8 @@ const BututonList = ({children}) => {
   );
 };
 
-BututonList.propTypes = {
+ButtonList.propTypes = {
   children: PropTypes.array.isRequired,
 };
 
-export default BututonList;
+export default ButtonList;

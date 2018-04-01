@@ -63,4 +63,9 @@ class ArtistArticle extends Model
     {
         return $q->where('active', $true);
     }
+
+    public function scopeNotByUser($q, $uid)
+    {
+        return $q->where('user_id', '!=', $uid);
+    }
 }
