@@ -1,5 +1,6 @@
 import Home from '@/components/scenes/Home';
 import About from '@/components/scenes/About';
+import HowToWrite from '@/components/scenes/HowToWrite';
 import Artist from '@/components/scenes/Artist';
 import NewArtist from '@/components/scenes/NewArtist';
 import NewArticle from '@/components/scenes/NewArticle';
@@ -24,6 +25,14 @@ const routes = [
     component: About,
     info: {
       name: 'About',
+      sidebar: true,
+    },
+  },
+  {
+    path: '/how-to-write-an-article',
+    component: HowToWrite,
+    info: {
+      name: 'How to Write',
       sidebar: true,
     },
   },

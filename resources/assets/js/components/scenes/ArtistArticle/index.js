@@ -73,7 +73,10 @@ class ArtistArticle extends Component {
         <Article article={article}/>
         <Like
           likesCount={article.likes_count}
-          canLike={articleUser.id === userId}
+          canLike={
+            userId === 0 ||
+            articleUser.id === userId
+          }
           alreadyLiked={!!article.liked}
           postLike={postLike}
           postUnlike={postUnlike}/>

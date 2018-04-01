@@ -10,6 +10,7 @@ const editArticleUrl = (id) => `/articles/id/${id}`;
 const profileUrl = () => `/profile`;
 
 const aboutUrl = () => `/about`;
+const howToWriteUrl = () => `/how-to-write-an-article`;
 
 export {
   artistUrl,
@@ -24,4 +25,5 @@ export {
   profileUrl,
 
   aboutUrl,
+  howToWriteUrl,
 };
