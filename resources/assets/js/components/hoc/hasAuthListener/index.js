@@ -23,7 +23,6 @@ const hasAuthListener = (Component) => {
     componentDidUpdate(prevProps) {
       const {user: prevUser} = prevProps;
       const {user: newUser} = this.props;
-      console.log(this.state);
       if (JSON.stringify(prevUser) !== JSON.stringify(newUser)) {
         this.state.handleFunc();
       }

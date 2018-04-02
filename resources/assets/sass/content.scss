@@ -3,9 +3,11 @@
   grid-area: content;
   max-width: 800px;
 
+  /*
   @include large {
     border-left: 1px solid $mainBrand;
   }
+  */
 
   button {
     font-size: $emphSize;

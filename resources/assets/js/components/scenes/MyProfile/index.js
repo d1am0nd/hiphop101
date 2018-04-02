@@ -63,7 +63,7 @@ class MyProfile extends Component {
                               article.slug
                             )
                           }>
-                          See
+                          Read
                         </Link> :
                         <b key={3}>Not published</b>,
                     ]}

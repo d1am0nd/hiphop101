@@ -58,8 +58,9 @@ h1 {
     line-height: 30px;
     text-align: left;
     @include large {
-      flex-basis: $sideLg;
+      // flex-basis: $sideLg;
       font-size: $titleSize;
+      margin-right: 5px;
     }
   }
 
@@ -67,6 +68,33 @@ h1 {
     color: $lightShade;
     text-decoration: none;
     text-transform: uppercase;
+  }
+
+  & > .mid {
+    height: 30px;
+    @include large {
+      // background-image: url("/img/icons/SlickRick.png");
+      // background-repeat: no-repeat;
+      flex: 1;
+      img {
+        display: block;
+        margin-left: 5px;
+        max-width: 100%;
+        max-height: 100%;
+        &.rotate {
+          -webkit-animation: rotation 1s infinite linear;
+          @-webkit-keyframes rotation {
+            from {
+              -webkit-transform: rotate(0deg);
+            }
+            to {
+              -webkit-transform: rotate(359deg);
+            }
+          }
+        }
+      }
+    }
+
   }
 
   .right {
