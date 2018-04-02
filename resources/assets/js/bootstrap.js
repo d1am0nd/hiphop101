@@ -6,6 +6,8 @@ import {isAuthenticated, getAuth} from '@/auth/store';
 import {setUser, setToken, refresh} from '@/store/actions/auth';
 import {parseToken, setAuthHeader} from '@/auth/helpers';
 
+require('@/images/shaq');
+
 // Set axios global defaults
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 axios.defaults.headers.common['Accept'] = 'application/json';
