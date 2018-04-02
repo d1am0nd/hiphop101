@@ -37,6 +37,13 @@
     // letter-spacing: 0.5px;
   }
 
+  blockquote {
+    border-left: 2px solid $mainBrand;
+    padding-left: 20px;
+    margin: 0;
+    font-style: italic;
+  }
+
   .list-content {
     ul {
       padding: 0;

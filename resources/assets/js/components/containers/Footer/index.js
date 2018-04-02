@@ -12,11 +12,14 @@ class Footer extends Component {
   }
 
   render() {
+    const quote = this.currQuote();
     return (
       <footer className="footer">
         <div className="quote">
-          {this.currQuote().artist} - {` `}
-          <i>{this.currQuote().quote}</i>
+          {quote.artist} - {` `}
+          <a target="_blank" href={quote.url}>
+            <i>{quote.quote}</i>
+          </a>
         </div>
       </footer>
     );

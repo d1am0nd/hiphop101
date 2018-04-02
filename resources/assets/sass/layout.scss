@@ -113,6 +113,9 @@ h1 {
     border-top: 1px solid $mainBrand;
   }
   grid-area: footer;
+  .quote {
+    text-align: center;
+  }
 }
 
 .hide {

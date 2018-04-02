@@ -33,7 +33,7 @@ class HowToWrite extends Component {
         <H1>How to write an article</H1>
         <H2>1. Register an account</H2>
         <Description>
-          If you don{`'`}t already have an account, you{`'`}ll {` `}need to
+          If you don{`'`}t already have an account, you{`'`}ll need to{` `}
           <a href="javascript:;" onClick={
             (e) => openRegister(e)
           }>register</a> first. Or if you are already registered,{` `}
