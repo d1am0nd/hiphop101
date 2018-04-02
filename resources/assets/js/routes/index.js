@@ -1,4 +1,5 @@
-import Home from '@/components/scenes/Home';
+// import Home from '@/components/scenes/Home';
+import Shaq from '@/components/loading/Shaq';
 import About from '@/components/scenes/About';
 import HowToWrite from '@/components/scenes/HowToWrite';
 import Artist from '@/components/scenes/Artist';
@@ -10,11 +11,12 @@ import ArtistArticle from '@/components/scenes/ArtistArticle';
 import MyProfile from '@/components/scenes/MyProfile';
 
 import authOnly from '@/components/hoc/authOnly';
+import fetchesData from '@/components/hoc/fetchesData';
 
 const routes = [
   {
     path: '/',
-    component: Home,
+    component: Shaq,
     info: {
       name: 'Home',
       sidebar: true,
@@ -38,14 +40,14 @@ const routes = [
   },
   {
     path: '/artists/:slug',
-    component: Artist,
+    component: fetchesData(Artist),
     info: {
       sidebar: false,
     },
   },
   {
     path: '/artists/:artistSlug/:prefix/:articleSlug',
-    component: ArtistArticle,
+    component: fetchesData(ArtistArticle),
     info: {
       sidebar: false,
     },
@@ -80,7 +82,7 @@ const routes = [
   },
   {
     path: '/profile',
-    component: authOnly(MyProfile),
+    component: fetchesData(authOnly(MyProfile)),
     info: {
       sidebar: false,
     },

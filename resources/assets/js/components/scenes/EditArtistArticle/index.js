@@ -57,8 +57,6 @@ class EditArtistArticle extends Component {
     const {values} = this.state;
     values.active = !!active;
 
-    console.log(values);
-
     patchArticle(id, values)
       .then((res) => {
         this.fetchData();

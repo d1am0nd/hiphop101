@@ -5,28 +5,12 @@ import {connect} from 'react-redux';
 
 import {articleUrl} from '@/routes/routes';
 import {getArtist, getArticles} from '@/store/selectors/artists';
-import {fetchArtistWithArticles} from '@/store/actions/artists';
 
 import ArtistRender from '@/components/renders/Artist';
 import ButtonList from '@/components/simple/content/ButtonList';
 import H2 from '@/components/simple/content/H2';
 
 class Artist extends Component {
-  fetchData() {
-    const {slug} = this.props.match.params;
-    this.props.fetchArticles(slug);
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.location !== prevProps.location) {
-      this.fetchData();
-    }
-  }
-
-  componentDidMount() {
-    this.fetchData();
-  }
-
   render() {
     const {artist, articles} = this.props;
     return (
@@ -62,11 +46,8 @@ class Artist extends Component {
 }
 
 Artist.propTypes = {
-  match: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
   artist: PropTypes.object.isRequired,
   articles: PropTypes.array.isRequired,
-  fetchArticles: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -75,14 +56,6 @@ const mapStateToProps = (state) => {
     articles: getArticles(state),
   };
 };
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchArticles: (slug) => dispatch(fetchArtistWithArticles(slug)),
-  };
-};
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(withRouter(Artist));

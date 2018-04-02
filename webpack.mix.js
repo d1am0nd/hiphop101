@@ -32,5 +32,6 @@ mix
       },
     },
   })
+  .copy('resources/assets/img', 'public/img')
   .sass('resources/assets/sass/app.scss', 'public/css')
   .react('resources/assets/js/app.js', 'public/js');

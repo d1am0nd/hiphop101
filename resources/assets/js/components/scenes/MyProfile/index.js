@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {getUsername} from '@/store/selectors/auth';
-import {fetchMyArticles, deleteMyArticle} from '@/store/actions/artists';
+import {deleteMyArticle} from '@/store/actions/artists';
 import {getMyArticles} from '@/store/selectors/artists';
 import {articleUrl, editArticleUrl} from '@/routes/routes';
 
@@ -14,10 +14,6 @@ import Section from '@/components/simple/content/Section';
 import ButtonList from '@/components/simple/content/ButtonList';
 
 class MyProfile extends Component {
-  componentDidMount() {
-    this.props.fetchMyArticles();
-  }
-
   render() {
     const {username, articles} = this.props;
     return (
@@ -86,14 +82,12 @@ class MyProfile extends Component {
 
 MyProfile.propTypes = {
   username: PropTypes.string.isRequired,
-  fetchMyArticles: PropTypes.func.isRequired,
   deleteMyArticle: PropTypes.func.isRequired,
   articles: PropTypes.array.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchMyArticles: () => dispatch(fetchMyArticles()),
     deleteMyArticle: (id) => dispatch(deleteMyArticle(id)),
   };
 };

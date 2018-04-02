@@ -5,50 +5,17 @@ import {connect} from 'react-redux';
 
 import {artistUrl} from '@/routes/routes';
 import {
-  fetchArticle,
   likeArticle,
   unlikeArticle,
 } from '@/store/actions/artists';
 import {getArtist, getArticle, getArticleUser} from '@/store/selectors/artists';
 import {getId} from '@/store/selectors/auth';
 
-import hasAuthListener from '@/components/hoc/hasAuthListener';
 import Article from '@/components/renders/Article';
 import Like from '@/components/stateful/Like';
 import ChevronLeft from '@/components/icons/ChevronLeft';
 
 class ArtistArticle extends Component {
-  constructor() {
-    super();
-    this.fetchData = this.fetchData.bind(this);
-    this.authChangedHandler = this.authChangedHandler.bind(this);
-  }
-
-  fetchData() {
-    const {
-      artistSlug,
-      prefix,
-      articleSlug,
-    } = this.props.match.params;
-
-    this.props.fetchArticle(
-      artistSlug,
-      prefix,
-      articleSlug
-    );
-  }
-
-  authChangedHandler(e) {
-    this.fetchData();
-  }
-
-  componentDidMount() {
-    this.fetchData();
-    this.props.addAuthListener(
-      this.authChangedHandler
-    );
-  }
-
   render() {
     const {
       artist,
@@ -86,17 +53,12 @@ class ArtistArticle extends Component {
 }
 
 ArtistArticle.propTypes = {
-  match: PropTypes.object.isRequired,
   userId: PropTypes.number,
   articleUser: PropTypes.object,
-  fetchArticle: PropTypes.func.isRequired,
   likeArticle: PropTypes.func.isRequired,
   unlikeArticle: PropTypes.func.isRequired,
   artist: PropTypes.object.isRequired,
   article: PropTypes.object.isRequired,
-
-  addAuthListener: PropTypes.func.isRequired,
-  // removeAuthListener: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -110,15 +72,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchArticle: (
-      artistSlug,
-      prefix,
-      articleSlug
-    ) => dispatch(fetchArticle(
-      artistSlug,
-      prefix,
-      articleSlug
-    )),
     likeArticle: (
       artistSlug,
       prefix,
@@ -144,4 +97,4 @@ export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(hasAuthListener(ArtistArticle)));
+  )(ArtistArticle));
