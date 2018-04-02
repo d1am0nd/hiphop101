@@ -11,7 +11,13 @@
         <link href="{{ mix('/css/app.css') }}" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <div id="root"></div>
+        <div id="root">
+            <div class="content">
+                <div class="loading">
+                  <img src="/img/icons/Shaq.png"/>
+                </div>
+            </div>
+        </div>
         <script type="text/javascript" src="{{ mix('/js/app.js') }}"></script>
     </body>
 </html>
