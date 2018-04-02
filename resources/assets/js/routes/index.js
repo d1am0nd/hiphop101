@@ -1,5 +1,5 @@
 // import Home from '@/components/scenes/Home';
-import Shaq from '@/components/loading/Shaq';
+import Home from '@/components/scenes/Home';
 import About from '@/components/scenes/About';
 import HowToWrite from '@/components/scenes/HowToWrite';
 import Artist from '@/components/scenes/Artist';
@@ -16,7 +16,7 @@ import fetchesData from '@/components/hoc/fetchesData';
 const routes = [
   {
     path: '/',
-    component: Shaq,
+    component: Home,
     info: {
       name: 'Home',
       sidebar: true,

@@ -14,7 +14,6 @@ const createStore = () => {
   return reduxCreateStore(
     combineReducers({
       auth: authReducer,
-      misc: miscReducer,
       modal: modalReducer,
       artist: artistReducer,
     }),
