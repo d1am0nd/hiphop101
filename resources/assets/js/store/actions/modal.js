@@ -12,13 +12,14 @@ const closeModal = () => {
   };
 };
 
-const openModal = (type, title) => {
+const openModal = (type, title, bottom = '') => {
   return (dispatch) => {
     dispatch({
       type: OPEN_MODAL,
       payload: {
         type: type,
         title: title,
+        bottom: bottom,
       },
     });
   };
@@ -26,10 +27,12 @@ const openModal = (type, title) => {
 
 const openLogin = () => openModal('login', 'Login');
 const openRegister = () => openModal('register', 'Register');
+const openKhaled = (title, bottom) => openModal('khaled', title, bottom);
 
 export {
   closeModal,
   openModal,
   openLogin,
+  openKhaled,
   openRegister,
 };

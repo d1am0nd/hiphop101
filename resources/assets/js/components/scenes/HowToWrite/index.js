@@ -28,6 +28,7 @@ class HowToWrite extends Component {
 
   render() {
     const {editorText} = this.state;
+    const {openLogin, openRegister} = this.props;
     return (
       <div>
         <H1>How to write an article</H1>

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Times from '@/components/icons/Times';
 import Login from '@/components/scenes/Login';
 import Register from '@/components/scenes/Register';
+import KhaledPopup from '@/components/scenes/KhaledPopup';
 import {
   isModalOpen,
   modalTitle,
@@ -30,6 +31,9 @@ class Modal extends Component {
     }
     case 'register': {
       return <Register/>;
+    }
+    case 'khaled': {
+      return <KhaledPopup/>;
     }
       return null;
     }

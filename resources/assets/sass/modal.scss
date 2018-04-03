@@ -20,7 +20,8 @@
     width: 80%; /* Full width */
     max-width: $tightWidth;
     overflow: auto; /* Enable scroll if needed */
-    background-color: $darkShade;
+    // background-color: $darkShade;
+    background-color: rgba(0, 0, 0, 0);
     color: $lightShade;
 
     top: 5%;
@@ -92,6 +93,13 @@
               // border-radius: 4px;
               box-shadow: inset 1px 1px 2px -1px rgba(0,0,0,0.15);
             }
+          }
+        }
+      }
+      & > .error-popup {
+        & > .dj-khaled {
+          img {
+            max-width: 100%;
           }
         }
       }

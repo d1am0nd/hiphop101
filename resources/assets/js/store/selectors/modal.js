@@ -32,8 +32,14 @@ const modalType = createSelector(
   getModalType
 );
 
+const modalBottom = createSelector(
+  modalSelector,
+  (modal) => modal.info.bottom
+);
+
 export {
   isModalOpen,
   modalTitle,
+  modalBottom,
   modalType,
 };

@@ -5,6 +5,7 @@ import {withRouter} from 'react-router-dom';
 import {editArticleUrl} from '@/routes/routes';
 import {findArtist, postNewArtistArticle} from '@/api/artists';
 import {getErr, getData} from '@/api/helpers';
+import hasSuccess from '@/components/hoc/hasSuccess';
 import hasEditor from '@/components/hoc/hasEditor';
 import {
   values as articleValues,
@@ -55,6 +56,7 @@ class NewArtistArticle extends Component {
 
     postNewArtistArticle(artist.slug, values)
       .then((res) => {
+        this.props.triggerSuccess(`Saved ${values.title}`);
         this.props.history.push(
           editArticleUrl(getData(res).id)
         );
@@ -99,12 +101,15 @@ class NewArtistArticle extends Component {
 
 NewArtistArticle.propTypes = {
   editorStateToHtml: PropTypes.func.isRequired,
+  triggerSuccess: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
 };
 
-export default hasEditor(
-  withRouter(
-    NewArtistArticle
+export default hasSuccess(
+  hasEditor(
+    withRouter(
+      NewArtistArticle
+    )
   )
 );

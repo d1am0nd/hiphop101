@@ -6,8 +6,9 @@ import {
 const initialState = {
   open: false,
   info: {
-    type: '',
+    type: 'k',
     title: '',
+    bottom: '',
   },
 };
 
@@ -17,8 +18,10 @@ export const modalReducer = (state = initialState, action) => {
     state = {
       ...state,
       open: false,
-      title: '',
-      component: {},
+      info: {
+        type: '',
+        title: '',
+      },
     };
     break;
   }
@@ -27,8 +30,7 @@ export const modalReducer = (state = initialState, action) => {
       ...state,
       open: true,
       info: {
-        type: action.payload.type,
-        title: action.payload.title,
+        ...action.payload,
       },
     };
   }

@@ -4,6 +4,7 @@ import {withRouter} from 'react-router-dom';
 
 import {myArticle, patchArticle} from '@/api/auth';
 import {getErr, getData} from '@/api/helpers';
+import hasSuccess from '@/components/hoc/hasSuccess';
 import {
   values as artistValues,
 } from '@/objects/artist';
@@ -59,6 +60,7 @@ class EditArtistArticle extends Component {
 
     patchArticle(id, values)
       .then((res) => {
+        this.props.triggerSuccess(`Edited ${values.title}`);
         this.fetchData();
       })
       .catch((err) => {
@@ -93,6 +95,9 @@ class EditArtistArticle extends Component {
 
 EditArtistArticle.propTypes = {
   match: PropTypes.object.isRequired,
+  triggerSuccess: PropTypes.func.isRequired,
 };
 
-export default withRouter(EditArtistArticle);
+export default hasSuccess(
+  withRouter(EditArtistArticle)
+);

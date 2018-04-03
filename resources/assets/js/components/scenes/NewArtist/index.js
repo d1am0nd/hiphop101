@@ -6,6 +6,7 @@ import {postNewArtist} from '@/api/artists';
 import {getErr, getData} from '@/api/helpers';
 import {newArtistArticleUrl} from '@/routes/routes';
 import {values, errors} from '@/objects/artist';
+import hasSuccess from '@/components/hoc/hasSuccess';
 
 import H1 from '@/components/simple/content/H1';
 import ArtistForm from '@/components/forms/ArtistForm';
@@ -26,6 +27,7 @@ class NewArtist extends Component {
     postNewArtist(values)
       .then((res) => {
         history.push(newArtistArticleUrl(getData(res).slug));
+        this.props.triggerSuccess(`Added ${values.name}`);
       })
       .catch((err) => {
         this.setState({
@@ -64,6 +66,7 @@ class NewArtist extends Component {
 
 NewArtist.propTypes = {
   history: PropTypes.object.isRequired,
+  triggerSuccess: PropTypes.func.isRequired,
 };
 
-export default withRouter(NewArtist);
+export default withRouter(hasSuccess(NewArtist));

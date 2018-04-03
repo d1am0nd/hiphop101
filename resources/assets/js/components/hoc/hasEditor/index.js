@@ -12,6 +12,7 @@ const hasEditor = (Component) => {
     render() {
       return (
         <Component
+          {...this.props}
           editorStateToHtml={this.editorStateToHtml}/>
       );
     }
