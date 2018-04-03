@@ -14,3 +14,12 @@
     @content;
   }
 }
+
+// Hover only on large
+@mixin hover() {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}

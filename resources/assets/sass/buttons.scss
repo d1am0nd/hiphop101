@@ -7,7 +7,7 @@
   @include large {
     font-size: 1em;
   }
-  &:hover {
+  @include hover{
     cursor: pointer;
     text-decoration: none;
     border: 1px solid;
@@ -19,7 +19,7 @@
   transition: $transition;
   border-color: $darkShade;
   background: $lightShade;
-  &:hover {
+  @include hover{
     color: $lightShade;
     border: 1px solid $darkShade;
     background: $darkShade;
@@ -31,7 +31,7 @@
   transition: $transition;
   border-color: $lightShade;
   background: $darkShade;
-  &:hover {
+  @include hover{
     color: $darkShade;
     border: 1px solid $lightShade;
     background: $lightShade;
@@ -43,7 +43,7 @@
   transition: $transition;
   border-color: $lightShade;
   background: $darkAccent;
-  &:hover {
+  @include hover{
     color: $darkAccent;
     border: 1px solid $lightShade;
     background: $lightShade;
@@ -53,7 +53,7 @@
 .btn-normal {
   @include baseBtnColors;
   &.on-white {
-    &:hover {
+    @include hover{
       border-color: $darkShade !important;
     }
   }
@@ -69,7 +69,7 @@
 .btn-alert {
   @include darkAccentBtnColors;
   &.on-white {
-    &:hover {
+    @include hover{
       border-color: $darkAccent;
     }
   }
@@ -112,7 +112,7 @@ ul.button-list {
   @include large {
     padding: 4px 10px !important;
   }
-  &:hover {
+  @include hover{
     background: black;
     color: $darkAccent;
     text-decoration: none;

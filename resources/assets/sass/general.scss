@@ -12,7 +12,7 @@ input, textarea {
 
   &[type="submit"] {
     margin-top: 5px;
-    &:hover {
+    @include hover {
       cursor: pointer;
     }
   }

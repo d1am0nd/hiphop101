@@ -40,7 +40,7 @@
         width: $topHeight;
         height: $topHeight;
         fill: $lightShade;
-        &:hover {
+        @include hover {
           cursor: pointer;
         }
       }
