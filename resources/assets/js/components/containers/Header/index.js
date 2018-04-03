@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
 import {isAuth} from '@/store/selectors/auth';
+import hasTimeouts from '@/components/hoc/hasTimeouts';
 
 import Title from './Title';
 import Auth from './Auth';
@@ -19,7 +20,6 @@ class Header extends Component {
     this.startHover = this.startHover.bind(this);
     this.endHover = this.endHover.bind(this);
     this.state = {
-      timeout: null,
       hoverStart: null,
       hovering: false,
     };
@@ -33,24 +33,21 @@ class Header extends Component {
   }
 
   startHover() {
-    clearTimeout(this.state.timeout);
+    this.props.clearTimeouts();
     this.setState({
       hoverStart: this.state.hovering ?
         this.state.hoverStart : Date.now(),
       hovering: true,
-      timeout: null,
     });
   }
 
   endHover() {
     const rotTime = (Date.now() - this.state.hoverStart) % fullRotation;
     const toGo = fullRotation - rotTime;
-    this.setState({
-      timeout: setTimeout(
-        this.clearHoverState,
-        toGo
-      ),
-    });
+    this.props.addTimeout(
+      this.clearHoverState,
+      toGo
+    );
   }
 
   setHover(hover) {
@@ -105,6 +102,8 @@ class Header extends Component {
 
 Header.propTypes = {
   isAuth: PropTypes.bool.isRequired,
+  addTimeout: PropTypes.func.isRequired,
+  clearTimeouts: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -113,4 +112,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(hasTimeouts(Header));

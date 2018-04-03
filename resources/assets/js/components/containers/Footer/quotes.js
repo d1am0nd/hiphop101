@@ -8,7 +8,7 @@ export default [
     quote: 'I\'m too sexy for my... ' +
       'tighty whitey drawers and my shit stained underpants',
     artist: 'R.A. The Rugged Man',
-    url: 'https://www.youtube.com/watch?v=3tmd-ClpJxA',
+    url: 'https://www.youtube.com/watch?v=8Mv80WjMaA0',
   },
   {
     quote: 'My homie\'s a magician with the Tec, ' +
