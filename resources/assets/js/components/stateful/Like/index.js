@@ -5,7 +5,8 @@ import {connect} from 'react-redux';
 import {isAuthenticated} from '@/auth/store';
 import {openRegister} from '@/store/actions/modal';
 
-import ChevronUp from '@/components/icons/ChevronUp';
+import SnoopUp from '@/components/icons/SnoopUp';
+import SnoopDown from '@/components/icons/SnoopDown';
 
 class Like extends Component {
   handleLike(e) {
@@ -42,6 +43,8 @@ class Like extends Component {
 
   render() {
     const {likesCount, alreadyLiked, canLike} = this.props;
+    console.log('canLike', canLike);
+    console.log(alreadyLiked);
     return (
       <div className="like-container">
         <div
@@ -55,14 +58,12 @@ class Like extends Component {
               onClick={(e) => this.handleLike(e)}
               title="Like"
               className="like-icon">
-              <ChevronUp/>
+              <SnoopDown/>
             </div> :
             <div
               onClick={(e) => this.handleUnlike(e)}
               className="like-unlike">
-              <a href="javascript:;">
-                Unlike
-              </a>
+              <SnoopUp/>
             </div>
           : null}
       </div>

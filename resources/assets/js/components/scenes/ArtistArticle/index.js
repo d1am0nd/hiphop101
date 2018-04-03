@@ -31,6 +31,8 @@ class ArtistArticle extends Component {
     const postUnlike = () => unlikeArticle(
       artist.slug, article.prefix, article.slug
     );
+    console.log('userId', userId);
+    console.log(articleUser.id);
     return (
       <div>
         <Link to={artistUrl(artist.slug)} className="back-to-artist">
@@ -42,7 +44,7 @@ class ArtistArticle extends Component {
           likesCount={article.likes_count}
           canLike={
             userId === 0 ||
-            articleUser.id === userId
+            articleUser.id != userId
           }
           alreadyLiked={!!article.liked}
           postLike={postLike}

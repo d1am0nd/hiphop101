@@ -16,7 +16,7 @@ const getArticle = createSelector(
 );
 
 const getArticleUser = createSelector(
-  articlesSelector,
+  articleSelector,
   (article) => article.user ? article.user : {}
 );
 
