@@ -48,10 +48,12 @@ class NewArtistArticle extends Component {
     values.active = !!publish;
 
     if (!!publish) {
-      window.confirm(
+      if (window.confirm(
         `Are you sure you want to publish the article? ` +
         `Once published it can no longer be deleted or unpublished.`
-      );
+      ) === false) {
+        return;
+      }
     }
 
     postNewArtistArticle(artist.slug, values)

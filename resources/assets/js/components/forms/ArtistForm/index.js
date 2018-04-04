@@ -23,7 +23,7 @@ const ArtistForm = ({
         name: 'name',
         value: artist.name,
       }}
-      label="Artist name"
+      label="Artist name (required)"
       errors={errors.name}/>
     <Input
       handleChange={(e) => handleChange(e)}
@@ -42,7 +42,7 @@ const ArtistForm = ({
         rows: 8,
         value: artist.description,
       }}
-      label="Short description"
+      label="Short description (required)"
       help={textBetween({
         input: artist.description,
         name: 'Description',

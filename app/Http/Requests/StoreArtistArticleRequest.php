@@ -29,4 +29,20 @@ class StoreArtistArticleRequest extends FormRequest
             'content' => ['required', 'min:800'],
         ];
     }
+
+    /*
+    protected function getValidatorInstance(){
+        $validator = parent::getValidatorInstance();
+
+        $validator->sometimes('description', 'between:150,400', function ($input) {
+            return $input->active == true;
+        });
+
+        $validator->sometimes('content', 'min:800', function ($input) {
+            return $input->active == true;
+        });
+
+        return $validator;
+    }
+    */
 }

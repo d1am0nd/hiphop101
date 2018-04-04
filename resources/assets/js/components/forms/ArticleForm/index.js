@@ -34,7 +34,7 @@ const ArticleForm = ({
         tabIndex: 2,
         value: article.description,
       }}
-      label="Short description"
+      label="Short description (required)"
       help={textBetween({
         input: article.description,
         name: 'Description',
@@ -51,7 +51,7 @@ const ArticleForm = ({
         tabIndex: 2,
         value: article.content,
       }}
-      label="Article content"
+      label="Article content (required)"
       help={textMin({
         input: article.content,
         name: 'Content',

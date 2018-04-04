@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {login} from '@/store/actions/auth';
-import {closeModal} from '@/store/actions/modal';
+import {closeModal, openRegister} from '@/store/actions/modal';
 
 import Form from '@/components/simple/form/Form';
 import Input from '@/components/simple/form/Input';
@@ -41,26 +41,36 @@ class Login extends Component {
 
   render() {
     return (
-      <Form handleSubmit={(e) => this.handleSubmit(e)}>
-        <Input
-          attributes={{
-            autoFocus: true,
-            type: 'email',
-            name: 'email',
-            placeholder: 'Email',
-          }}
-          handleChange={(e) => this.handleChange(e)}
-          label="Email"/>
-        <Input
-          attributes={{
-            type: 'password',
-            name: 'password',
-            placeholder: 'Password',
-          }}
-          handleChange={(e) => this.handleChange(e)}
-          label="Password"/>
-        <Submit text="Submit"/>
-      </Form>
+      <div>
+        <div className="pre-form">
+          Don{`'`}t have an account?{` `}
+          <a
+            href="javascript:;"
+            onClick={(e) => this.props.openRegister(e)}>
+            Register here
+          </a>.
+        </div>
+        <Form handleSubmit={(e) => this.handleSubmit(e)}>
+          <Input
+            attributes={{
+              autoFocus: true,
+              type: 'email',
+              name: 'email',
+              placeholder: 'Email',
+            }}
+            handleChange={(e) => this.handleChange(e)}
+            label="Email"/>
+          <Input
+            attributes={{
+              type: 'password',
+              name: 'password',
+              placeholder: 'Password',
+            }}
+            handleChange={(e) => this.handleChange(e)}
+            label="Password"/>
+          <Submit text="Submit"/>
+        </Form>
+      </div>
     );
   }
 }
@@ -68,12 +78,14 @@ class Login extends Component {
 Login.propTypes = {
   postLogin: PropTypes.func.isRequired,
   closeModal: PropTypes.func.isRequired,
+  openRegister: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     postLogin: (creds) => dispatch(login(creds)),
     closeModal: () => dispatch(closeModal()),
+    openRegister: () => dispatch(openRegister()),
   };
 };
 
