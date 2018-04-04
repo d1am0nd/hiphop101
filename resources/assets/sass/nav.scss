@@ -8,6 +8,7 @@
 
   .search {
     $pad: 5px;
+    margin-bottom: 10px;
 
     position: relative;
 
@@ -43,6 +44,47 @@
   }
 
   ul.nav-links {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: block;
+    li {
+      background: $darkShade url('/img/icons/SchoolboyQ25.png');
+      background-repeat: no-repeat;
+      background-position: 2px 3px;
+      transition: $transition;
+
+      padding-left: 30px;
+      font-size: 20px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+
+      transition: $transition;
+      border: 1px solid;
+      color: $lightShade;
+      border-color: $lightShade;
+
+      @include hover {
+        color: $darkShade;
+        border: 1px solid $darkShade;
+        background: $lightShade url('/img/icons/SchoolboyQ25.png');
+        background-repeat: no-repeat;
+        background-position: 2px 3px;
+        a {
+          transition: $transition;
+          color: $darkShade;
+        }
+      }
+      a {
+        display: block;
+        width: 100%;
+        color: $lightShade;
+        text-decoration: none;
+        line-height: 30px;
+      }
+    }
+
+    /*
     padding: 0;
     margin: 0;
     display: grid;
@@ -87,5 +129,6 @@
         color: $darkShade;
       }
     }
+    */
   }
 }

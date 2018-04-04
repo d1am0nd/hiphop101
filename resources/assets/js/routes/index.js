@@ -19,7 +19,7 @@ const routes = [
     component: Home,
     info: {
       name: 'Home',
-      sidebar: true,
+      sidebar: false,
     },
   },
   {
