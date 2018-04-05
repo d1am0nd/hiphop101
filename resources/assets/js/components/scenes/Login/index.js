@@ -34,7 +34,7 @@ class Login extends Component {
         this.props.closeModal();
       })
       .catch((err) => {
-        console.log('err triggered', err);
+        alert('Wrong credentials');
         // alert(err.response.data.error);
       });
   }

@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 
 import {register} from '@/store/actions/auth';
 import {closeModal, openLogin} from '@/store/actions/modal';
+import {getErr} from '@/api/helpers';
 
 import Form from '@/components/simple/form/Form';
 import Input from '@/components/simple/form/Input';
@@ -13,17 +14,28 @@ class Register extends Component {
   constructor() {
     super();
     this.state = {
-      email: '',
-      name: '',
-      password: '',
-      password_confirmation: '',
+      values: {
+        email: '',
+        name: '',
+        password: '',
+        password_confirmation: '',
+      },
+      errors: {
+        email: [],
+        name: [],
+        password: [],
+      },
     };
   }
 
   handleChange(e) {
     const {target} = e;
     this.setState({
-      [target.name]: target.value,
+      ...this.state,
+      values: {
+        ...this.state.values,
+        [target.name]: target.value,
+      },
     });
   }
 
@@ -31,17 +43,24 @@ class Register extends Component {
     e.preventDefault();
     this
       .props
-      .postRegister(this.state)
+      .postRegister(this.state.values)
       .then((res) => {
         this.props.closeModal();
       })
       .catch((err) => {
-        console.log('err triggered', err);
+        this.setState({
+          ...this.state,
+          errors: {
+            ...this.state.errors,
+            ...getErr(err),
+          },
+        });
         // alert(err.response.data.error);
       });
   }
 
   render() {
+    const {errors} = this.state;
     return (
       <div>
         <div className="pre-form">
@@ -60,6 +79,7 @@ class Register extends Component {
               name: 'email',
               placeholder: 'Email',
             }}
+            errors={errors.email}
             handleChange={(e) => this.handleChange(e)}
             label="Email"/>
           <Input
@@ -68,6 +88,7 @@ class Register extends Component {
               name: 'name',
               placeholder: 'Username',
             }}
+            errors={errors.name}
             label="Username"/>
           <Input
             handleChange={(e) => this.handleChange(e)}
@@ -76,6 +97,7 @@ class Register extends Component {
               type: 'password',
               placeholder: 'Password',
             }}
+            errors={errors.password}
             label="Password"/>
           <Input
             handleChange={(e) => this.handleChange(e)}
