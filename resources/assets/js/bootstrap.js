@@ -3,7 +3,7 @@ import axios from 'axios';
 import {TOKEN_STORAGE, USER_STORAGE} from '@/auth/store';
 import {createStore} from '@/store';
 import {isAuthenticated, getAuth} from '@/auth/store';
-import {setUser, setToken, refresh} from '@/store/actions/auth';
+import {setUser, setToken} from '@/store/actions/auth';
 import {fetchPopularArticles} from '@/store/actions/popular';
 import {parseToken, setAuthHeader} from '@/auth/helpers';
 
@@ -28,7 +28,7 @@ if (isAuthenticated()) {
   store.dispatch(setToken(tokenObj));
   setAuthHeader(parseToken(tokenObj));
 
-  store.dispatch(refresh());
+  // store.dispatch(refresh());
 }
 
 // Get popular articles, they don't change

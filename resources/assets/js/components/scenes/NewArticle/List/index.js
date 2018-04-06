@@ -22,7 +22,7 @@ const List = ({artists}) => {
                   key={0}
                   className="btn-inverse on-white"
                   to={newArtistArticleUrl(artist.slug)}>
-                Read
+                Write
                 </Link>,
               ]}
             </ButtonList>

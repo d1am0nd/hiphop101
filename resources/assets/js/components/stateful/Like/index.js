@@ -42,14 +42,9 @@ class Like extends Component {
   }
 
   render() {
-    const {likesCount, alreadyLiked, canLike} = this.props;
+    const {alreadyLiked, canLike} = this.props;
     return (
       <div className="like-container">
-        <div
-          title="Total likes"
-          className="like-count">
-          {likesCount}
-        </div>
         {canLike ?
           !alreadyLiked ?
             <div
@@ -71,7 +66,6 @@ class Like extends Component {
 
 Like.propTypes = {
   canLike: PropTypes.bool.isRequired,
-  likesCount: PropTypes.number.isRequired,
   postLike: PropTypes.func,
   postUnlike: PropTypes.func,
   handleUnlike: PropTypes.func,

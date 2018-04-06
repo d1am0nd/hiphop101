@@ -24,7 +24,16 @@ class UserArticleController extends Controller
             $this
                 ->model
                 ->with('artist')
-                ->withCount('likes')
+                ->popular([
+                    'artist_articles.artist_id',
+                    'artist_articles.user_id',
+                    'artist_articles.updated_at',
+                    'active',
+                    'slug',
+                    'prefix',
+                    'description',
+                    'title'
+                ])
                 ->byUserId(auth()->id())
                 ->get()
                 // ->paginate(config('defaults.pagination.per_page'))

@@ -45,6 +45,9 @@ class ArtistArticleController extends Controller
                     }
                 )
                 ->paginate(config('defaults.pagination.per_page'))
+                ->map(function ($i) use ($artist) {
+                    return $i->setRelation('artist', $artist);
+                })
         ))->additional([
             'parent' => new ArtistResource($artist),
         ]);

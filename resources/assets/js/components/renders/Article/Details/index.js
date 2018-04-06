@@ -3,24 +3,31 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 import {artistUrl} from '@/routes/routes';
-import {tsToHuman as toHuman} from '@/helpers/time';
+import {dbTsToHuman as toHuman} from '@/helpers/time';
 
-const Details = ({article, artist}) => (
+const Details = ({article, artist, author}) => (
   <div className="article-details">
     <ul>
       {
-        artist ?
-          <li><b>
-            <Link to={artistUrl(artist.slug)}>{artist.name}</Link>
-          </b></li> :
-          null
+        article.likes_count ?
+          <li>Likes: <strong>{article.likes_count}</strong></li> : null
       }
-      <li>Likes: <b>{article.likes_count}</b></li>
-      <li>Author: {article.user.name}</li>
+      {
+        artist ?
+          <li>
+            Artist:{` `}
+            <Link to={artistUrl(article.artist.slug)}>
+              {article.artist.name}
+            </Link>
+          </li> : null
+      }
+      {
+        author ?
+          <li>Author: {author.name}</li> : null
+      }
       {
         article.updated_at ?
-          <li>Last change: {toHuman(article.updated_at * 1000)}</li> :
-          null
+          <li>Last edit: {toHuman(article.updated_at)}</li> : null
       }
     </ul>
   </div>
@@ -29,6 +36,7 @@ const Details = ({article, artist}) => (
 Details.propTypes = {
   article: PropTypes.object.isRequired,
   artist: PropTypes.object,
+  author: PropTypes.object,
 };
 
 export default Details;

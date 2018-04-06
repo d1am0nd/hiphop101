@@ -8,7 +8,7 @@ import ArticleDetails from '@/components/renders/Article/Details';
 import ButtonList from '@/components/simple/content/ButtonList';
 import H3 from '@/components/simple/content/H3';
 
-const ArticleList = ({articles, artist = null}) => (
+const ArticleList = ({articles, artist}) => (
   <ul className="short-descriptions">
     {articles.map((article, i) => (
       <li key={i}>
@@ -19,7 +19,7 @@ const ArticleList = ({articles, artist = null}) => (
           {article.description}
         </p>
         <ArticleDetails
-          artist={article.artist ? article.artist : null}
+          author={article.user}
           article={article}/>
         <ButtonList>
           {[

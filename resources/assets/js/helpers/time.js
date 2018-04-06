@@ -22,6 +22,9 @@ const tsToHuman = (ts) => {
   return Math.round(elapsed/msPerYear ) + ' years ago';
 };
 
+const dbTsToHuman = (ts) => tsToHuman(ts * 1000);
+
 export {
   tsToHuman,
+  dbTsToHuman,
 };

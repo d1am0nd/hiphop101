@@ -56,7 +56,7 @@ class ArtistArticle extends Model
 
     public function scopeByUserId($q, $uid)
     {
-        return $q->where('user_id', $uid);
+        return $q->where('artist_articles.user_id', $uid);
     }
 
     public function scopeActive($q, $true = true)
