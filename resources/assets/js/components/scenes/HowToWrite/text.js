@@ -14,7 +14,9 @@ export default `# Title 1
 * list
 * items
 
-> Bitch pussy smell like a penguin
+> Get rich or die tryin
+
+***
 
 ![Image alt tag](https://upload.wikimedia.org/wikipedia/en/thumb/5/5c/Ol%27_Dirty_Bastard.jpg/220px-Ol%27_Dirty_Bastard.jpg)
 `;

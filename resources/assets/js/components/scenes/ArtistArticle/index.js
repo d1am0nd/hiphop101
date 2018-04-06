@@ -31,8 +31,6 @@ class ArtistArticle extends Component {
     const postUnlike = () => unlikeArticle(
       artist.slug, article.prefix, article.slug
     );
-    console.log('userId', userId);
-    console.log(articleUser.id);
     return (
       <div>
         <Link to={artistUrl(artist.slug)} className="back-to-artist">

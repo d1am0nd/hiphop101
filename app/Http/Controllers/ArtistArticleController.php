@@ -28,7 +28,6 @@ class ArtistArticleController extends Controller
                 ->articles()
                 ->active()
                 ->popular()
-                ->withCount('likes')
                 ->with('user')
                 // If my_articles = 1, show current users articles
                 ->when(

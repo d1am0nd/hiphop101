@@ -4,6 +4,8 @@ import {Link} from 'react-router-dom';
 
 import {newArtistArticleUrl} from '@/routes/routes';
 
+import ButtonList from '@/components/simple/content/ButtonList';
+
 const List = ({artists}) => {
   return (
     <ul>
@@ -14,7 +16,16 @@ const List = ({artists}) => {
             {artist.description}
           </div>
           <div className="actions">
-            <Link to={newArtistArticleUrl(artist.slug)}>Write</Link>
+            <ButtonList>
+              {[
+                <Link
+                  key={0}
+                  className="btn-inverse on-white"
+                  to={newArtistArticleUrl(artist.slug)}>
+                Read
+                </Link>,
+              ]}
+            </ButtonList>
           </div>
         </li>
       ))}

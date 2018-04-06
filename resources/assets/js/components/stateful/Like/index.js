@@ -43,8 +43,6 @@ class Like extends Component {
 
   render() {
     const {likesCount, alreadyLiked, canLike} = this.props;
-    console.log('canLike', canLike);
-    console.log(alreadyLiked);
     return (
       <div className="like-container">
         <div
@@ -74,12 +72,12 @@ class Like extends Component {
 Like.propTypes = {
   canLike: PropTypes.bool.isRequired,
   likesCount: PropTypes.number.isRequired,
-  postLike: PropTypes.func.isRequired,
-  postUnlike: PropTypes.func.isRequired,
+  postLike: PropTypes.func,
+  postUnlike: PropTypes.func,
   handleUnlike: PropTypes.func,
   handleLike: PropTypes.func,
-  openRegister: PropTypes.func.isRequired,
-  alreadyLiked: PropTypes.bool.isRequired,
+  openRegister: PropTypes.func,
+  alreadyLiked: PropTypes.bool,
 };
 
 const mapDispatchToProps = (dispatch) => {
