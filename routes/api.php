@@ -33,6 +33,12 @@ Route::group([
 });
 
 Route::group([
+    'prefix' => 'popular',
+], function () {
+    Route::get('articles', 'PopularController@articles');
+});
+
+Route::group([
     'prefix' => 'artists',
 ], function () {
     Route::get('/', 'ArtistController@index');

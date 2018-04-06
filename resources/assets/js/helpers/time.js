@@ -7,7 +7,6 @@ const msPerYear = msPerDay * 365;
 const tsToHuman = (ts) => {
   const current = Date.now();
   const elapsed = current - ts;
-  console.log(ts, current);
 
   if (elapsed < msPerMinute) {
     return Math.round(elapsed / 1000) + ' seconds ago';

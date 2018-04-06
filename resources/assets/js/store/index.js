@@ -8,6 +8,7 @@ import thunk from 'redux-thunk';
 import {authReducer} from '@/store/reducers/auth';
 import {modalReducer} from '@/store/reducers/modal';
 import {artistReducer} from '@/store/reducers/artists';
+import {popularReducer} from '@/store/reducers/popular';
 
 const createStore = () => {
   return reduxCreateStore(
@@ -15,6 +16,7 @@ const createStore = () => {
       auth: authReducer,
       modal: modalReducer,
       artist: artistReducer,
+      popular: popularReducer,
     }),
     applyMiddleware(thunk)
   );

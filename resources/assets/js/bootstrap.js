@@ -4,6 +4,7 @@ import {TOKEN_STORAGE, USER_STORAGE} from '@/auth/store';
 import {createStore} from '@/store';
 import {isAuthenticated, getAuth} from '@/auth/store';
 import {setUser, setToken, refresh} from '@/store/actions/auth';
+import {fetchPopularArticles} from '@/store/actions/popular';
 import {parseToken, setAuthHeader} from '@/auth/helpers';
 
 require('@/images/shaq');
@@ -29,6 +30,9 @@ if (isAuthenticated()) {
 
   store.dispatch(refresh());
 }
+
+// Get popular articles, they don't change
+store.dispatch(fetchPopularArticles());
 
 // Add storage listener to listen to Auth changes
 window.addEventListener('storage', (e) => {
