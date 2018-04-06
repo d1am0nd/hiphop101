@@ -54,12 +54,12 @@ class Login extends Component {
           <Input
             attributes={{
               autoFocus: true,
-              type: 'email',
+              type: 'text',
               name: 'email',
-              placeholder: 'Email',
+              placeholder: 'Username or email',
             }}
             handleChange={(e) => this.handleChange(e)}
-            label="Email"/>
+            label="Username or email"/>
           <Input
             attributes={{
               type: 'password',

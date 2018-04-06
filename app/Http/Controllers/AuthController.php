@@ -42,9 +42,17 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        if (! $token = $this->auth->attempt($request->only('email', 'password'))) {
+        $username = $request->input('email');
+        $attempt = filter_var($username, FILTER_VALIDATE_EMAIL) ?
+            'email' : 'name';
+
+        if (! $token = $this->auth->attempt([
+            $attempt => $username,
+            'password' => $request->input('password'),
+        ])) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+
         return response()->json([
             'data' => [
                 'user'  => $this->auth->user(),
