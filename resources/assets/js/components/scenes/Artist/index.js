@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {articleUrl} from '@/routes/routes';
 import {getArtist, getArticles} from '@/store/selectors/artists';
 
+import ArticleDetails from '@/components/renders/Article/Details';
 import ArtistRender from '@/components/renders/Artist';
 import ButtonList from '@/components/simple/content/ButtonList';
 import Like from '@/components/stateful/Like';
@@ -26,6 +27,7 @@ class Artist extends Component {
               <p>
                 {article.description}
               </p>
+              <ArticleDetails article={article}/>
               <Like
                 canLike={false}
                 likesCount={article.likes_count}/>

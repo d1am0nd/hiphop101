@@ -21,6 +21,7 @@ class ArtistArticleResource extends JsonResource
             'slug' => $this->slug,
             'prefix' => $this->prefix,
             'description' => $this->description,
+            'updated_at' => $this->updated_at,
             'user' => $this->when(
                 $this->user !== null,
                 new UserResource($this->user)

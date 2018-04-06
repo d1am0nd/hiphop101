@@ -50,6 +50,17 @@
     font-size: 0.6em;
   }
 
+  .article-details {
+    & > ul {
+      padding-left: 0;
+      list-style-type: none;
+
+      & > li {
+
+      }
+    }
+  }
+
   .list-content {
     ul {
       padding: 0;
