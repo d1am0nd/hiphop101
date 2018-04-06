@@ -25,7 +25,7 @@ class StoreArtistArticleRequest extends FormRequest
     {
         return [
             'title' => ['required'],
-            'description' => 'between:150,400',
+            // 'description' => 'between:150,400',
             'content' => ['required', 'min:800'],
         ];
     }

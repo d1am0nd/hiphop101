@@ -8,9 +8,9 @@ import {getMyArticles} from '@/store/selectors/artists';
 import {articleUrl, editArticleUrl} from '@/routes/routes';
 
 import {Link} from 'react-router-dom';
-import ArticleShort from '@/components/renders/ArticleShort';
 import ArticleDetails from '@/components/renders/Article/Details';
 import H1 from '@/components/simple/content/H1';
+import H3 from '@/components/simple/content/H3';
 import Section from '@/components/simple/content/Section';
 import ButtonList from '@/components/simple/content/ButtonList';
 
@@ -24,12 +24,24 @@ class MyProfile extends Component {
           <Section title="My articles">
             <ul className="short-descriptions">
               {articles.map((article, i) => (
-                <li key={i}>
-                  <ArticleShort article={article}/>
+                <div className="article-list" key={i}>
+                  <H3>
+                    {
+                      article.active === 1 ?
+                        <Link to={articleUrl(
+                          article.artist.slug,
+                          article.prefix,
+                          article.slug
+                        )}>
+                          {article.title}
+                        </Link> :
+                        article.title
+                    }
+                  </H3>
                   <ArticleDetails
                     article={article}
                     artist={article.artist}
-                    author={user}/>
+                    author={article.user}/>
                   <ButtonList>
                     {[
                       <Link
@@ -57,23 +69,12 @@ class MyProfile extends Component {
                           </a>,
                         ] : []
                       ),
-                      article.active === 1 ?
-                        <Link
-                          key={2}
-                          className="btn-normal on-white"
-                          to={
-                            articleUrl(
-                              article.artist.slug,
-                              article.prefix,
-                              article.slug
-                            )
-                          }>
-                          Read
-                        </Link> :
-                        <b key={3}>Not published</b>,
+                      article.active !== 1 ?
+                        <b key={3}>Not published</b> :
+                        null,
                     ]}
                   </ButtonList>
-                </li>
+                </div>
               ))}
             </ul>
           </Section>

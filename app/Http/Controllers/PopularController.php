@@ -3,16 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Artists\Artist;
 use App\Models\Artists\ArtistArticle;
+use App\Http\Resources\ArtistCollection;
 use App\Http\Resources\ArtistArticleCollection;
 
 class PopularController extends Controller
 {
     protected $articles;
 
-    public function __construct(ArtistArticle $articles)
+    protected $artists;
+
+    public function __construct(ArtistArticle $articles, Artist $artists)
     {
         $this->articles = $articles;
+        $this->artists = $artists;
     }
 
     public function articles(Request $request)
@@ -31,6 +36,16 @@ class PopularController extends Controller
                     'description',
                     'title'
                 ])
+                ->paginate(config('defaults.pagination.per_page'))
+        );
+    }
+
+    public function artists(Request $request)
+    {
+        return new ArtistCollection(
+            $this
+                ->artists
+                ->popular()
                 ->paginate(config('defaults.pagination.per_page'))
         );
     }

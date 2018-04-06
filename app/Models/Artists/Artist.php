@@ -56,4 +56,20 @@ class Artist extends Model
             )
             ->orderByRaw('relevancy + name_relevancy DESC');
     }
+
+    public function scopePopular($q)
+    {
+        return $q
+            ->selectRaw(
+                'artists.*, ' .
+                'COUNT(artist_articles.id) as articles_count'
+            )
+            ->leftJoin('artist_articles', function ($q) {
+                $q
+                    ->on('artist_articles.artist_id', '=', 'artists.id')
+                    ->where('artist_articles.active', true);
+            })
+            ->groupBy('artists.id')
+            ->orderBy('articles_count', 'DESC');
+    }
 }

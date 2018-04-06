@@ -24,6 +24,10 @@ class UserArticleResource extends JsonResource
             'description' => $this->description,
             'content' => $this->content,
             'artist' => new ArtistResource($this->whenLoaded('artist')),
+            'likes_count' => $this->when(
+                $this->likes_count !== null,
+                $this->likes_count
+            ),
             'updated_at' => $this->updated_at,
             'created_at' => $this->created_at,
         ];

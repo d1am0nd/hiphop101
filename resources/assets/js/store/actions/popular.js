@@ -1,8 +1,12 @@
 import {
   SET_POPULAR_ARTICLES,
+  SET_POPULAR_ARTISTS,
 } from '@/store/const/popular';
 
-import {getPopularArticles} from '@/api/popular';
+import {
+  getPopularArticles,
+  getPopularArtists,
+} from '@/api/popular';
 import {getData} from '@/api/helpers';
 
 const fetchPopularArticles = () => {
@@ -23,6 +27,25 @@ const fetchPopularArticles = () => {
   };
 };
 
+const fetchPopularArtists = () => {
+  return (dispatch) => {
+    return new Promise((resolve, reject) => {
+      getPopularArtists()
+        .then((res) => {
+          dispatch({
+            type: SET_POPULAR_ARTISTS,
+            payload: getData(res),
+          });
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  };
+};
+
 export {
   fetchPopularArticles,
+  fetchPopularArtists,
 };

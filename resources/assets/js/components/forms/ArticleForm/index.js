@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {textBetween, textMin} from '@/validation/text';
+import {textMin} from '@/validation/text';
 import Form from '@/components/simple/form/Form';
 import Input from '@/components/simple/form/Input';
 import TextArea from '@/components/simple/form/TextArea';
@@ -25,23 +25,6 @@ const ArticleForm = ({
       }}
       errors={errors.title}
       label="Title"/>
-    <TextArea
-      handleChange={(e) => handleChange(e)}
-      attributes={{
-        placeholder: 'Description',
-        name: 'description',
-        rows: 8,
-        tabIndex: 2,
-        value: article.description,
-      }}
-      label="Short description (required)"
-      help={textBetween({
-        input: article.description,
-        name: 'Description',
-        min: 150,
-        max: 400,
-      })}
-      errors={errors.description}/>
     <TextArea
       handleChange={(e) => handleChange(e)}
       attributes={{

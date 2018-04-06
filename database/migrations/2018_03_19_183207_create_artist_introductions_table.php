@@ -22,7 +22,7 @@ class CreateArtistIntroductionsTable extends Migration
                 $table->string('slug');
 
                 $table->string('title');
-                $table->text('description');
+                $table->text('description')->nullable();
                 $table->text('content');
 
                 $table->integer('user_id')->unsigned()->nullable();
