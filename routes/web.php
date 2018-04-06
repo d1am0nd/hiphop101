@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('test', function () {
-    return \App\Models\Artists\ArtistArticle::popular()->get();
-});
 Route::get('{any}', function () {
     return view('home');
 })->where('any', '^(?!\/?api).*');

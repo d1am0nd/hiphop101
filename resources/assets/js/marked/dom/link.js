@@ -20,7 +20,7 @@ const link = (renderer) => (href, title, text) => {
   const domain = erd(href);
 
   return `<a href="${href}"` +
-    `title="${title}"` +
+    (title ? `title="${title}"` : '') +
     `${blank ? 'target="_blank"' : ''}>` +
     text +
     `</a> <span class="href-domain">(${domain})</span>`;
