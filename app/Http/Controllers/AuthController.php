@@ -30,7 +30,7 @@ class AuthController extends Controller
         $user = $this->user->create($data);
 
         $token = $this->auth->attempt($request->only([
-            'email', 'password',
+            'name', 'password',
         ]));
         return response()->json([
             'data' => [

@@ -2,7 +2,6 @@
 
 namespace App\Lib\Traits;
 
-use Auth;
 use App\Models\Polymorphic\AdditionalDetail;
 
 trait Detailable
@@ -14,12 +13,10 @@ trait Detailable
 
     public function addDetails()
     {
-        if (Auth::check()) {
-            $this->details()->create([
-                'ip' => request()->ip(),
-                'user_id' => Auth::user()->id
-            ]);
-        }
+        $this->details()->create([
+            'ip' => request()->ip(),
+            'user_id' => auth()->check() ? auth()->id() : null,
+        ]);
         return $this;
     }
 }

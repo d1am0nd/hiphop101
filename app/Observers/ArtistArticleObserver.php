@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use Auth;
 use App\Models\Artists\ArtistArticle;
 
 class ArtistArticleObserver

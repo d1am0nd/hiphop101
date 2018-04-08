@@ -51,7 +51,6 @@ class Register extends Component {
         this.setState({
           ...this.state,
           errors: {
-            ...this.state.errors,
             ...getErr(err),
           },
         });
@@ -72,23 +71,23 @@ class Register extends Component {
         </div>
         <Form handleSubmit={(e) => this.handleSubmit(e)}>
           <Input
+            handleChange={(e) => this.handleChange(e)}
             attributes={{
               autoFocus: true,
+              name: 'name',
+              placeholder: 'Username',
+            }}
+            errors={errors.name}
+            label="Username"/>
+          <Input
+            attributes={{
               type: 'email',
               name: 'email',
               placeholder: 'Email',
             }}
             errors={errors.email}
             handleChange={(e) => this.handleChange(e)}
-            label="Email"/>
-          <Input
-            handleChange={(e) => this.handleChange(e)}
-            attributes={{
-              name: 'name',
-              placeholder: 'Username',
-            }}
-            errors={errors.name}
-            label="Username"/>
+            label="Email (optional)"/>
           <Input
             handleChange={(e) => this.handleChange(e)}
             attributes={{
