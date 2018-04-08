@@ -17,6 +17,10 @@
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 5px;
+
+    & > a {
+      text-decoration: none;
+    }
   }
 
   h1 {
@@ -104,6 +108,7 @@
         display: inline-block;
         padding-right: 5px;
         margin-right: 5px;
+        margin-left: 0px;
         border-right: 1px solid $mainBrand;
 
         &:last-child {
