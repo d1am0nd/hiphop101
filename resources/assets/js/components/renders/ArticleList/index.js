@@ -5,38 +5,36 @@ import {Link} from 'react-router-dom';
 import {articleUrl} from '@/routes/routes';
 
 import ArticleDetails from '@/components/renders/Article/Details';
-import ButtonList from '@/components/simple/content/ButtonList';
 import H3 from '@/components/simple/content/H3';
 
-const ArticleList = ({articles, artist}) => (
-  <ul className="short-descriptions">
+const ArticleList = ({
+  articles,
+  bottomContent,
+}) => (
+  <ul className="article-list">
     {articles.map((article, i) => (
       <li key={i}>
         <H3>
-          {article.title}
+          {
+            article.active === 1 ?
+              <Link to={articleUrl(
+                article.artist.slug,
+                article.prefix,
+                article.slug
+              )}>
+                {article.title}
+              </Link> :
+              article.title
+          }
         </H3>
-        <p>
-          {article.description}
-        </p>
         <ArticleDetails
-          author={article.user}
-          article={article}/>
-        <ButtonList>
-          {[
-            <Link
-              key={0}
-              className="btn-inverse on-white"
-              to={
-                articleUrl(
-                  (article.artist ? article.artist.slug : artist.slug),
-                  article.prefix,
-                  article.slug
-                )
-              }>
-            Read
-            </Link>,
-          ]}
-        </ButtonList>
+          article={article}
+          artist={article.artist}
+          author={article.user}/>
+        {
+          bottomContent ?
+            bottomContent(article, i) : null
+        }
       </li>
     ))}
   </ul>
@@ -44,7 +42,7 @@ const ArticleList = ({articles, artist}) => (
 
 ArticleList.propTypes = {
   articles: PropTypes.array.isRequired,
-  artist: PropTypes.object,
+  bottomContent: PropTypes.func,
 };
 
 export default ArticleList;

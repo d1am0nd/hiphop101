@@ -31,6 +31,7 @@ class PopularController extends Controller
                     'artist_articles.artist_id',
                     'artist_articles.user_id',
                     'artist_articles.updated_at',
+                    'active',
                     'slug',
                     'prefix',
                     'description',

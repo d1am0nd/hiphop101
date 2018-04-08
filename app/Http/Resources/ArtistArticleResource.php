@@ -18,6 +18,7 @@ class ArtistArticleResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'active' => $this->active,
             'title' => $this->title,
             'slug' => $this->slug,
             'prefix' => $this->prefix,

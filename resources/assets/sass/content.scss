@@ -15,24 +15,41 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
-  }
-
-  h1 {
-    font-size: 2em;
+    margin-top: 0;
     margin-bottom: 5px;
   }
 
-  h2 {
+  h1 {
     font-size: 1.8em;
   }
 
-  h3 {
-    margin-top: 5px;
+  h2 {
     font-size: 1.6em;
   }
 
-  h2, h3, h4, h5, h6 {
-    margin-bottom: 10px;
+  h3 {
+    font-size: 1.5em;
+  }
+
+  h4 {
+    font-size: 1.4em;
+  }
+
+  h5 {
+    font-size: 1.3em;
+  }
+
+  h6 {
+    font-size: 1.2em;
+  }
+
+  ul {
+    padding-left: 20px;
+    margin-top: 0;
+
+    li {
+      margin: 3px;
+    }
   }
 
   .description {
@@ -59,12 +76,21 @@
     font-size: 0.6em;
   }
 
-  .article-list {
-    h3 {
-      margin-bottom: 0px;
-      margin-top: 0;
-      & > a {
-        text-decoration: none;
+  ul.article-list {
+    padding: 0;
+    list-style: none;
+    margin-left: 0;
+
+    & > li {
+      margin-left: 0;
+      margin-bottom: 5px;
+
+      h3 {
+        margin-bottom: 0px;
+        margin-top: 0;
+        & > a {
+          text-decoration: none;
+        }
       }
     }
   }
@@ -93,10 +119,6 @@
 
       li {
         display: block;
-
-        h2 {
-          font-size: 1.5em;
-        }
       }
     }
   }
@@ -142,6 +164,7 @@
   }
 
   ul.button-list {
+    padding: 0;
     margin-bottom: 10px;
   }
 
