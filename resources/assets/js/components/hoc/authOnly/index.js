@@ -10,7 +10,7 @@ const authOnly = (Component) => {
     */
     isAuthenticated() ?
       <Component/> :
-      <Redirect to="/faq" push/>
+      <Redirect to="/" push/>
   );
   return AuthOnly;
 };
