@@ -14,27 +14,29 @@ const ArticleList = ({
   <ul className="article-list">
     {articles.map((article, i) => (
       <li key={i}>
-        <H3>
+        <div className="article-wrapper">
+          <H3>
+            {
+              article.active === 1 ?
+                <Link to={articleUrl(
+                  article.artist.slug,
+                  article.prefix,
+                  article.slug
+                )}>
+                  {article.title}
+                </Link> :
+                article.title
+            }
+          </H3>
+          <ArticleDetails
+            article={article}
+            artist={article.artist}
+            author={article.user}/>
           {
-            article.active === 1 ?
-              <Link to={articleUrl(
-                article.artist.slug,
-                article.prefix,
-                article.slug
-              )}>
-                {article.title}
-              </Link> :
-              article.title
+            bottomContent ?
+              bottomContent(article, i) : null
           }
-        </H3>
-        <ArticleDetails
-          article={article}
-          artist={article.artist}
-          author={article.user}/>
-        {
-          bottomContent ?
-            bottomContent(article, i) : null
-        }
+        </div>
       </li>
     ))}
   </ul>
