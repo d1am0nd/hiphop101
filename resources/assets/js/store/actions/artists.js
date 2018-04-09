@@ -13,7 +13,7 @@ import {
   myArticles,
   deleteArticle,
 } from '@/api/auth';
-import {getData, getParent} from '@/api/helpers';
+import {getData, getParent, getMeta} from '@/api/helpers';
 
 const setArtist = (artist) => {
   return (dispatch) => {
@@ -27,9 +27,12 @@ const setArticle = (article) => {
   };
 };
 
-const setArticles = (articles) => {
+const setArticles = (articles, meta) => {
   return (dispatch) => {
-    dispatch({type: SET_ARTICLES, payload: articles});
+    dispatch({type: SET_ARTICLES, payload: {
+      data: articles,
+      meta: meta,
+    }});
   };
 };
 
@@ -39,7 +42,10 @@ const fetchArtistWithArticles = (artistSlug) => {
       getArtistArticles(artistSlug)
         .then((res) => {
           dispatch(setArtist(getParent(res)));
-          dispatch(setArticles(getData(res)));
+          dispatch(setArticles(
+            getData(res),
+            getMeta(res)
+          ));
           resolve(res);
         })
         .catch((err) => {

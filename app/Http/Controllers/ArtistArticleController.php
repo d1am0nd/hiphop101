@@ -23,31 +23,39 @@ class ArtistArticleController extends Controller
 
     public function index(Request $request, Artist $artist)
     {
+        // Get SQL data
+        $result = $artist
+            ->articles()
+            ->active()
+            ->popular()
+            ->with('user')
+            // If my_articles = 1, show current users articles
+            ->when(
+                $request->input('my_articles') == 1 &&
+                auth()->check(),
+                function ($q) {
+                    $q->byUserId(auth()->id());
+                }
+            )
+            // If authenticated, add myLike
+            ->when(
+                auth()->check(),
+                function ($q) {
+                    $q->with('myLike');
+                }
+            )
+            ->paginate(config('defaults.pagination.per_page'));
+
+        // Add 'artist' to the articles
+        $result
+            ->getCollection()
+            ->transform(function ($i) use ($artist) {
+                return $i->setRelation('artist', $artist);
+            });
+
+        // Return with pagination and everything
         return (new ArtistArticleCollection(
-            $artist
-                ->articles()
-                ->active()
-                ->popular()
-                ->with('user')
-                // If my_articles = 1, show current users articles
-                ->when(
-                    $request->input('my_articles') == 1 &&
-                    auth()->check(),
-                    function ($q) {
-                        $q->byUserId(auth()->id());
-                    }
-                )
-                // If authenticated, add myLike
-                ->when(
-                    auth()->check(),
-                    function ($q) {
-                        $q->with('myLike');
-                    }
-                )
-                ->paginate(config('defaults.pagination.per_page'))
-                ->map(function ($i) use ($artist) {
-                    return $i->setRelation('artist', $artist);
-                })
+            $result
         ))->additional([
             'parent' => new ArtistResource($artist),
         ]);

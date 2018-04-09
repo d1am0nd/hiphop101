@@ -14,21 +14,19 @@ import Pagination from '@/components/simple/pagination/Simple';
 import Description from '@/components/simple/content/Description';
 import ArticleList from '@/components/renders/ArticleList';
 
-const Home = ({articles, nextPage, prevPage}) => {
-  return (
-    <div className="homepage">
-      <H1>Home</H1>
-      <Description>
-        Hip Hop 101 is a platform dedicated to writing quality, positive,
-        opinionated introductions to all kinds of hip hop artists, groups
-        and associated acts.
-      </Description>
-      <H2>Popular articles</H2>
-      <ArticleList articles={articles}/>
-      <Pagination prev={prevPage} next={nextPage}/>
-    </div>
-  );
-};
+const Home = ({articles, nextPage, prevPage}) => (
+  <div className="homepage">
+    <H1>Home</H1>
+    <Description>
+      Hip Hop 101 is a platform dedicated to writing quality, positive,
+      opinionated introductions to all kinds of hip hop artists, groups
+      and associated acts.
+    </Description>
+    <H2>Popular articles</H2>
+    <ArticleList articles={articles}/>
+    <Pagination prev={prevPage} next={nextPage}/>
+  </div>
+);
 
 Home.propTypes = {
   articles: PropTypes.array.isRequired,

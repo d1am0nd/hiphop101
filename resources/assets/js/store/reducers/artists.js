@@ -17,29 +17,36 @@ const initialState = {
   article: {
     ...articleObj,
   },
-  articles: [],
+  articles: {
+    data: [],
+    meta: {},
+  },
 };
 
 export const artistReducer = (state = initialState, action) => {
+  const {payload} = action;
   switch (action.type) {
   case SET_ARTIST: {
     state = {
       ...state,
-      artist: action.payload,
+      artist: payload,
     };
     break;
   }
   case SET_ARTICLE: {
     state = {
       ...state,
-      article: action.payload,
+      article: payload,
     };
     break;
   }
   case SET_ARTICLES: {
     state = {
       ...state,
-      articles: action.payload,
+      articles: {
+        data: payload.data,
+        meta: payload.meta,
+      },
     };
     break;
   }
