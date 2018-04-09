@@ -10,7 +10,7 @@ import {
 import {getData} from '@/api/helpers';
 
 const fetchPopularArticles = () => {
-  return (dispatch) => {
+  return (dispatch, store) => {
     return new Promise((resolve, reject) => {
       getPopularArticles()
         .then((res) => {

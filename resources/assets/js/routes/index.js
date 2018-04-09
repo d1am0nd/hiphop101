@@ -16,7 +16,7 @@ import fetchesData from '@/components/hoc/fetchesData';
 const routes = [
   {
     path: '/',
-    component: Home,
+    component: fetchesData(Home),
     info: {
       name: 'Home',
       sidebar: false,

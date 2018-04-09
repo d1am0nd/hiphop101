@@ -8,6 +8,7 @@ import {
   fetchMyArticles,
   fetchArtistWithArticles,
 } from '@/store/actions/artists';
+import {fetchPopularArticles} from '@/store/actions/popular';
 import hasAuthListener from '@/components/hoc/hasAuthListener';
 
 import Shaq from '@/components/loading/Shaq';
@@ -30,6 +31,12 @@ const fetchesData = (WrappedComponent) => {
 
       let action = () => {};
       switch (match.path) {
+      case '/': {
+        action = () => dispatch(
+          fetchPopularArticles()
+        );
+        break;
+      }
       case '/artists/:slug': {
         action = () => dispatch(
           fetchArtistWithArticles(params.slug)
