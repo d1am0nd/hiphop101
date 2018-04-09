@@ -26,14 +26,18 @@ const fetchesData = (WrappedComponent) => {
     fetchData() {
       this.setState({isLoading: true});
 
-      const {match, dispatch} = this.props;
+      const {match, location, dispatch} = this.props;
       const {params} = match;
+      const {search} = location;
+      const getParams = new URLSearchParams(search);
+      const pn = !!getParams.get('page') ? getParams.get('page') : null;
 
       let action = () => {};
       switch (match.path) {
       case '/': {
+        console.log('pn', pn);
         action = () => dispatch(
-          fetchPopularArticles()
+          fetchPopularArticles(pn)
         );
         break;
       }

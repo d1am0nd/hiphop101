@@ -7,16 +7,19 @@ import {
   getPopularArticles,
   getPopularArtists,
 } from '@/api/popular';
-import {getData} from '@/api/helpers';
+import {getData, getMeta} from '@/api/helpers';
 
-const fetchPopularArticles = () => {
+const fetchPopularArticles = (pn = null) => {
   return (dispatch, store) => {
     return new Promise((resolve, reject) => {
-      getPopularArticles()
+      getPopularArticles(pn ? pn : 1)
         .then((res) => {
           dispatch({
             type: SET_POPULAR_ARTICLES,
-            payload: getData(res),
+            payload: {
+              meta: getMeta(res),
+              data: getData(res),
+            },
           });
           resolve(res);
         })
@@ -34,7 +37,10 @@ const fetchPopularArtists = () => {
         .then((res) => {
           dispatch({
             type: SET_POPULAR_ARTISTS,
-            payload: getData(res),
+            payload: {
+              meta: getMeta(res),
+              data: getData(res),
+            },
           });
           resolve(res);
         })

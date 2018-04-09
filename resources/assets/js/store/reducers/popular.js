@@ -4,23 +4,33 @@ import {
 } from '@/store/const/popular';
 
 const initialState = {
-  articles: [],
+  articles: {
+    meta: {},
+    data: [],
+  },
   artists: [],
 };
 
 export const popularReducer = (state = initialState, action) => {
+  const {payload} = action;
   switch (action.type) {
   case SET_POPULAR_ARTICLES: {
     state = {
       ...state,
-      articles: action.payload,
+      articles: {
+        meta: payload.meta,
+        data: payload.data,
+      },
     };
     break;
   }
   case SET_POPULAR_ARTISTS: {
     state = {
       ...state,
-      artists: action.payload,
+      artists: {
+        meta: payload.meta,
+        data: payload.data,
+      },
     };
     break;
   }

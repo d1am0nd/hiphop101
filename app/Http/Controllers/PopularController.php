@@ -37,7 +37,7 @@ class PopularController extends Controller
                     'description',
                     'title'
                 ])
-                ->paginate(config('defaults.pagination.per_page'))
+                ->paginate(5)
         );
     }
 

@@ -5,6 +5,7 @@ import {newArtistUrl} from '@/routes/routes';
 
 import H1 from '@/components/simple/content/H1';
 import ArtistSearch from '@/components/stateful/ArtistSearch';
+import ButtonList from '@/components/simple/content/ButtonList';
 import List from './List';
 
 class NewArticle extends Component {
@@ -26,9 +27,16 @@ class NewArticle extends Component {
       <div className="list-content">
         <H1>New article</H1>
 
-        <Link className="cta" to={newArtistUrl()}>
-          Add an artist
-        </Link>
+        <ButtonList>
+          {[
+            <Link
+              key={0}
+              className="btn-inverse on-white"
+              to={newArtistUrl()}>
+              Add an artist
+            </Link>,
+          ]}
+        </ButtonList>
 
         <ArtistSearch
           inputProps={{

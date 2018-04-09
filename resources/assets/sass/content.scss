@@ -156,6 +156,9 @@
   }
 
   .list-content {
+    & > ul {
+      margin-top: 10px;
+    }
     ul {
       padding: 0;
 

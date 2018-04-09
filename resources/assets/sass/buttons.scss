@@ -15,37 +15,37 @@
 }
 
 @mixin baseBtnColors {
-  color: $darkShade;
+  color: $darkShade !important;
   transition: $transition;
   border-color: $darkShade;
   background: $lightShade;
   @include hover{
-    color: $lightShade;
-    border: 1px solid $darkShade;
+    color: $lightShade !important;
+    border-color: $darkShade;
     background: $darkShade;
   }
 }
 
 @mixin inverseBtnColors {
-  color: $lightShade;
+  color: $lightShade !important;
   transition: $transition;
   border-color: $lightShade;
   background: $darkShade;
   @include hover{
-    color: $darkShade;
-    border: 1px solid $lightShade;
+    color: $darkShade !important;
+    border-color: $lightShade;
     background: $lightShade;
   }
 }
 
 @mixin darkAccentBtnColors {
-  color: $lightShade;
+  color: $lightShade !important;
   transition: $transition;
   border-color: $lightShade;
   background: $darkAccent;
   @include hover{
-    color: $darkAccent;
-    border: 1px solid $lightShade;
+    color: $darkAccent !important;
+    border-color: $lightShade;
     background: $lightShade;
   }
 }
