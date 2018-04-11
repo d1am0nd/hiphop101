@@ -35,7 +35,6 @@ const fetchesData = (WrappedComponent) => {
       let action = () => {};
       switch (match.path) {
       case '/': {
-        console.log('pn', pn);
         action = () => dispatch(
           fetchPopularArticles(pn)
         );

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import {Route} from 'react-router-dom';
 
 import {routes} from '@/routes';
@@ -23,9 +22,5 @@ class Content extends Component {
     );
   }
 }
-
-Content.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 export default Content;
