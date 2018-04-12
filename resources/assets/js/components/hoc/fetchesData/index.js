@@ -3,17 +3,11 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
-import {
-  fetchArticle,
-  fetchMyArticles,
-  fetchArtistWithArticles,
-} from '@/store/actions/artists';
-import {fetchPopularArticles} from '@/store/actions/popular';
 import hasAuthListener from '@/components/hoc/hasAuthListener';
 
 import Shaq from '@/components/loading/Shaq';
 
-const fetchesData = (WrappedComponent) => {
+const fetchesData = (WrappedComponent, fetchMethod) => {
   class FetchesData extends React.Component {
     constructor(props) {
       super(props);
@@ -32,39 +26,7 @@ const fetchesData = (WrappedComponent) => {
       const getParams = new URLSearchParams(search);
       const pn = !!getParams.get('page') ? getParams.get('page') : null;
 
-      let action = () => {};
-      switch (match.path) {
-      case '/': {
-        action = () => dispatch(
-          fetchPopularArticles(pn)
-        );
-        break;
-      }
-      case '/artists/:slug': {
-        action = () => dispatch(
-          fetchArtistWithArticles(params.slug)
-        );
-        break;
-      }
-      case '/artists/:artistSlug/:prefix/:articleSlug': {
-        action = () => dispatch(
-          fetchArticle(
-            params.artistSlug,
-            params.prefix,
-            params.articleSlug
-          )
-        );
-        break;
-      }
-      case '/profile': {
-        action = () => dispatch(
-          fetchMyArticles()
-        );
-        break;
-      }
-      }
-
-      action()
+      dispatch(fetchMethod(params, pn))
         .then((res) => {
           this.setState({
             ...this.state,

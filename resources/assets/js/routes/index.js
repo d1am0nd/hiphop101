@@ -13,10 +13,20 @@ import MyProfile from '@/components/scenes/MyProfile';
 import authOnly from '@/components/hoc/authOnly';
 import fetchesData from '@/components/hoc/fetchesData';
 
+import {
+  mapPopularAarticles,
+  mapArtistWithArticles,
+  mapFetchArticle,
+  mapFetchMyArticles,
+} from './map';
+
 const routes = [
   {
     path: '/',
-    component: fetchesData(Home),
+    component: fetchesData(
+      Home,
+      mapPopularAarticles
+    ),
     info: {
       name: 'Home',
       sidebar: false,
@@ -40,14 +50,20 @@ const routes = [
   },
   {
     path: '/artists/:slug',
-    component: fetchesData(Artist),
+    component: fetchesData(
+      Artist,
+      mapArtistWithArticles
+    ),
     info: {
       sidebar: false,
     },
   },
   {
     path: '/artists/:artistSlug/:prefix/:articleSlug',
-    component: fetchesData(ArtistArticle),
+    component: fetchesData(
+      ArtistArticle,
+      mapFetchArticle
+    ),
     info: {
       sidebar: false,
     },
@@ -82,7 +98,10 @@ const routes = [
   },
   {
     path: '/profile',
-    component: fetchesData(authOnly(MyProfile)),
+    component: fetchesData(
+      authOnly(MyProfile),
+      mapFetchMyArticles
+    ),
     info: {
       sidebar: false,
     },
