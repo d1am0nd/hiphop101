@@ -21,29 +21,10 @@ trait Likable
     }
 
     // Scopes
-    public function scopeJoinLikesCount($q, $select = ['*'])
-    {
-        $table = self::getTable();
-        $class = self::class;
-        return $q
-            ->leftJoin('likes', function ($q) use ($table, $class) {
-                $q
-                    ->on('likes.likable_id', '=', "$table.id")
-                    ->where('likes.likable_type', '=', $class);
-            })
-            ->select(
-                array_merge(
-                    $select,
-                    ["$table.id", DB::raw('COALESCE(COUNT(likes.id), 0) as likes_count')]
-                )
-            )
-            ->groupBy("$table.id");
-    }
-
-    public function scopePopular($q, $select = ['*'])
+    public function scopePopular($q)
     {
         return $q
-            ->joinLikesCount($select)
+            ->withCount('likes')
             ->orderBy('likes_count', 'DESC');
     }
 
@@ -62,7 +43,7 @@ trait Likable
 
     public function unlike($userId)
     {
-        if ($this->likes()->byUserId($userId)->delete() != 0) {
+        if ($this->likes()->byUserId($userId)->delete() !== 0) {
             return true;
         }
         return false;

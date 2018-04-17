@@ -22,7 +22,7 @@ class ArtistArticleResource extends JsonResource
             'title' => $this->title,
             'slug' => $this->slug,
             'prefix' => $this->prefix,
-            'description' => $this->description,
+            // 'description' => $this->description,
             'updated_at' => $this->updated_at,
             'artist' => new ArtistResource($this->whenLoaded('artist')),
             'user' => new UserResource($this->whenLoaded('user')),
