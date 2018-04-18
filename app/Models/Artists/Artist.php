@@ -5,7 +5,9 @@ namespace App\Models\Artists;
 use App\Lib\Traits\Detailable;
 use App\Models\Artists\ArtistArticle;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Artist extends Model
 {
@@ -15,13 +17,13 @@ class Artist extends Model
 
     protected $fillable = ['name', 'slug', 'description', 'wikipedia_url'];
 
-    // Relations
-    public function getRouteKeyName()
+    public function getRouteKeyName(): string
     {
         return 'slug';
     }
 
-    public function articles()
+    // Relations
+    public function articles(): HasMany
     {
         return $this->hasMany(ArtistArticle::class);
     }
@@ -29,17 +31,17 @@ class Artist extends Model
     // Scopes
 
     // Placeholder
-    public function scopeOrder($q)
+    public function scopeOrder(Builder $q): Builder
     {
         return $q->orderBy('name', 'ASC');
     }
 
-    public function scopeBySlug($q, $slug)
+    public function scopeBySlug(Builder $q, string $slug): Builder
     {
         return $q->where('slug', $slug);
     }
 
-    public function scopeSearch($q, $search)
+    public function scopeSearch(Builder $q, string $search): Builder
     {
         return $q
             ->selectRaw(
@@ -55,7 +57,7 @@ class Artist extends Model
             ->orderByRaw('relevancy + name_relevancy DESC');
     }
 
-    public function scopePopular($q)
+    public function scopePopular(Builder $q): Builder
     {
         return $q
             ->withCount('articles')

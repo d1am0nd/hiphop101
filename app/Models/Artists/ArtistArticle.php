@@ -8,7 +8,9 @@ use App\Lib\Traits\Likable;
 use App\Lib\Traits\Detailable;
 use App\Lib\Traits\UnixTimestamps;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ArtistArticle extends Model
 {
@@ -26,12 +28,12 @@ class ArtistArticle extends Model
         'artist_id',
     ];
 
-    public function artist()
+    public function artist(): BelongsTo
     {
         return $this->belongsTo(Artist::class);
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -39,32 +41,32 @@ class ArtistArticle extends Model
     // Scopes
 
     // Placeholder
-    public function scopeOrder($q)
+    public function scopeOrder(Builder $q): Builder
     {
         return $q;
     }
 
-    public function scopeByPrefix($q, $prefix)
+    public function scopeByPrefix(Builder $q, string $prefix): Builder
     {
         return $q->where('prefix', $prefix);
     }
 
-    public function scopeBySlug($q, $slug)
+    public function scopeBySlug(Builder $q, string $slug): Builder
     {
         return $q->where('slug', $slug);
     }
 
-    public function scopeByUserId($q, $uid)
+    public function scopeByUserId(Builder $q, int $uid): Builder
     {
         return $q->where('artist_articles.user_id', $uid);
     }
 
-    public function scopeActive($q, $true = true)
+    public function scopeActive(Builder $q, bool $true = true): Builder
     {
         return $q->where('active', $true);
     }
 
-    public function scopeNotByUser($q, $uid)
+    public function scopeNotByUser(Builder $q, int $uid): Builder
     {
         return $q->where('user_id', '!=', $uid);
     }
