@@ -2,7 +2,6 @@
 
 namespace App\Models\Artists;
 
-use DB;
 use App\Lib\Traits\Detailable;
 use App\Models\Artists\ArtistArticle;
 use Illuminate\Database\Eloquent\Model;
@@ -26,7 +25,6 @@ class Artist extends Model
     {
         return $this->hasMany(ArtistArticle::class);
     }
-
 
     // Scopes
 
@@ -60,16 +58,7 @@ class Artist extends Model
     public function scopePopular($q)
     {
         return $q
-            ->selectRaw(
-                'artists.*, ' .
-                'COUNT(artist_articles.id) as articles_count'
-            )
-            ->leftJoin('artist_articles', function ($q) {
-                $q
-                    ->on('artist_articles.artist_id', '=', 'artists.id')
-                    ->where('artist_articles.active', true);
-            })
-            ->groupBy('artists.id')
+            ->withCount('articles')
             ->orderBy('articles_count', 'DESC');
     }
 }
