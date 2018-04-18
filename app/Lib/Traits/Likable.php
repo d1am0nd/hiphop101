@@ -2,18 +2,20 @@
 
 namespace App\Lib\Traits;
 
-use DB;
 use App\Models\Polymorphic\Like;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait Likable
 {
     // Relationships
-    public function likes()
+    public function likes(): MorphMany
     {
         return $this->morphMany(Like::class, 'likable');
     }
 
-    public function myLike()
+    public function myLike(): MorphOne
     {
         return $this
             ->morphOne(Like::class, 'likable')
@@ -21,7 +23,7 @@ trait Likable
     }
 
     // Scopes
-    public function scopePopular($q)
+    public function scopePopular(Builder $q): Builder
     {
         return $q
             ->withCount('likes')
@@ -30,7 +32,7 @@ trait Likable
 
 
     // Model methods
-    public function like($userId)
+    public function like(int $userId): bool
     {
         if ($this->likes()->byUserId($userId)->first() === null) {
             $this->likes()->create([
@@ -41,7 +43,7 @@ trait Likable
         return false;
     }
 
-    public function unlike($userId)
+    public function unlike(int $userId): bool
     {
         if ($this->likes()->byUserId($userId)->delete() !== 0) {
             return true;

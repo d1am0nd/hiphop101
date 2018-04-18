@@ -3,15 +3,16 @@
 namespace App\Lib\Traits;
 
 use App\Models\Polymorphic\AdditionalDetail;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 trait Detailable
 {
-    public function details()
+    public function details(): MorphOne
     {
         return $this->morphOne(AdditionalDetail::class, 'detailable');
     }
 
-    public function addDetails()
+    public function addDetails(): parent
     {
         $this->details()->create([
             'ip' => request()->ip(),
