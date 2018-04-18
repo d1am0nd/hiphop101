@@ -8,7 +8,7 @@ import {fetchPopularArticles} from '@/store/actions/popular';
 const mapPopularAarticles = ({}, pn) => fetchPopularArticles(pn);
 const mapArtistWithArticles = ({slug}) => fetchArtistWithArticles(slug);
 const mapFetchArticle = ({artistSlug, prefix, articleSlug}) => fetchArticle(
-  artistSlug, prefix, artistSlug
+  artistSlug, prefix, articleSlug
 );
 const mapFetchMyArticles = ({}) => fetchMyArticles();
 
