@@ -16,7 +16,7 @@ class ArticleController extends Controller
         $this->model = $model;
     }
 
-    public function index()
+    public function index(): ArtistArticleCollection
     {
         return new ArtistArticleCollection(
             $this

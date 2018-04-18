@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use App\Models\Users\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Auth\LoginRequest;
@@ -22,7 +23,7 @@ class AuthController extends Controller
         $this->auth = app()->make('auth');
     }
 
-    public function register(RegisterRequest $request)
+    public function register(RegisterRequest $request): JsonResponse
     {
         $data = $request->input();
         $data['password'] = $this->hash->make($data['password']);
@@ -40,7 +41,7 @@ class AuthController extends Controller
         ]);
     }
 
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $request): JsonResponse
     {
         $username = $request->input('email');
         $attempt = filter_var($username, FILTER_VALIDATE_EMAIL) ?
@@ -61,7 +62,7 @@ class AuthController extends Controller
         ]);
     }
 
-    public function logout(LogoutRequest $request)
+    public function logout(LogoutRequest $request): JsonResponse
     {
         return response()->json([
             'data' => [
@@ -70,7 +71,7 @@ class AuthController extends Controller
         ]);
     }
 
-    public function refreshToken(Request $request)
+    public function refreshToken(Request $request): JsonResponse
     {
         return response()->json([
             'data' => [
@@ -88,7 +89,7 @@ class AuthController extends Controller
      *
      * @return array
      */
-    protected function tokenArray($token)
+    protected function tokenArray(string $token): array
     {
         return [
             'access_token' => $token,

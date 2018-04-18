@@ -20,7 +20,7 @@ class PopularController extends Controller
         $this->artists = $artists;
     }
 
-    public function articles(Request $request)
+    public function articles(Request $request): ArtistArticleCollection
     {
         return new ArtistArticleCollection(
             $this
@@ -41,7 +41,7 @@ class PopularController extends Controller
         );
     }
 
-    public function artists(Request $request)
+    public function artists(Request $request): ArtistCollection
     {
         return new ArtistCollection(
             $this

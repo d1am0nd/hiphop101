@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Artists\Artist;
 use App\Http\Resources\ArtistResource;
+use App\Http\Resources\ArtistCollection;
 use App\Http\Requests\StoreArtistRequest;
 
 class ArtistController extends Controller
@@ -17,9 +18,9 @@ class ArtistController extends Controller
         $this->model = $artist;
     }
 
-    public function index(Request $request)
+    public function index(Request $request): ArtistCollection
     {
-        return ArtistResource::collection(
+        return new ArtistCollection(
             $this
                 ->model
                 ->when($request->input('search', false), function ($q) use ($request) {
@@ -30,12 +31,12 @@ class ArtistController extends Controller
         );
     }
 
-    public function show(Request $request, Artist $artist)
+    public function show(Request $request, Artist $artist): ArtistResource
     {
         return new ArtistResource($artist);
     }
 
-    public function store(StoreArtistRequest $request)
+    public function store(StoreArtistRequest $request): ArtistResource
     {
         return new ArtistResource(
             $this->model->create(

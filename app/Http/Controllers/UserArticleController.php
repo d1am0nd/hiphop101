@@ -18,7 +18,7 @@ class UserArticleController extends Controller
         $this->model = $artistArticle;
     }
 
-    public function index(Request $request)
+    public function index(Request $request): UserArticleCollection
     {
         return new UserArticleCollection(
             $this
@@ -40,14 +40,14 @@ class UserArticleController extends Controller
         );
     }
 
-    public function show(Request $request, $id)
+    public function show(Request $request, int $id): UserArticleResource
     {
         return new UserArticleResource(
             $this->model->byUserId(auth()->id())->findOrFail($id)
         );
     }
 
-    public function update(StoreArtistArticleRequest $request, $id)
+    public function update(StoreArtistArticleRequest $request, int $id): int
     {
         return $this
             ->model
@@ -71,7 +71,7 @@ class UserArticleController extends Controller
             );
     }
 
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request, $id): int
     {
         return $this
             ->model

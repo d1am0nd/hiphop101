@@ -21,7 +21,7 @@ class ArtistArticleController extends Controller
         $this->model = $artistArticle;
     }
 
-    public function index(Request $request, Artist $artist)
+    public function index(Request $request, Artist $artist): ArtistArticleCollection
     {
         // Get SQL data
         $result = $artist
@@ -61,7 +61,7 @@ class ArtistArticleController extends Controller
         ]);
     }
 
-    public function show(Request $request, Artist $artist, $prefix, $slug)
+    public function show(Request $request, Artist $artist, $prefix, $slug): ArtistArticleResource
     {
         return (new ArtistArticleResource(
             $artist
@@ -83,7 +83,7 @@ class ArtistArticleController extends Controller
         ]);
     }
 
-    public function store(StoreArtistArticleRequest $request, Artist $artist)
+    public function store(StoreArtistArticleRequest $request, Artist $artist): UserArticleResource
     {
         return (new UserArticleResource(
             $this->model->create(
@@ -102,7 +102,7 @@ class ArtistArticleController extends Controller
         ]);
     }
 
-    public function like(Request $request, Artist $artist, $prefix, $slug)
+    public function like(Request $request, Artist $artist, $prefix, $slug): array
     {
         return [
             'data' => $artist
@@ -115,7 +115,7 @@ class ArtistArticleController extends Controller
         ];
     }
 
-    public function unlike(Request $request, Artist $artist, $prefix, $slug)
+    public function unlike(Request $request, Artist $artist, $prefix, $slug): array
     {
         return [
             'data' => $artist
