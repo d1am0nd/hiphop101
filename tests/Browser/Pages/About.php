@@ -3,10 +3,11 @@
 namespace Tests\Browser\Pages;
 
 use Laravel\Dusk\Browser;
+use Laravel\Dusk\Page as BasePage;
 
-use Tests\Browser\Components\ArticleList;
+use Tests\Browser\Components\Summary;
 
-class Home extends Page
+class About extends BasePage
 {
     /**
      * Get the URL for the page.
@@ -15,7 +16,7 @@ class Home extends Page
      */
     public function url()
     {
-        return '/';
+        return '/about';
     }
 
     /**
@@ -28,8 +29,7 @@ class Home extends Page
     {
         $browser
             ->assertPathIs($this->url())
-            ->assertSee(env('APP_NAME'))
-            ->assertSee('Popular articles');
+            ->assertSee('About');
     }
 
     /**
@@ -40,7 +40,7 @@ class Home extends Page
     public function elements()
     {
         return [
-            '@articleList' => new ArticleList,
+            '@summary' => new Summary,
         ];
     }
 }
