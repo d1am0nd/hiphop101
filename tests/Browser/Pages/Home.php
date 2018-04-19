@@ -29,7 +29,8 @@ class Home extends Page
         $browser
             ->assertPathIs($this->url())
             ->assertSee(env('APP_NAME'))
-            ->assertSee('Popular articles');
+            ->assertSee('Popular articles')
+            ->assertSee('Home');
     }
 
     /**

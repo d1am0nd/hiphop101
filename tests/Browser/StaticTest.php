@@ -7,7 +7,8 @@ use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\Browser\Pages\{
     Home,
-    About
+    About,
+    HowToWrite,
 };
 
 class StaticTest extends DuskTestCase
@@ -17,6 +18,7 @@ class StaticTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit(new Home);
             $browser->visit(new About);
+            $browser->visit(new HowToWrite);
         });
     }
 }

@@ -4,7 +4,7 @@ namespace Tests\Browser\Pages;
 
 use Laravel\Dusk\Browser;
 
-class About extends Page
+class HowToWrite extends Page
 {
     /**
      * Get the URL for the page.
@@ -13,7 +13,7 @@ class About extends Page
      */
     public function url()
     {
-        return '/about';
+        return '/how-to-write-an-article';
     }
 
     /**
@@ -24,10 +24,8 @@ class About extends Page
      */
     public function assert(Browser $browser)
     {
-        $browser
-            ->assertPathIs($this->url())
-            ->assertVisible('@description')
-            ->assertSee('About');
+        $browser->assertPathIs($this->url())
+            ->assertSee('How to write an article');
     }
 
     /**

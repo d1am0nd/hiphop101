@@ -5,7 +5,7 @@ namespace Tests\Browser\Components;
 use Laravel\Dusk\Browser;
 use Laravel\Dusk\Component as BaseComponent;
 
-class Summary extends BaseComponent
+class Description extends BaseComponent
 {
     /**
      * Get the root selector for the component.
@@ -14,7 +14,7 @@ class Summary extends BaseComponent
      */
     public function selector()
     {
-        return 'p.summary';
+        return 'p.description';
     }
 
     /**
