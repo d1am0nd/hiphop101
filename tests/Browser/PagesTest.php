@@ -41,11 +41,8 @@ class PagesTest extends DuskTestCase
 
             // Home page
             $browser->visit(new Home)
-                ->assertSee($artist->name)
-                ->within('@articleList', function (Browser $browser) use ($activeArticle) {
-                    $browser->assertSee($activeArticle->title);
-                })
-                ->assertDontSee($inactiveArticle->title);
+                ->seeArticle($activeArticle)
+                ->dontSeeArticle($inactiveArticle);
 
             // Artist page
             $browser->visit(new ArtistPage($artist))

@@ -32,16 +32,12 @@ class ArticleList extends BaseComponent
 
     public function hasArticle(Browser $browser, ArtistArticle $article)
     {
-        $browser->within('@article', function (Browser $browser) use ($article) {
-            $browser->assertSee($article->title);
-        });
+        $browser->assertSeeIn('@article', $article->title);
     }
 
     public function doesntHaveArticle(Browser $browser, ArtistArticle $article)
     {
-        $browser->within('@article', function (Browser $browser) use ($article) {
-            $browser->assertDontSee($article->title);
-        });
+        $browser->assertDontSeeIn('@article', $article->title);
     }
 
     /**
