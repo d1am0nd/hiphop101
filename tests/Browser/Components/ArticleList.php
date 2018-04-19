@@ -5,6 +5,8 @@ namespace Tests\Browser\Components;
 use Laravel\Dusk\Browser;
 use Laravel\Dusk\Component as BaseComponent;
 
+use App\Models\Artists\ArtistArticle;
+
 class ArticleList extends BaseComponent
 {
     /**
@@ -14,7 +16,7 @@ class ArticleList extends BaseComponent
      */
     public function selector()
     {
-        return '.article-list';
+        return 'ul.article-list';
     }
 
     /**
@@ -28,6 +30,20 @@ class ArticleList extends BaseComponent
         $browser->assertVisible($this->selector());
     }
 
+    public function hasArticle(Browser $browser, ArtistArticle $article)
+    {
+        $browser->within('@article', function (Browser $browser) use ($article) {
+            $browser->assertSee($article->title);
+        });
+    }
+
+    public function doesntHaveArticle(Browser $browser, ArtistArticle $article)
+    {
+        $browser->within('@article', function (Browser $browser) use ($article) {
+            $browser->assertDontSee($article->title);
+        });
+    }
+
     /**
      * Get the element shortcuts for the component.
      *
@@ -36,7 +52,7 @@ class ArticleList extends BaseComponent
     public function elements()
     {
         return [
-            '@article' => 'ul > li',
+            '@article' => 'li > div.article-wrapper',
         ];
     }
 }

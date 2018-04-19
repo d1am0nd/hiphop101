@@ -3,8 +3,9 @@
 namespace Tests\Browser\Pages;
 
 use Laravel\Dusk\Browser;
+use Laravel\Dusk\Page as BasePage;
 
-class HowToWrite extends Page
+class HowToWrite extends BasePage
 {
     /**
      * Get the URL for the page.

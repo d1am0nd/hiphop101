@@ -11,6 +11,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 use Tests\Browser\Pages\{
     Home,
+    Artist as ArtistPage,
 };
 use Tests\Browser\Components\ArticleList;
 
@@ -41,10 +42,15 @@ class PagesTest extends DuskTestCase
             // Home page
             $browser->visit(new Home)
                 ->assertSee($artist->name)
-                ->within('@articleList', function ($browser) use ($activeArticle) {
+                ->within('@articleList', function (Browser $browser) use ($activeArticle) {
                     $browser->assertSee($activeArticle->title);
                 })
                 ->assertDontSee($inactiveArticle->title);
+
+            // Artist page
+            $browser->visit(new ArtistPage($artist))
+                ->seeArticle($activeArticle)
+                ->dontSeeArticle($inactiveArticle);
         });
     }
 }

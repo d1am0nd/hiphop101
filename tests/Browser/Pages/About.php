@@ -3,8 +3,9 @@
 namespace Tests\Browser\Pages;
 
 use Laravel\Dusk\Browser;
+use Laravel\Dusk\Page as BasePage;
 
-class About extends Page
+class About extends BasePage
 {
     /**
      * Get the URL for the page.
@@ -26,8 +27,8 @@ class About extends Page
     {
         $browser
             ->assertPathIs($this->url())
-            ->assertVisible('@description')
             ->assertSee('About');
+
     }
 
     /**
