@@ -18,7 +18,9 @@ class UserResource extends JsonResource
             'id' => $this->when(
                 auth()->check() &&
                     auth()->id() == $this->id,
-                $this->id
+                function () {
+                    return $this->id;
+                }
             ),
             'name' => $this->name,
         ];

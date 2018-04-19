@@ -27,16 +27,7 @@ class PopularController extends Controller
                 ->articles
                 ->active()
                 ->with(['artist', 'user'])
-                ->popular([
-                    'artist_articles.artist_id',
-                    'artist_articles.user_id',
-                    'artist_articles.updated_at',
-                    'active',
-                    'slug',
-                    'prefix',
-                    'description',
-                    'title'
-                ])
+                ->popular()
                 ->paginate(5)
         );
     }

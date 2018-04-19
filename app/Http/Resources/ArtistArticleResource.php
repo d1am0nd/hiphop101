@@ -36,7 +36,9 @@ class ArtistArticleResource extends JsonResource
             ),
             'liked' => $this->when(
                 auth()->check(),
-                $this->myLike !== null
+                function () {
+                    return $this->myLike !== null;
+                }
             )
         ];
     }
