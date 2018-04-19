@@ -2,6 +2,6 @@
 
 return [
     'pagination' => [
-        'per_page',
+        'per_page' => 5,
     ],
 ];

@@ -34,11 +34,11 @@ class PagesTest extends DuskTestCase
             'active' => false
         ]);
 
-        $this->browse(function (Browser $browser) use(
+        $this->browse(function (Browser $browser) use (
             $activeArticle,
             $inactiveArticle,
-            $artist) {
-
+            $artist
+        ) {
             // Home page
             $browser->visit(new Home)
                 ->seeArticle($activeArticle)
@@ -48,6 +48,40 @@ class PagesTest extends DuskTestCase
             $browser->visit(new ArtistPage($artist))
                 ->seeArticle($activeArticle)
                 ->dontSeeArticle($inactiveArticle);
+
+        });
+    }
+
+    public function testWithThreePages()
+    {
+        $artist = factory(Artist::class)->create();
+        $activeArticles = factory(
+            ArtistArticle::class, (config('defaults.pagination.per_page') * 2) + 1
+        )->create(['active' => true]);
+        $inactiveArticles = factory(
+            ArtistArticle::class, 5
+        )->create(['active' => false]);
+
+        $this->browse(function (Browser $browser) use (
+            $artist,
+            $activeArticles,
+            $inactiveArticles
+        ) {
+            $browser->visit(new Home)
+                ->hasNextPageButton()
+                ->doesntHavePrevPageButton()
+                ->goToNextPage()
+
+                ->hasNextPageButton()
+                ->hasPrevPageButton()
+                ->goToNextPage()
+
+                ->hasPrevPageButton()
+                ->doesntHaveNextPageButton()
+                ->goToPrevPage()
+
+                ->hasNextPageButton()
+                ->hasPrevPageButton();
         });
     }
 }

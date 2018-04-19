@@ -5,7 +5,10 @@ namespace Tests\Browser\Pages;
 use Laravel\Dusk\Browser;
 use Laravel\Dusk\Page as BasePage;
 
-use Tests\Browser\Components\ArticleList;
+use Tests\Browser\Components\{
+    ArticleList,
+    ButtonList,
+};
 use App\Models\Artists\{
     ArtistArticle,
 };
@@ -37,6 +40,34 @@ class Home extends BasePage
             ->assertSee('Home');
     }
 
+    public function hasNextPageButton(Browser $browser)
+    {
+        $browser->within(new ButtonList, function (Browser $browser) {
+            $browser->hasText('Next page');
+        });
+    }
+
+    public function hasPrevPageButton(Browser $browser)
+    {
+        $browser->within(new ButtonList, function (Browser $browser) {
+            $browser->hasText('Prev page');
+        });
+    }
+
+    public function doesntHavePrevPageButton(Browser $browser)
+    {
+        $browser->within(new ButtonList, function (Browser $browser) {
+            $browser->doesntHaveText('Prev page');
+        });
+    }
+
+    public function doesntHaveNextPageButton(Browser $browser)
+    {
+        $browser->within(new ButtonList, function (Browser $browser) {
+            $browser->doesntHaveText('Next page');
+        });
+    }
+
     public function seeArticle(Browser $browser, ArtistArticle $article)
     {
         $browser->within(new ArticleList, function (Browser $browser) use ($article) {
@@ -51,6 +82,20 @@ class Home extends BasePage
         });
     }
 
+    public function goToNextPage(Browser $browser)
+    {
+        $browser->within(new ButtonList, function (Browser $browser) {
+            $browser->clickButton('Next page');
+        });
+    }
+
+    public function goToPrevPage(Browser $browser)
+    {
+        $browser->within(new ButtonList, function (Browser $browser) {
+            $browser->clickButton('Prev page');
+        });
+    }
+
     /**
      * Get the element shortcuts for the page.
      *
@@ -60,6 +105,7 @@ class Home extends BasePage
     {
         return [
             '@articleList' => new ArticleList,
+            '@buttonList' => new ButtonList,
         ];
     }
 }
