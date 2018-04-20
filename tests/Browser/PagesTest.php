@@ -2,8 +2,11 @@
 
 namespace Tests\Browser;
 
-use App\Models\Artists\Artist;
-use App\Models\Artists\ArtistArticle;
+use App\Models\Artists\{
+    Artist,
+    ArtistArticle
+};
+use App\Models\Users\User;
 
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
@@ -82,6 +85,45 @@ class PagesTest extends DuskTestCase
 
                 ->hasNextPageButton()
                 ->hasPrevPageButton();
+        });
+    }
+
+    public function testLoginAndLogout()
+    {
+        $password = 'password';
+        $user = factory(User::class)->create([
+            'name' => 'Some username',
+            'password' => \Hash::make($password),
+        ]);
+
+        $this->browse(function (Browser $browser) use ($user, $password) {
+            $browser->visit(new Home)
+                ->clickLink('Login')
+                ->type('email', $user->email)
+                ->type('password', $password)
+                ->press('Submit')
+                ->pause(200)
+                ->assertSee(strtoupper($user->name))
+                ->clickLink('Logout')
+                ->assertDontSee(strtoupper($user->name));
+        });
+    }
+
+    public function testRegister()
+    {
+        $username = 'Some username';
+        $password = 'password';
+
+        $this->browse(function (Browser $browser) use ($username, $password) {
+            $browser->visit(new Home)
+                ->clickLink('Register')
+                ->type('email', 'someemail@email.com')
+                ->type('name', 'Some username')
+                ->type('password', $password)
+                ->type('password_confirmation', $password)
+                ->press('Submit')
+                ->pause(200)
+                ->assertSee(strtoupper($username));
         });
     }
 }

@@ -26,6 +26,7 @@ class HowToWrite extends BasePage
     public function assert(Browser $browser)
     {
         $browser->assertPathIs($this->url())
+            ->waitFor('h1')
             ->assertSee('How to write an article');
     }
 

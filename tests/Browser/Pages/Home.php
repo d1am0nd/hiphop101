@@ -35,6 +35,7 @@ class Home extends BasePage
     {
         $browser
             ->assertPathIs($this->url())
+            ->waitFor('h1')
             ->assertSee(env('APP_NAME'))
             ->assertSee('Popular articles')
             ->assertSee('Home');

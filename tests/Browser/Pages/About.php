@@ -27,6 +27,7 @@ class About extends BasePage
     {
         $browser
             ->assertPathIs($this->url())
+            ->waitFor('h1')
             ->assertSee('About');
 
     }
