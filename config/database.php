@@ -54,6 +54,21 @@ return [
             'engine' => null,
         ],
 
+        'phpunit' => [
+            'driver' => env('DB_DRIVER_UNITTESTING', 'mysql'),
+            'host' => env('DB_HOST_UNITTESTING', '127.0.0.1'),
+            'port' => env('DB_PORT_UNITTESTING', '3306'),
+            'database' => env('DB_DATABASE_UNITTESTING', 'forge'),
+            'username' => env('DB_USERNAME_UNITTESTING', 'forge'),
+            'password' => env('DB_PASSWORD_UNITTESTING', ''),
+            'unix_socket' => env('DB_SOCKET_UNITTESTING', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
+
         'testing' => [
             'driver' => env('DB_DRIVER_TESTING', 'mysql'),
             'host' => env('DB_HOST_TESTING', '127.0.0.1'),

@@ -27,7 +27,7 @@ class StoreArtistRequest extends FormRequest
     {
         return [
             'name' => ['required', 'unique:artists'],
-            'description' => 'between:150,400',
+            'description' => ['required', 'between:150,400'],
             'wikipedia_url' => ['nullable', new WikipediaUrl]
         ];
     }
