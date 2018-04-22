@@ -81,8 +81,7 @@ class ArtistTest extends TestCase
             ->actingAs(factory(User::class)->create())
             ->json('POST', '/api/artists', [
                 'name' => $name = 'Danny Brown',
-                'description' => $name = $this->faker()->text(300),
-                'wikipedia_url' => 'https://wikipedia.org',
+                'description' => 'Ut nihil accusantium est maxime. Sed quam voluptatem est doloremque consectetur. Nisi officia dolores sapiente doloremque laborum qui accusantium. At quia ut voluptas enim. Aperiam eligendi quo porro voluptas natus minus. Repudiandae aut impedit excepturi voluptates sed atque eum. Quis fugit deserunt ipsum.',
             ]);
 
         $res

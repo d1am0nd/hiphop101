@@ -8,7 +8,8 @@ use App\Http\Resources\UserArticleResource;
 use App\Http\Resources\UserArticleCollection;
 use App\Http\Requests\StoreArtistArticleRequest;
 
-class UserArticleController extends Controller {
+class UserArticleController extends Controller
+{
 
     protected $model;
 
