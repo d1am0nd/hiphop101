@@ -23,9 +23,13 @@ class ArtistTest extends TestCase
                 'data',
                 'meta',
             ])
-            ->assertSee($artist->name)
-            ->assertSee($artist->slug)
-            ->assertSee(json_encode($artist->description));
+            ->assertJsonFragment([
+                'data' => [
+                    $artist->only([
+                        'name', 'slug', 'description', 'wikipedia_url',
+                    ])
+                ],
+            ]);
     }
 
     public function testGetArtistsMultiplePages()
@@ -38,12 +42,13 @@ class ArtistTest extends TestCase
         $res = $this->json('GET', '/api/artists');
 
         $res
-            ->assertJson([
+            ->assertJsonFragment([
                 'meta' => [
                     'current_page' => 1,
                     'from' => 1,
-                    'to' => $perPage,
                     'last_page' => $pages,
+                    'path' => url('/api/artists'),
+                    'to' => $perPage,
                     'per_page' => $perPage,
                     'total' => $perPage * $pages,
                 ],
@@ -59,12 +64,9 @@ class ArtistTest extends TestCase
 
         $res
             ->assertExactJson([
-                'data' => [
-                    'name' => $artist->name,
-                    'slug' => $artist->slug,
-                    'description' => $artist->description,
-                    'wikipedia_url' => $artist->wikipedia_url,
-                ],
+                'data' => $artist->only([
+                    'name', 'slug', 'description', 'wikipedia_url'
+                ])
             ]);
     }
 
@@ -103,10 +105,11 @@ class ArtistTest extends TestCase
             ->actingAs(factory(User::class)->create())
             ->json('POST', '/api/artists');
 
-        $res->assertStatus(422);
-
-        $this->assertObjectHasAttribute('name', $res->getData()->errors);
-        $this->assertObjectHasAttribute('description', $res->getData()->errors);
+        $res
+            ->assertStatus(422)
+            ->assertJsonValidationErrors([
+                'name', 'description'
+            ]);
     }
 
     public function testInvalidWikipediaUrl()
@@ -117,8 +120,10 @@ class ArtistTest extends TestCase
                 'wikipedia_url' => 'http://virus.com',
             ]);
 
-        $res->assertStatus(422);
-
-        $this->assertObjectHasAttribute('wikipedia_url', $res->getData()->errors);
+        $res
+            ->assertStatus(422)
+            ->assertJsonValidationErrors([
+                'wikipedia_url'
+            ]);
     }
 }
