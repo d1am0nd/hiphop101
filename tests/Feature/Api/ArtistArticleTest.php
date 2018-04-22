@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Api;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -29,6 +29,20 @@ class ArtistArticleTest extends TestCase
 
     public function testGetArtistArticlesStructure()
     {
+
         $res = $this->json('GET', $this->baseUrl);
+
+        $res
+            ->assertStatus(200)
+            ->assertJsonStructure([
+                'data',
+                'meta',
+                'parent',
+            ])
+            ->assertJsonFragment([
+                'parent' => $this->artist->only(
+                    ['name', 'slug', 'description', 'wikipedia_url']
+                )
+            ]);
     }
 }
