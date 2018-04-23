@@ -61,7 +61,7 @@ class ArtistArticleController extends Controller
         ]);
     }
 
-    public function show(Request $request, Artist $artist, $prefix, $slug): ArtistArticleResource
+    public function show(Request $request, Artist $artist, string $prefix, string $slug): ArtistArticleResource
     {
         return (new ArtistArticleResource(
             $artist
@@ -102,7 +102,7 @@ class ArtistArticleController extends Controller
         ]);
     }
 
-    public function like(Request $request, Artist $artist, $prefix, $slug): array
+    public function like(Request $request, Artist $artist, string $prefix, string $slug): array
     {
         return [
             'data' => $artist
@@ -115,7 +115,7 @@ class ArtistArticleController extends Controller
         ];
     }
 
-    public function unlike(Request $request, Artist $artist, $prefix, $slug): array
+    public function unlike(Request $request, Artist $artist, string $prefix, string $slug): array
     {
         return [
             'data' => $artist

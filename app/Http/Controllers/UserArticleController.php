@@ -70,7 +70,7 @@ class UserArticleController extends Controller
             );
     }
 
-    public function destroy(Request $request, $id): int
+    public function destroy(Request $request, int $id): int
     {
         return $this
             ->model
