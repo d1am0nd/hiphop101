@@ -21,7 +21,7 @@ class UserArticleResource extends JsonResource
             'title' => $this->title,
             'slug' => $this->slug,
             'prefix' => $this->prefix,
-            'description' => $this->description,
+            // 'description' => $this->description,
             'content' => $this->content,
             'artist' => new ArtistResource($this->whenLoaded('artist')),
             'likes_count' => $this->when(

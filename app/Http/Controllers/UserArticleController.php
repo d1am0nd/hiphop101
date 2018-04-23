@@ -24,16 +24,7 @@ class UserArticleController extends Controller
             $this
                 ->model
                 ->with('artist')
-                ->popular([
-                    'artist_articles.artist_id',
-                    'artist_articles.user_id',
-                    'artist_articles.updated_at',
-                    'active',
-                    'slug',
-                    'prefix',
-                    'description',
-                    'title'
-                ])
+                ->popular()
                 ->byUserId(auth()->id())
                 ->get()
         );
@@ -55,12 +46,13 @@ class UserArticleController extends Controller
                 $q->active(false);
             })
             ->where('id', $id)
+            ->firstOrFail()
             ->update(
                 array_merge(
                     $request->only([
                         'active',
                         'title',
-                        'description',
+                        // 'description',
                         'content',
                     ]),
                     [
@@ -77,6 +69,7 @@ class UserArticleController extends Controller
             ->byUserId(auth()->id())
             ->active(false)
             ->where('id', $id)
+            ->firstOrFail()
             ->forceDelete();
     }
 }

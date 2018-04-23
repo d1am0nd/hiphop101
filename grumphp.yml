@@ -3,5 +3,5 @@ parameters:
     bin_dir: vendor/bin
     tasks:
       phpcs:
-        standard: PSR4
+        standard: PSR2
         ignore_patterns: [./public/index.php, ./tests/*, ./resources/*, ./database/*, ./bootstrap/*]
