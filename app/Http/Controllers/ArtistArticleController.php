@@ -107,7 +107,7 @@ class ArtistArticleController extends Controller
         return [
             'data' => $artist
                 ->articles()
-                ->notByUser(auth()->id())
+                ->active()
                 ->byPrefix($prefix)
                 ->bySlug($slug)
                 ->firstOrFail()
@@ -120,7 +120,7 @@ class ArtistArticleController extends Controller
         return [
             'data' => $artist
                 ->articles()
-                ->notByUser(auth()->id())
+                ->active()
                 ->byPrefix($prefix)
                 ->bySlug($slug)
                 ->firstOrFail()
