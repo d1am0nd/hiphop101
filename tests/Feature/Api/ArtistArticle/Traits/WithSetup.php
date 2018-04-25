@@ -5,7 +5,8 @@ namespace Tests\Feature\Api\ArtistArticle\Traits;
 use App\Models\Artists\Artist;
 use App\Models\Artists\ArtistArticle;
 
-trait WithSetup {
+trait WithSetup
+{
 
     public function setUp()
     {
