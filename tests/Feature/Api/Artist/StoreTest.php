@@ -11,7 +11,7 @@ use App\Models\Artists\Artist;
 
 class StoreTest extends TestCase
 {
-    use DatabaseTransactions, WithFaker, Traits\WithUrl;
+    use DatabaseTransactions, WithFaker, Traits\WithSetup;
 
     public function testPostArtistSuccess()
     {

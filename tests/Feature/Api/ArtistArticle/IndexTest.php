@@ -18,7 +18,7 @@ class IndexTest extends TestCase
     use DatabaseTransactions,
         WithFaker,
         AdditionalFakes,
-        Traits\WithUrl,
+        Traits\WithSetup,
         AdditionalAsserts;
 
     public function testGetArtistArticlesStructure()

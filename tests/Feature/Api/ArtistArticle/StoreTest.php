@@ -12,7 +12,7 @@ use App\Models\Users\User;
 class StoreTest extends TestCase
 {
 
-    use DatabaseTransactions, WithFaker, AdditionalFakes, Traits\WithUrl;
+    use DatabaseTransactions, WithFaker, AdditionalFakes, Traits\WithSetup;
 
     public function testPostArticleSuccess()
     {

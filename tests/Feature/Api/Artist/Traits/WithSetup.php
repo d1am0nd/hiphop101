@@ -4,7 +4,7 @@ namespace Tests\Feature\Api\Artist\Traits;
 
 use App\Models\Artists\Artist;
 
-trait WithUrl {
+trait WithSetup {
 
     protected function baseUrl()
     {

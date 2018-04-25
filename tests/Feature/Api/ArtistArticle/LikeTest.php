@@ -14,7 +14,7 @@ use App\Models\Artists\ArtistArticle;
 class LikeTest extends TestCase
 {
 
-    use DatabaseTransactions, WithFaker, AdditionalFakes, Traits\WithUrl;
+    use DatabaseTransactions, WithFaker, AdditionalFakes, Traits\WithSetup;
 
     public function testLikeArticleSuccess()
     {

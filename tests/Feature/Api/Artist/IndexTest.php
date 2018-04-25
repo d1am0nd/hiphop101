@@ -13,7 +13,7 @@ use App\Models\Artists\Artist;
 
 class IndexTest extends TestCase
 {
-    use DatabaseTransactions, WithFaker, AdditionalAsserts, Traits\WithUrl;
+    use DatabaseTransactions, WithFaker, AdditionalAsserts, Traits\WithSetup;
 
     public function testGetArtistsStructure()
     {

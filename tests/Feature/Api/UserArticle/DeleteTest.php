@@ -12,7 +12,7 @@ use App\Models\Artists\ArtistArticle;
 class DeleteTest extends TestCase
 {
     use DatabaseTransactions,
-        Traits\WithUrl;
+        Traits\WithSetup;
 
     public function testDestroyArticleSuccess()
     {

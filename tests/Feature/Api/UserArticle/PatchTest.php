@@ -15,7 +15,7 @@ class PatchTest extends TestCase
     use DatabaseTransactions,
         WithFaker,
         AdditionalFakes,
-        Traits\WithUrl;
+        Traits\WithSetup;
 
     public function testPatchArticleSuccess()
     {

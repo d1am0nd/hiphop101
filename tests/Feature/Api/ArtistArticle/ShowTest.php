@@ -12,7 +12,7 @@ use App\Models\Artists\ArtistArticle;
 class ShowTest extends TestCase
 {
 
-    use DatabaseTransactions, WithFaker, AdditionalFakes, Traits\WithUrl;
+    use DatabaseTransactions, WithFaker, AdditionalFakes, Traits\WithSetup;
 
     public function testGetArtistArticleSuccess()
     {
