@@ -16,7 +16,8 @@ class LikeTest extends TestCase
 
     use DatabaseTransactions, WithFaker, AdditionalFakes, Traits\WithSetup;
 
-    public function testLikeArticleSuccess()
+    /** @test */
+    function should_successfully_like_an_article()
     {
         $article = factory(ArtistArticle::class)->create([
             'user_id' => ($user = factory(User::class)->create())->id,
@@ -32,7 +33,8 @@ class LikeTest extends TestCase
             ->assertSee('true');
     }
 
-    public function testLikeAlreadyLikedArticleFail()
+    /** @test */
+    function should_not_be_able_to_like_article_again()
     {
         $article = factory(ArtistArticle::class)->create([
             'user_id' => factory(User::class)->create()->id,
@@ -55,7 +57,8 @@ class LikeTest extends TestCase
             ->assertSee('false');
     }
 
-    public function testUnlikeArticleSuccess()
+    /** @test */
+    function should_successfully_unlike_an_article()
     {
         $article = factory(ArtistArticle::class)->create([
             'user_id' => factory(User::class)->create()->id,
@@ -78,7 +81,8 @@ class LikeTest extends TestCase
             ->assertSee('true');
     }
 
-    public function testUnlikeArticleThatIsntLikedFail()
+    /** @test */
+    function should_not_be_able_to_like_an_article()
     {
         $article = factory(ArtistArticle::class)->create([
             'user_id' => ($user = factory(User::class)->create())->id,

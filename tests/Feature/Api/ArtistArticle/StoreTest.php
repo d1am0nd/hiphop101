@@ -14,7 +14,8 @@ class StoreTest extends TestCase
 
     use DatabaseTransactions, WithFaker, AdditionalFakes, Traits\WithSetup;
 
-    public function testPostArticleSuccess()
+    /** @test */
+    function should_successfully_create_an_article()
     {
         $res = $this
             ->actingAs(factory(User::class)->create())
@@ -27,7 +28,8 @@ class StoreTest extends TestCase
             ->assertStatus(201);
     }
 
-    public function testPostArticleForbidden()
+    /** @test */
+    function should_get_403_when_not_logged_in()
     {
         $res = $this
             ->json('POST', $this->baseUrl(), []);
@@ -36,7 +38,8 @@ class StoreTest extends TestCase
             ->assertStatus(403);
     }
 
-    public function testPostArticleMissingData()
+    /** @test */
+    function should_get_422_and_missing_data_errors()
     {
         $res = $this
             ->actingAs(factory(User::class)->create())

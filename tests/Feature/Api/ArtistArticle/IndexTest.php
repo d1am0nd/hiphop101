@@ -21,7 +21,8 @@ class IndexTest extends TestCase
         Traits\WithSetup,
         AdditionalAsserts;
 
-    public function testGetArtistArticlesStructure()
+    /** @test */
+    function should_have_correct_structure()
     {
         $article = factory(ArtistArticle::class)->create([
             'artist_id' => $this->artist->id,
@@ -69,7 +70,8 @@ class IndexTest extends TestCase
             ]);
     }
 
-    public function testGetArtistArticlesMultiplePages()
+    /** @test */
+    function should_have_multiple_pages()
     {
         $perPage = config('defaults.pagination.per_page');
         $pages = 2;

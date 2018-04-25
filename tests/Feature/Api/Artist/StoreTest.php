@@ -13,7 +13,8 @@ class StoreTest extends TestCase
 {
     use DatabaseTransactions, WithFaker, Traits\WithSetup;
 
-    public function testPostArtistSuccess()
+    /** @test */
+    function should_successfully_create_an_artist()
     {
         $res = $this
             ->actingAs(factory(User::class)->create())
@@ -26,7 +27,8 @@ class StoreTest extends TestCase
             ->assertStatus(201);
     }
 
-    public function testPostArtistForbidden()
+    /** @test */
+    function should_throw_forbidden_on_artist_creation()
     {
         $res = $this
             ->json('POST', $this->baseUrl());
@@ -35,7 +37,8 @@ class StoreTest extends TestCase
             ->assertStatus(403);
     }
 
-    public function testMissingData()
+    /** @test */
+    function should_throw_422_on_missing_data()
     {
         $res = $this
             ->actingAs(factory(User::class)->create())
@@ -48,7 +51,8 @@ class StoreTest extends TestCase
             ]);
     }
 
-    public function testInvalidWikipediaUrl()
+    /** @test */
+    function should_have_invalid_wikipedia_url_error()
     {
         $res = $this
             ->actingAs(factory(User::class)->create())

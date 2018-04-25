@@ -13,7 +13,8 @@ class ShowTest extends TestCase
 {
     use DatabaseTransactions, WithFaker, Traits\WithSetup;
 
-    public function testGetArtistSuccess()
+    /** @test */
+    function should_successfully_get_artist()
     {
         $artist = factory(Artist::class)->create();
 
@@ -27,7 +28,8 @@ class ShowTest extends TestCase
             ]);
     }
 
-    public function testGetNonexistantArtist()
+    /** @test */
+    function should_get_404_on_nonexistant_artist()
     {
         $res = $this->json('GET', $this->artistUrl('nonexistant'));
 

@@ -15,7 +15,8 @@ class IndexTest extends TestCase
 {
     use DatabaseTransactions, WithFaker, AdditionalAsserts, Traits\WithSetup;
 
-    public function testGetArtistsStructure()
+    /** @test */
+    function should_have_correct_structure()
     {
         $artist = factory(Artist::class)->create();
         $res = $this->json('GET', $this->baseUrl());
@@ -34,7 +35,8 @@ class IndexTest extends TestCase
             ]);
     }
 
-    public function testGetArtistsMultiplePages()
+    /** @test */
+    function should_have_multiple_pages()
     {
         $perPage = config('defaults.pagination.per_page');
         $pages = 2;

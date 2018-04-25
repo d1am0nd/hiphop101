@@ -17,7 +17,8 @@ class PatchTest extends TestCase
         AdditionalFakes,
         Traits\WithSetup;
 
-    public function testPatchArticleSuccess()
+    /** @test */
+    function should_successfully_patch_an_article()
     {
         $article = factory(ArtistArticle::class)->create([
             'user_id' => ($user = factory(User::class)->create())->id,
@@ -46,7 +47,8 @@ class PatchTest extends TestCase
         $this->assertEquals($newContent, $article->content, 'Article didn\'t update content correctly');
     }
 
-    public function testPatchArticleIncorrectUser()
+    /** @test */
+    function should_not_be_able_to_patch_someone_elses_article()
     {
         $article = factory(ArtistArticle::class)->create([
             'user_id' => factory(User::class)->create()->id,
@@ -63,7 +65,8 @@ class PatchTest extends TestCase
             ->assertStatus(404);
     }
 
-    public function testPatchDeactiveArticleFail()
+    /** @test */
+    function should_not_be_able_to_deactive_an_article()
     {
         $article = factory(ArtistArticle::class)->create([
             'user_id' => ($user = factory(User::class)->create())->id,

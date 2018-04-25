@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ArtistTest extends TestCase
+class ArtstsTest extends TestCase
 {
     /**
      * A basic test example.

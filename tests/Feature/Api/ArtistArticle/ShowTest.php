@@ -14,7 +14,8 @@ class ShowTest extends TestCase
 
     use DatabaseTransactions, WithFaker, AdditionalFakes, Traits\WithSetup;
 
-    public function testGetArtistArticleSuccess()
+    /** @test */
+    function should_successfully_get_an_artist_article()
     {
         $article = factory(ArtistArticle::class)->create(['active' => 1]);
         $res = $this->json('GET', $this->articleUrl($article));
@@ -44,7 +45,8 @@ class ShowTest extends TestCase
             ]);
     }
 
-    public function testGetNonexistantArticle()
+    /** @test */
+    function should_get_404_on_nonexistant_article()
     {
         $res = $this->json('GET', $this->articleUrl('some-prefix', 'some-slug'));
         $res
