@@ -5,14 +5,14 @@ namespace Tests\Feature\Api\Popular;
 use Tests\TestCase;
 use Tests\Traits\AdditionalAsserts;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use App\Models\Artists\ArtistArticle;
 
 class ArticlesTest extends TestCase
 {
 
-    use DatabaseTransactions, Traits\WithSetup, AdditionalAsserts;
+    use RefreshDatabase, Traits\WithSetup, AdditionalAsserts;
 
     /** @test */
     function should_be_ordered_by_likes_count()

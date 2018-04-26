@@ -4,14 +4,14 @@ namespace Tests\Feature\Api\Artist;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use App\Models\Users\User;
 use App\Models\Artists\Artist;
 
 class ShowTest extends TestCase
 {
-    use DatabaseTransactions, WithFaker, Traits\WithSetup;
+    use RefreshDatabase, WithFaker, Traits\WithSetup;
 
     /** @test */
     function should_successfully_get_artist()

@@ -5,14 +5,14 @@ namespace Tests\Feature\Api\ArtistArticle;
 use Tests\TestCase;
 use Tests\Traits\AdditionalFakes;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use App\Models\Artists\ArtistArticle;
 
 class ShowTest extends TestCase
 {
 
-    use DatabaseTransactions, WithFaker, AdditionalFakes, Traits\WithSetup;
+    use RefreshDatabase, WithFaker, AdditionalFakes, Traits\WithSetup;
 
     /** @test */
     function should_successfully_get_an_artist_article()

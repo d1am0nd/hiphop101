@@ -8,14 +8,14 @@ use Tests\Traits\{
     AdditionalAsserts,
 };
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use App\Models\Artists\ArtistArticle;
 
 class IndexTest extends TestCase
 {
 
-    use DatabaseTransactions,
+    use RefreshDatabase,
         WithFaker,
         AdditionalFakes,
         Traits\WithSetup,

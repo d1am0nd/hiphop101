@@ -6,7 +6,7 @@ use DB;
 use Tests\TestCase;
 use Tests\Traits\AdditionalFakes;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use App\Models\Users\User;
 use App\Models\Artists\ArtistArticle;
@@ -14,7 +14,7 @@ use App\Models\Artists\ArtistArticle;
 class LikeTest extends TestCase
 {
 
-    use DatabaseTransactions, WithFaker, AdditionalFakes, Traits\WithSetup;
+    use RefreshDatabase, WithFaker, AdditionalFakes, Traits\WithSetup;
 
     /** @test */
     function should_successfully_like_an_article()

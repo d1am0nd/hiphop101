@@ -4,7 +4,7 @@ namespace Tests\Feature\Api\Artist;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use Tests\Traits\AdditionalAsserts;
 
@@ -13,7 +13,7 @@ use App\Models\Artists\Artist;
 
 class IndexTest extends TestCase
 {
-    use DatabaseTransactions, WithFaker, AdditionalAsserts, Traits\WithSetup;
+    use RefreshDatabase, WithFaker, AdditionalAsserts, Traits\WithSetup;
 
     /** @test */
     function should_have_correct_structure()

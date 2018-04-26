@@ -5,14 +5,14 @@ namespace Tests\Feature\Api\UserArticle;
 use Tests\TestCase;
 use Tests\Traits\AdditionalFakes;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use App\Models\Users\User;
 use App\Models\Artists\ArtistArticle;
 
 class PatchTest extends TestCase
 {
-    use DatabaseTransactions,
+    use RefreshDatabase,
         WithFaker,
         AdditionalFakes,
         Traits\WithSetup;

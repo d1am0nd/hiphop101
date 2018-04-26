@@ -4,14 +4,14 @@ namespace Tests\Feature\Api\UserArticle;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use App\Models\Users\User;
 use App\Models\Artists\ArtistArticle;
 
 class DeleteTest extends TestCase
 {
-    use DatabaseTransactions,
+    use RefreshDatabase,
         Traits\WithSetup;
 
     /** @test */
