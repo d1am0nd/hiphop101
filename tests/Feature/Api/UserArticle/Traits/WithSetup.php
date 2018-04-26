@@ -27,4 +27,14 @@ trait WithSetup
 
         return $this->baseUrl() . '/' . $id;
     }
+
+    protected function article()
+    {
+        return app(ArtistArticle::class);
+    }
+
+    protected function getTable()
+    {
+        return $this->article()->getTable();
+    }
 }

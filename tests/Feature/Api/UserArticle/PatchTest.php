@@ -25,26 +25,26 @@ class PatchTest extends TestCase
             'active' => false,
         ]);
 
-        $newTitle = $this->faker()->name;
-        $newContent = $this->minTextLength(800);
-
         $res = $this
             ->actingAs($user)
-            ->json('PATCH', $this->articleUrl($article), [
-                'title' => $newTitle,
-                'content' => $newContent,
-                'active' => 1,
-            ]);
+            ->json(
+                'PATCH',
+                $this->articleUrl($article),
+                $newAttributes = [
+                    'title' => $this->faker()->name,
+                    'content' => $this->minTextLength(800),
+                    'active' => 1,
+                ]
+            );
 
         $res
             ->assertStatus(200)
             ->assertSee('1');
 
-        $article = $article->fresh();
-
-        $this->assertEquals($newTitle, $article->title, 'Article didn\'t update title correctly');
-        $this->assertEquals(str_slug($newTitle), $article->slug, 'Article didn\'t update slug correctly');
-        $this->assertEquals($newContent, $article->content, 'Article didn\'t update content correctly');
+        $this->assertDatabaseHas(
+            $this->getTable(),
+            $newAttributes
+        );
     }
 
     /** @test */
@@ -56,13 +56,22 @@ class PatchTest extends TestCase
 
         $res = $this
             ->actingAs(factory(User::class)->create())
-            ->json('PATCH', $this->articleUrl($article), [
-                'title' => $this->faker()->title,
-                'content' => $this->minTextLength(800),
-            ]);
+            ->json(
+                'PATCH',
+                $this->articleUrl($article),
+                $newAttributes = [
+                    'title' => $this->faker()->title,
+                    'content' => $this->minTextLength(800),
+                ]
+            );
 
         $res
             ->assertStatus(404);
+
+        $this->assertDatabaseMissing(
+            $this->getTable(),
+            $newAttributes
+        );
     }
 
     /** @test */
@@ -75,13 +84,22 @@ class PatchTest extends TestCase
 
         $res = $this
             ->actingAs($user)
-            ->json('PATCH', $this->articleUrl($article), [
-                'title' => $this->faker()->title,
-                'content' => $this->minTextLength(800),
-                'active' => 0,
-            ]);
+            ->json(
+                'PATCH',
+                $this->articleUrl($article),
+                $newAttributes = [
+                    'title' => $this->faker()->title,
+                    'content' => $this->minTextLength(800),
+                    'active' => 0,
+                ]
+            );
 
         $res
             ->assertStatus(404);
+
+        $this->assertDatabaseMissing(
+            $this->getTable(),
+            $newAttributes
+        );
     }
 }

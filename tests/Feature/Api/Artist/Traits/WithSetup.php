@@ -19,4 +19,14 @@ trait WithSetup
             ? $param->slug : $param;
         return $this->baseUrl() . '/' . $slug;
     }
+
+    protected function artist()
+    {
+        return app(Artist::class);
+    }
+
+    protected function getTable()
+    {
+        return $this->artist()->getTable();
+    }
 }

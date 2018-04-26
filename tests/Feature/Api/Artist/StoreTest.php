@@ -18,13 +18,22 @@ class StoreTest extends TestCase
     {
         $res = $this
             ->actingAs(factory(User::class)->create())
-            ->json('POST', $this->baseUrl(), [
-                'name' => $name = 'Danny Brown',
-                'description' => 'Ut nihil accusantium est maxime. Sed quam voluptatem est doloremque consectetur. Nisi officia dolores sapiente doloremque laborum qui accusantium. At quia ut voluptas enim. Aperiam eligendi quo porro voluptas natus minus. Repudiandae aut impedit excepturi voluptates sed atque eum. Quis fugit deserunt ipsum.',
-            ]);
+            ->json(
+                'POST',
+                $this->baseUrl(),
+                $attributes = [
+                    'name' => $this->faker()->name,
+                    'description' => 'Ut nihil accusantium est maxime. Sed quam voluptatem est doloremque consectetur. Nisi officia dolores sapiente doloremque laborum qui accusantium. At quia ut voluptas enim. Aperiam eligendi quo porro voluptas natus minus. Repudiandae aut impedit excepturi voluptates sed atque eum. Quis fugit deserunt ipsum.',
+                ]
+            );
 
         $res
             ->assertStatus(201);
+
+        $this->assertDatabaseHas(
+            $this->getTable(),
+            $attributes
+        );
     }
 
     /** @test */
