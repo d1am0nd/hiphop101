@@ -18,7 +18,15 @@ class RegisterTest extends TestCase
 
         $res
             ->assertStatus(201)
-            ->assertJsonStructure(['data'])
+            ->assertJsonStructure([
+                'data' => [
+                    'user',
+                    'token' => [
+                        'token_type',
+                        'access_token',
+                    ],
+                ]
+            ])
             ->assertJson([
                 'data' => [
                     'user' => $attributes->only(['name'])->toArray(),
