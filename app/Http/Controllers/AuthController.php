@@ -38,7 +38,7 @@ class AuthController extends Controller
                 'user'  => $user,
                 'token' => $this->tokenArray($token),
             ],
-        ]);
+        ], 201);
     }
 
     public function login(LoginRequest $request): JsonResponse
