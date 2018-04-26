@@ -35,4 +35,17 @@ trait WithSetup
     {
         return $this->user()->getTable();
     }
+
+    public function structure()
+    {
+        return [
+            'data' => [
+                'user',
+                'token' => [
+                    'token_type',
+                    'access_token',
+                ],
+            ]
+        ];
+    }
 }

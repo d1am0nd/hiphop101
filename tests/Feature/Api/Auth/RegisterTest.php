@@ -18,18 +18,10 @@ class RegisterTest extends TestCase
 
         $res
             ->assertStatus(201)
-            ->assertJsonStructure([
-                'data' => [
-                    'user',
-                    'token' => [
-                        'token_type',
-                        'access_token',
-                    ],
-                ]
-            ])
+            ->assertJsonStructure($this->structure())
             ->assertJson([
                 'data' => [
-                    'user' => $attributes->only(['name'])->toArray(),
+                    'user' => $attributes->only(['name', 'email'])->toArray(),
                     'token' => [
                         'token_type' => 'bearer',
                     ],
@@ -38,7 +30,7 @@ class RegisterTest extends TestCase
 
         $this->assertDatabaseHas(
             $this->getTable(),
-            $attributes->only('name')->toArray()
+            $attributes->only('name', 'email')->toArray()
         );
     }
 
